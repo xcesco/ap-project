@@ -8,5 +8,41 @@
     <artifactId>mee-server</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <url>https://github.com/xcesco/reversi</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <junit-jupiter.version>5.5.2</junit-jupiter.version>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/xcesco/ap-project/issues</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/xcesco/ap-project.git</connection>
+        <developerConnection>scm:git:git@github.com:xcesco/ap-project.git</developerConnection>
+        <url>https://github.com/xcesco/ap-project</url>
+    </scm>
+
+    <developers>
+
+        <developer>
+            <id>xcesco</id>
+            <name>Francesco Benincasa</name>
+            <email>xcesco@gmail.com</email>
+        </developer>
+    </developers>
 
 </project>
