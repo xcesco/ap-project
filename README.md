@@ -1,11 +1,7 @@
-[![GitHub issues](https://img.shields.io/github/issues/xcesco/ap-project.svg)](https://github.com/xcesco/ap-project/issues)
 [![Build Status](https://travis-ci.com/xcesco/ap-project.svg?token=uks2dvyxuPvhM6qBGZoB&branch=master)](https://travis-ci.com/xcesco/ap-project)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.abubusoft%3Amee-server&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.abubusoft%3Amee-server)
 
 ![logo](https://github.com/xcesco/ap-project/blob/master/assets/logo_256.png)
-
-
-
 
 # MEE - Math Expressions Evaluator Server
 
