@@ -1,5 +1,7 @@
-package org.abubusoft.mee.grammar;
+package org.abubusoft.mee.model;
 
+import org.abubusoft.mee.grammar.CommandBaseErrorListener;
+import org.abubusoft.mee.grammar.CommandListener;
 import org.abubusoft.mee.grammars.CommandsLexer;
 import org.abubusoft.mee.grammars.CommandsParser;
 import org.abubusoft.mee.support.AssertMME;
@@ -26,13 +28,10 @@ public class CommandAnalyzer {
       @Override
       public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
                               int charPositionInLine, String msg, RecognitionException e) {
-//        AssertKripton.assertTrue(false,
-//                jqlContext.getContextDescription() + ": unespected char at pos %s of SQL '%s'",
-//                charPositionInLine, jql);
         AssertMME.fail("unespected char at pos %s in command '%s'", charPositionInLine, input);
       }
     });
-
+    
     ParserRuleContext context = parser.parse();
     return new Pair<>(context, tokens);
   }

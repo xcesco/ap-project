@@ -1,7 +1,7 @@
 package org.abubusoft.mme.grammar;
 
 import org.abubusoft.mee.exceptions.MMERuntimeException;
-import org.abubusoft.mee.grammar.CommandAnalyzer;
+import org.abubusoft.mee.model.CommandAnalyzer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

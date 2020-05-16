@@ -1,1 +1,13 @@
 language: java
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+addons:
+  sonarcloud:
+    organization: "xcesco"
+    token: "41a2561c1180c213d100dc3f02f2495bedce4464" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectName="ap-project"
+
