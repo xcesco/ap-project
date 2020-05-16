@@ -41,6 +41,8 @@ operation   : OP;
 /**
 * Lexer rules
 */
+WS:                 [ \t]+ -> channel(HIDDEN);
+
 K_BYE : B Y E;
 K_STAT_REQS : S T A T '_' R E Q S;
 K_STAT_AVG_TIME : S T A T '_' A V G '_' T I M E;
