@@ -10,3 +10,7 @@ _di Francesco Benincasa_
 This is the Advanced Programming project.
 
 
+## References
+ANTLR
+- https://tomassetti.me/antlr-mega-tutorial/
+- https://github.com/antlr/grammars-v4
