@@ -25,18 +25,39 @@ computation_command: computation_kind UNDER values_kind SEMI_COLUMN variable_val
 computation_kind : K_MIN | K_MAX | K_AVG | K_COUNT;
 values_kind : K_GRID| K_LIST;
 variable_values_function: variable_values (COMMA variable_values)*;
-variable_values         : var_name COLUMN variable_lower_value COLUMN variable_step_value COLUMN variable_upper_value;
-variable_lower_value    : ('+'|'-')? NUMBER;
-variable_step_value     : ('+'|'-')? NUMBER;
-variable_upper_value    : ('+'|'-')? NUMBER;
+variable_values         : variable COLUMN variable_lower_value COLUMN variable_step_value COLUMN variable_upper_value;
+variable_lower_value    : ('-')? NUMBER;
+variable_step_value     : ('-')? NUMBER;
+variable_upper_value    : ('-')? NUMBER;
+
 expressions : expression (SEMI_COLUMN expression)*;
 expression
-    : var_name
-    | num
-    | PAR_OPEN expression operation expression PAR_CLOSE;
-var_name    : IDENTIFIER;
+   : mul_expression (operator_add_sub mul_expression)*;
+
+mul_expression
+   : pow_expression (operator_mul_div pow_expression)*
+   ;
+
+pow_expression
+   : operand_left (operator_pow operand_right)*
+   ;
+
+operator_add_sub: OP_ADD | OP_MINUS;
+operator_mul_div: OP_MUL | OP_DIV;
+operator_pow: OP_POW;
+
+operand_left
+    :   (OP_ADD | OP_MINUS)? variable
+    |   (OP_ADD | OP_MINUS)? num
+    |   (OP_ADD | OP_MINUS)? PAR_OPEN expression PAR_CLOSE;
+
+operand_right
+    :   variable
+    |   num
+    |   PAR_OPEN expression PAR_CLOSE;
+
+variable    : IDENTIFIER;
 num         : NUMBER;
-operation   : OP;
 
 /**
 * Lexer rules
@@ -56,8 +77,16 @@ K_MAX   : M A X;
 K_AVG   : A V G;
 K_COUNT : C O U N  T;
 
+
 PAR_OPEN    : '(';
 PAR_CLOSE   : ')';
+// Math operators
+OP_ADD      :   '+';
+OP_MINUS    :   '-';
+OP_MUL      :   '*';
+OP_DIV      :   '/';
+OP_POW      :   '^';
+
 UNDER       : '_';
 SEMI_COLUMN : ';';
 COLUMN      : ':';
@@ -67,14 +96,8 @@ IDENTIFIER  : [a-z] [a-z0-9]*;
 
 // take from https://github.com/antlr/grammars-v4/blob/master/java/java/JavaLexer.g4
 NUMBER: (DIGITS '.' DIGITS? | '.' DIGITS) EXPONENT_PART?
-    |   ([+-])? DIGITS (EXPONENT_PART)?
+    |   DIGITS (EXPONENT_PART)?
     ;
-
-OP  : '+'
-    | '-'
-    | '*'
-    | '/'
-    | '^';
 
 fragment DIGITS: [0-9] ([0-9_]* [0-9])?
     ;
