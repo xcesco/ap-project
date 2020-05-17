@@ -24,6 +24,7 @@ stat_max_time_command   : K_STAT_MAX_TIME;
 computation_command: computation_kind UNDER values_kind SEMI_COLUMN variable_values_function SEMI_COLUMN expressions;
 computation_kind : K_MIN | K_MAX | K_AVG | K_COUNT;
 values_kind : K_GRID| K_LIST;
+
 variable_values_function: variable_values (COMMA variable_values)*;
 variable_values         : variable COLUMN variable_lower_value COLUMN variable_step_value COLUMN variable_upper_value;
 variable_lower_value    : ('-')? NUMBER;
