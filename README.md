@@ -14,3 +14,5 @@ This is the Advanced Programming project.
 ANTLR
 - https://tomassetti.me/antlr-mega-tutorial/
 - https://github.com/antlr/grammars-v4
+- https://weareadaptive.com/2018/11/21/using-antlr-parse-calculate-expressions-part/
+- https://github.com/antlr/grammars-v4/blob/master/calculator/calculator.g4

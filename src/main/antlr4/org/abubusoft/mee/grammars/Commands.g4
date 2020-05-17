@@ -26,9 +26,9 @@ computation_kind : K_MIN | K_MAX | K_AVG | K_COUNT;
 values_kind : K_GRID| K_LIST;
 variable_values_function: variable_values (COMMA variable_values)*;
 variable_values         : var_name COLUMN variable_lower_value COLUMN variable_step_value COLUMN variable_upper_value;
-variable_lower_value    : NUMBER;
-variable_step_value     : NUMBER;
-variable_upper_value    : NUMBER;
+variable_lower_value    : ('+'|'-')? NUMBER;
+variable_step_value     : ('+'|'-')? NUMBER;
+variable_upper_value    : ('+'|'-')? NUMBER;
 expressions : expression (SEMI_COLUMN expression)*;
 expression
     : var_name
@@ -66,8 +66,8 @@ COMMA       : ',';
 IDENTIFIER  : [a-z] [a-z0-9]*;
 
 // take from https://github.com/antlr/grammars-v4/blob/master/java/java/JavaLexer.g4
-NUMBER: [+-]?  (DIGITS '.' DIGITS? | '.' DIGITS) EXPONENT_PART?
-    |   [+-]? DIGITS (EXPONENT_PART)?
+NUMBER: (DIGITS '.' DIGITS? | '.' DIGITS) EXPONENT_PART?
+    |   ([+-])? DIGITS (EXPONENT_PART)?
     ;
 
 OP  : '+'
