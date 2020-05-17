@@ -16,3 +16,11 @@ ANTLR
 - https://github.com/antlr/grammars-v4
 - https://weareadaptive.com/2018/11/21/using-antlr-parse-calculate-expressions-part/
 - https://github.com/antlr/grammars-v4/blob/master/calculator/calculator.g4
+
+
+Spring boot
+- https://www.baeldung.com/spring-boot-console-app
+- https://www.baeldung.com/executable-jar-with-maven
+
+ASCII art
+- http://patorjk.com/software/taag/#p=display&f=Merlin1&t=MME%20Server
