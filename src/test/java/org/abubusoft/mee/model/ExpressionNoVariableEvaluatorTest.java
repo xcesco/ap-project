@@ -1,6 +1,7 @@
 package org.abubusoft.mee.model;
 
-import org.abubusoft.mee.exceptions.MMERuntimeException;
+import org.abubusoft.mee.exceptions.AppRuntimeException;
+import org.abubusoft.mee.exceptions.MalformedCommandException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class ExpressionNoVariableEvaluatorTest {
   ExpressionEvaluator evaluator = new ExpressionEvaluator();
 
   @Test
-  public void testNumbersEvaluation() {
+  public void testNumbersEvaluation() throws MalformedCommandException {
     evaluateExpression("1", 1.0);
     evaluateExpression("-2", -2.0);
     evaluateExpression("1e2", 100.0);
@@ -22,24 +23,24 @@ public class ExpressionNoVariableEvaluatorTest {
   }
 
   @Test
-  public void testNumbersSumSubEvaluation() {
+  public void testNumbersSumSubEvaluation() throws MalformedCommandException {
     evaluateExpression("1+1", 2.0);
     evaluateExpression("-1+1", .0);
     evaluateExpression("-1+1+2", 2.0);
   }
 
   @Test
-  public void testNumbersMulDivEvaluation() {
+  public void testNumbersMulDivEvaluation() throws MalformedCommandException {
     evaluateExpression("1*1", 1.0);
     evaluateExpression("-1*1", -1.0);
     evaluateExpression("2/1", 2.0);
     evaluateExpression("8/2/2", 2.0);
 
-    Assertions.assertThrows(MMERuntimeException.class, () ->  evaluateExpression("2/0", 2.0));
+    Assertions.assertThrows(AppRuntimeException.class, () -> evaluateExpression("2/0", 2.0));
   }
 
   @Test
-  public void testNumbers4OpsEvaluation() {
+  public void testNumbers4OpsEvaluation() throws MalformedCommandException {
     evaluateExpression("1+2*2", 5.0);
     evaluateExpression("(1+2)*2", 6.0);
     evaluateExpression("-(1+2)*2", -6.0);
@@ -47,19 +48,19 @@ public class ExpressionNoVariableEvaluatorTest {
   }
 
   @Test
-  public void testNumbersPowEvaluation() {
+  public void testNumbersPowEvaluation() throws MalformedCommandException {
     evaluateExpression("2^1", 2.0);
     evaluateExpression("2^2^2", 16.0);
     evaluateExpression("2^2*2", 8.0);
   }
 
   @Test
-  public void testMixEvaluation() {
+  public void testMixEvaluation() throws MalformedCommandException {
     evaluateExpression("(1+1)^2", 4.0);
     evaluateExpression("(1+1)^2-1", 3.0);
   }
 
-  private void evaluateExpression(String input, double aspectedValue) {
+  private void evaluateExpression(String input, double aspectedValue) throws MalformedCommandException {
     double evaluationResult = evaluator.execute(ExpressionContext.Builder.create().build(), input);
     assertEquals(aspectedValue, evaluationResult, input + "=" + aspectedValue);
   }

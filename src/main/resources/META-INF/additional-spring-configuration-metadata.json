@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "mee-server.port",
+      "type": "java.lang.Integer",
+      "description": "TCP port used by MME server."
+    }
+  ]
+}

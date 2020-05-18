@@ -1,8 +1,9 @@
 package org.abubusoft.mee.model;
 
-import org.abubusoft.mee.grammars.CommandsBaseVisitor;
-import org.abubusoft.mee.grammars.CommandsParser;
-import org.abubusoft.mee.support.AssertMME;
+import org.abubusoft.mee.exceptions.AppRuntimeException;
+import org.abubusoft.mee.grammar.CommandsBaseVisitor;
+import org.abubusoft.mee.grammar.CommandsParser;
+import org.abubusoft.mee.exceptions.AppAssert;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.List;
@@ -62,7 +63,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
     } else if (num != null) {
       subContext = num;
     } else {
-      AssertMME.fail("Incosistent status");
+      AppAssert.fail("Incosistent status");
     }
     value = visit(subContext);
 
@@ -81,7 +82,8 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
       if (operatorList.get(i).OP_MUL() != null) {
         result *= value;
       } else {
-        AssertMME.assertTrue(value != 0.0, "Division by 0");
+        this.context.toString();
+        AppAssert.assertTrue(value != 0.0, AppRuntimeException.class, "Division by 0");
         result = result / value;
       }
     }
@@ -112,7 +114,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
 
     Double value = context.getVariable(name);
     if (value == null) {
-      AssertMME.fail("Variable %s is not defined", name);
+      AppAssert.fail("Variable %s is not defined", name);
     }
     return value;
   }

@@ -1,13 +1,14 @@
 package org.abubusoft.mee.model;
 
-import org.abubusoft.mee.grammar.CommandListener;
-import org.abubusoft.mee.grammars.CommandsParser;
+import org.abubusoft.mee.exceptions.MalformedCommandException;
+import org.abubusoft.mee.grammar.CommandsBaseListener;
+import org.abubusoft.mee.grammar.CommandsParser;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public class VariableEvaluator implements Evaluator<VariableDefinitionContext, VariableDefinition> {
-  public VariableDefinition execute(VariableDefinitionContext context, String input) {
+  public VariableDefinition execute(VariableDefinitionContext context, String input) throws MalformedCommandException {
     final VariableDefinition.Builder builder = VariableDefinition.Builder.create();
-    ParseTreeWalker.DEFAULT.walk(new CommandListener() {
+    ParseTreeWalker.DEFAULT.walk(new CommandsBaseListener() {
       @Override
       public void enterVariable_values(CommandsParser.Variable_valuesContext ctx) {
         builder
@@ -22,7 +23,7 @@ public class VariableEvaluator implements Evaluator<VariableDefinitionContext, V
     return builder.build();
   }
 
-  public VariableDefinition execute(String input) {
+  public VariableDefinition execute(String input) throws MalformedCommandException {
     return execute(new VariableDefinitionContext(), input);
   }
 }

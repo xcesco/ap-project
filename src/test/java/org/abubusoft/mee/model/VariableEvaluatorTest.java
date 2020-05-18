@@ -1,6 +1,7 @@
 package org.abubusoft.mee.model;
 
-import org.abubusoft.mee.exceptions.MMERuntimeException;
+import org.abubusoft.mee.exceptions.AppRuntimeException;
+import org.abubusoft.mee.exceptions.MalformedCommandException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class VariableEvaluatorTest {
   VariableEvaluator evaluator = new VariableEvaluator();
 
   @Test
-  public void testVariableRange0_1() {
+  public void testVariableRange0_1() throws MalformedCommandException {
     String input = "x0:0:0.1:1";
     List<Double> list = Arrays.asList(0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0);
 
@@ -25,7 +26,7 @@ public class VariableEvaluatorTest {
   }
 
   @Test
-  public void testVariableRange2() {
+  public void testVariableRange2() throws MalformedCommandException{
     String input = "x0:-1:0.1:1";
     List<Double> list = Arrays.asList(-1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1,
             0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0);
@@ -37,7 +38,7 @@ public class VariableEvaluatorTest {
   }
 
   @Test
-  public void testVariableRange3() {
+  public void testVariableRange3()throws MalformedCommandException {
     String input = "x1:-10:1:20";
     List<Double> list = Arrays.asList(-10.0, -9.0, -8.0, -7.0, -6.0, -5.0, -4.0, -3.0, -2.0, -1.0,
             0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0);
@@ -54,13 +55,13 @@ public class VariableEvaluatorTest {
   @Test
   public void testInvalidDefinitions() {
     // range and step are incosistent
-    Assertions.assertThrows(MMERuntimeException.class, () -> evaluator.execute(new VariableDefinitionContext(), "x0 : 1 : 0.1 : -1"));
-    Assertions.assertThrows(MMERuntimeException.class, () -> evaluator.execute(new VariableDefinitionContext(), "x0 :-1 :-0.1 :  1"));
+    Assertions.assertThrows(AppRuntimeException.class, () -> evaluator.execute(new VariableDefinitionContext(), "x0 : 1 : 0.1 : -1"));
+    Assertions.assertThrows(AppRuntimeException.class, () -> evaluator.execute(new VariableDefinitionContext(), "x0 :-1 :-0.1 :  1"));
     // step is 0
-    Assertions.assertThrows(MMERuntimeException.class, () -> evaluator.execute(new VariableDefinitionContext(), "x0 :-1 : 0   :  1"));
+    Assertions.assertThrows(AppRuntimeException.class, () -> evaluator.execute(new VariableDefinitionContext(), "x0 :-1 : 0   :  1"));
 
     // step is greater than interval
-    Assertions.assertThrows(MMERuntimeException.class, () -> evaluator.execute(new VariableDefinitionContext(), "x0 :-1 : 10  :  1"));
+    Assertions.assertThrows(AppRuntimeException.class, () -> evaluator.execute(new VariableDefinitionContext(), "x0 :-1 : 10  :  1"));
 
   }
 
