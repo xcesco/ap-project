@@ -130,7 +130,8 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <classifier>spring-boot</classifier>
+                            <finalName>BenincasaFrancesco</finalName>
+<!--                            <classifier>spring-boot</classifier>-->
                             <mainClass>${spring.boot.mainclass}</mainClass>
                         </configuration>
                     </execution>

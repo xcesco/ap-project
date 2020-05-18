@@ -21,6 +21,7 @@ ANTLR
 Spring boot
 - https://www.baeldung.com/spring-boot-console-app
 - https://www.baeldung.com/executable-jar-with-maven
+- https://javadeveloperzone.com/spring-boot/spring-boot-change-jar-name/
 
 ASCII art
 - http://patorjk.com/software/taag/#p=display&f=Merlin1&t=MME%20Server
