@@ -18,8 +18,8 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
   private static final Logger logger = LoggerFactory
           .getLogger(ConnectionsServerImpl.class);
 
-  private List<Connection> connections = new CopyOnWriteArrayList<>();
-  private List<Connection.Listener> listeners = new ArrayList<>();
+  private final List<Connection> connections = new CopyOnWriteArrayList<>();
+  private final List<Connection.Listener> listeners = new ArrayList<>();
 
   private ObjectProvider<Connection> connectionProvider;
 
@@ -37,7 +37,7 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
   public void start(int port) {
     new Thread(() -> {
       try (ServerSocket serverSocket = new ServerSocket(port)) {
-        logger.info(String.format("Server accept commands through TCP port %d", port));
+        logger.info("Server accept commands through TCP port {}", port);
 
         while (true) {
           try {
@@ -51,7 +51,7 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
         }
 
       } catch (IOException e) {
-        logger.error(String.format("Could not open server at TCP port %d.", port));
+        logger.error("Could not open server at TCP port {}.", port);
         e.printStackTrace();
       }
     }).start();
@@ -69,8 +69,8 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
 
   @Override
   public void messageReceived(Connection connection, Object message) {
-    logger.trace("Received new message from " + connection.getAddress().getCanonicalHostName());
-    logger.trace("Class name: " + message.getClass().getCanonicalName() + ", toString: " + message.toString());
+    logger.trace("Received new message from {}", connection.getAddress().getCanonicalHostName());
+    logger.trace("Class name: {}, toString: {}", message.getClass().getCanonicalName(), message.toString());
     for (Connection.Listener listener : listeners) {
       listener.messageReceived(connection, message);
     }
@@ -78,9 +78,9 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
 
   @Override
   public void connected(Connection connection) {
-    logger.info("New connection! Ip: " + connection.getAddress().getCanonicalHostName() + ".");
+    logger.info("New connection! Ip: {}.", connection.getAddress().getCanonicalHostName());
     connections.add(connection);
-    logger.info("Current connections count: " + connections.size());
+    logger.info("Current connections count: {}", connections.size());
     for (Connection.Listener listener : listeners) {
       listener.connected(connection);
     }
@@ -88,9 +88,9 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
 
   @Override
   public void disconnected(Connection connection) {
-    logger.info("Disconnect! Ip: " + connection.getAddress().getCanonicalHostName() + ".");
+    logger.info("Disconnect! Ip: {}.", connection.getAddress().getCanonicalHostName());
     connections.remove(connection);
-    logger.info("Current connections count: " + connections.size());
+    logger.info("Current connections count: {}", connections.size());
     for (Connection.Listener listener : listeners) {
       listener.disconnected(connection);
     }

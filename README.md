@@ -24,4 +24,4 @@ Spring boot
 - https://javadeveloperzone.com/spring-boot/spring-boot-change-jar-name/
 
 ASCII art
-- http://patorjk.com/software/taag/#p=display&f=Merlin1&t=MME%20Server
+- http://patorjk.com/software/taag/#p=display&f=Merlin1&t=MEE%20Server
