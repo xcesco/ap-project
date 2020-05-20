@@ -1,7 +1,9 @@
 package org.abubusoft.mee.model;
 
 import org.abubusoft.mee.exceptions.MalformedCommandException;
-import org.abubusoft.mee.model.commands.CommandParserImpl;
+import org.abubusoft.mee.model.commands.ComputationType;
+import org.abubusoft.mee.model.commands.ComputeCommand;
+import org.abubusoft.mee.model.commands.ValuesType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -42,14 +44,14 @@ public class CommandParserTest {
 
   @Test
   public void testCommand() throws MalformedCommandException {
-    String input="MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));y1";
+    String input = "MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));y1";
 
-    Command command=parser.parse(input);
+    ComputeCommand command = parser.parse(input);
     Assertions.assertEquals(command.getType(), CommandType.COMPUTE);
-    Assertions.assertEquals(command.toString(), "ComputeCommand{computationType=MIN, valuesType=GRID}");
-    System.out.println(command.toString());
-    //Assertions.assertEquals(command., C);
-
+    Assertions.assertEquals(command.getComputationType(), ComputationType.MIN);
+    Assertions.assertEquals(command.getValuesType(), ValuesType.GRID);
+    Assertions.assertEquals(command.getExpressionsList().get(0), "((x0+(2.0^x1))/(1-x0))");
+    Assertions.assertEquals(command.getExpressionsList().get(1), "y1");
   }
 
 }

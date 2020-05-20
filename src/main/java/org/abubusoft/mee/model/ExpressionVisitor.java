@@ -1,23 +1,18 @@
 package org.abubusoft.mee.model;
 
+import org.abubusoft.mee.exceptions.AppAssert;
 import org.abubusoft.mee.exceptions.AppRuntimeException;
 import org.abubusoft.mee.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.grammar.CommandsParser;
-import org.abubusoft.mee.exceptions.AppAssert;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.List;
 
 public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
-  private final ExpressionContext context;
+  private final VariableValues variableValues;
 
-  public ExpressionVisitor(ExpressionContext context) {
-    this.context = context;
-  }
-
-  @Override
-  public Double visitExpressions(CommandsParser.ExpressionsContext ctx) {
-    return super.visitExpressions(ctx);
+  public ExpressionVisitor(VariableValues variableValues) {
+    this.variableValues = variableValues;
   }
 
   @Override
@@ -35,7 +30,6 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
         result -= value;
       }
     }
-
     return result;
   }
 
@@ -63,7 +57,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
     } else if (num != null) {
       subContext = num;
     } else {
-      AppAssert.fail("Incosistent status");
+      AppAssert.fail("Inconsistent status");
     }
     value = visit(subContext);
 
@@ -82,7 +76,6 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
       if (operatorList.get(i).OP_MUL() != null) {
         result *= value;
       } else {
-        this.context.toString();
         AppAssert.assertTrue(value != 0.0, AppRuntimeException.class, "Division by 0");
         result = result / value;
       }
@@ -112,7 +105,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
   public Double visitVariable(CommandsParser.VariableContext ctx) {
     String name = ctx.getText();
 
-    Double value = context.getVariable(name);
+    Double value = variableValues.get(name);
     if (value == null) {
       AppAssert.fail("Variable %s is not defined", name);
     }

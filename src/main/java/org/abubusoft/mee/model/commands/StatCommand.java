@@ -2,7 +2,7 @@ package org.abubusoft.mee.model.commands;
 
 import org.abubusoft.mee.model.CommandType;
 
-public class StatCommand extends AbstractCommand {
+public class StatCommand extends Command {
   private final StatType subType;
 
   public StatCommand(StatType subtype) {

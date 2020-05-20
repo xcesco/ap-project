@@ -1,24 +1,25 @@
 package org.abubusoft.mee.model.commands;
 
 import org.abubusoft.mee.model.CommandType;
+import org.abubusoft.mee.model.VariableDefinition;
+import org.abubusoft.mee.model.VariableDefinitions;
 
-public class ComputeCommand extends AbstractCommand {
+import java.util.List;
+import java.util.Set;
+import java.util.StringJoiner;
+
+public class ComputeCommand extends Command {
   private final ComputationType computationType;
   private final ValuesType valuesType;
+  private final VariableDefinitions variableDefinitions;
+  private final List<String> expressionsList;
 
-  @Override
-  public String toString() {
-    final StringBuilder sb = new StringBuilder("ComputeCommand{");
-    sb.append("computationType=").append(computationType);
-    sb.append(", valuesType=").append(valuesType);
-    sb.append('}');
-    return sb.toString();
-  }
-
-  public ComputeCommand(ComputationType computationType, ValuesType valuesType) {
+  public ComputeCommand(ComputationType computationType, ValuesType valuesType, VariableDefinitions variableDefinitions, List<String> expressionsList) {
     super(CommandType.COMPUTE);
     this.computationType = computationType;
     this.valuesType = valuesType;
+    this.variableDefinitions = variableDefinitions;
+    this.expressionsList = expressionsList;
   }
 
   public ComputationType getComputationType() {
@@ -29,14 +30,50 @@ public class ComputeCommand extends AbstractCommand {
     return valuesType;
   }
 
+  public VariableDefinitions getVariableDefinitions() {
+    return variableDefinitions;
+  }
+
+  public List<String> getExpressionsList() {
+    return expressionsList;
+  }
+
+  public int getVariableDefinitionCount() {
+    return variableDefinitions.size();
+  }
+
+  public List<String> getVariableNames() {
+    return variableDefinitions.getKeysList();
+  }
+
+  @Override
+  public String toString() {
+    return new StringJoiner(", ", ComputeCommand.class.getSimpleName() + "[", "]")
+            .add("computationType=" + computationType)
+            .add("valuesType=" + valuesType)
+            .add("variableDefinitions=" + variableDefinitions)
+            .add("expressionsList=" + expressionsList)
+            .toString();
+  }
+
   @Override
   public void execute() {
+    buildVariableValues();
+  }
 
+  private void buildVariableValues() {
+    variableDefinitions.buildValues(this.valuesType);
+  }
+
+  public VariableDefinition getVariableDefinition(String variableName) {
+    return variableDefinitions.get(variableName);
   }
 
   public static class Builder {
     private ComputationType computationType;
     private ValuesType valuesType;
+    private VariableDefinitions variableDefinitions = new VariableDefinitions();
+    private List<String> expressionsList;
 
     public static Builder create() {
       return new Builder();
@@ -53,7 +90,17 @@ public class ComputeCommand extends AbstractCommand {
     }
 
     public ComputeCommand build() {
-      return new ComputeCommand(computationType, valuesType);
+      return new ComputeCommand(computationType, valuesType, variableDefinitions, expressionsList);
+    }
+
+    public Builder addVariableDefinition(VariableDefinition variableDefinition) {
+      variableDefinitions.add(variableDefinition);
+      return this;
+    }
+
+    public Builder setExpressionsList(List<String> expressionsList) {
+      this.expressionsList = expressionsList;
+      return this;
     }
   }
 }

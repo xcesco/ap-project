@@ -1,15 +1,11 @@
 package org.abubusoft.mee.model.commands;
 
-import org.abubusoft.mee.model.Command;
 import org.abubusoft.mee.model.CommandType;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.util.StringJoiner;
-
-public abstract class AbstractCommand implements Command {
+public abstract class Command {
   private final CommandType type;
 
-  public AbstractCommand(CommandType type) {
+  public Command(CommandType type) {
     this.type = type;
   }
 

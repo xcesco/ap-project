@@ -1,10 +1,10 @@
 package org.abubusoft.mee.model.connection;
 
 import org.abubusoft.mee.exceptions.MalformedCommandException;
-import org.abubusoft.mee.model.Command;
 import org.abubusoft.mee.model.CommandParser;
 import org.abubusoft.mee.model.CommandType;
 import org.abubusoft.mee.model.Connection;
+import org.abubusoft.mee.model.commands.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

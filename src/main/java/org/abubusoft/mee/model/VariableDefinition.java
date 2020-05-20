@@ -5,11 +5,52 @@ import org.abubusoft.mee.exceptions.MalformedVariableDefinitionException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class VariableDefinition {
+  private final String name;
+  private final List<Double> values;
+  private final double stepValue;
+
+  @Override
+  public String toString() {
+    return new StringJoiner(", ", VariableDefinition.class.getSimpleName() + "[", "]")
+            .add("name='" + name + "'")
+            .add("values=" + values)
+            .add("stepValue=" + stepValue)
+            .toString();
+  }
+
+  public VariableDefinition(String name, double stepValue, List<Double> values) {
+    this.name = name;
+    this.values = values;
+    this.stepValue = stepValue;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public List<Double> getValues() {
+    return values;
+  }
+
+  public Double getLowerValue() {
+    return values.get(0);
+  }
+
+  public double getStepValue() {
+    return stepValue;
+  }
+
+  public Double getUpperValue() {
+    return values.get(values.size() - 1);
+  }
+
   public static class Builder {
     private String name;
     private List<Double> values;
+    private double stepValue;
 
     public static Builder create() {
       return new Builder();
@@ -20,10 +61,8 @@ public class VariableDefinition {
       return this;
     }
 
-    public Builder setInterval(String lowerText, String stepText, String highText) {
-      double lowerValue = Double.parseDouble(lowerText);
-      double stepValue = Double.parseDouble(stepText);
-      double highValue = Double.parseDouble(highText);
+    public Builder setInterval(double lowerValue, double stepValue, double highValue) {
+      this.stepValue = stepValue;
 
       // step 0
       AppAssert.assertTrue(
@@ -54,25 +93,7 @@ public class VariableDefinition {
     }
 
     public VariableDefinition build() {
-      return new VariableDefinition(this.name, this.values);
+      return new VariableDefinition(this.name, this.stepValue, this.values);
     }
   }
-
-  private final String name;
-  private final List<Double> values;
-
-  public VariableDefinition(String name, List<Double> values) {
-    this.name = name;
-    this.values = values;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public List<Double> getValues() {
-    return values;
-  }
-
-
 }

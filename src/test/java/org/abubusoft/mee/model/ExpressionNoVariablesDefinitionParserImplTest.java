@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionNoVariableEvaluatorTest {
+public class ExpressionNoVariablesDefinitionParserImplTest {
   ExpressionEvaluator evaluator = new ExpressionEvaluator();
 
   @Test
@@ -61,7 +61,7 @@ public class ExpressionNoVariableEvaluatorTest {
   }
 
   private void evaluateExpression(String input, double aspectedValue) throws MalformedCommandException {
-    double evaluationResult = evaluator.execute(ExpressionContext.Builder.create().build(), input);
+    double evaluationResult = evaluator.execute(new VariableValues(), input);
     assertEquals(aspectedValue, evaluationResult, input + "=" + aspectedValue);
   }
 

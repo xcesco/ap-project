@@ -1,6 +1,7 @@
 package org.abubusoft.mee.model;
 
 import org.abubusoft.mee.exceptions.MalformedCommandException;
+import org.abubusoft.mee.model.commands.Command;
 
 public interface CommandParser {
   /**
@@ -12,5 +13,5 @@ public interface CommandParser {
    *  {@link Command}
    * @throws MalformedCommandException
    */
-  Command parse(String input) throws MalformedCommandException;
+  <E extends Command> E parse(String input) throws MalformedCommandException;
 }

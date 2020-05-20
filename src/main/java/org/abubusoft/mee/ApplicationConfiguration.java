@@ -1,10 +1,8 @@
-package org.abubusoft.mee.config;
+package org.abubusoft.mee;
 
 import org.abubusoft.mee.model.Connection;
 import org.abubusoft.mee.model.connection.ConnectionImpl;
 import org.abubusoft.mee.services.ConnectionsServer;
-import org.abubusoft.mee.services.TcpServerAutoStarterApplicationListener;
-import org.abubusoft.mee.services.impl.ConnectionBeanPostProcessor;
 import org.abubusoft.mee.services.impl.ConnectionsServerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,19 +17,9 @@ import java.util.concurrent.Executor;
 import java.util.function.BiFunction;
 
 @Configuration
-public class AppConfiguration {
+public class ApplicationConfiguration {
   private static final Logger logger = LoggerFactory
-          .getLogger(AppConfiguration.class);
-
-  @Bean
-  TcpServerAutoStarterApplicationListener tcpServerAutoStarterApplicationListener() {
-    return new TcpServerAutoStarterApplicationListener();
-  }
-
-  @Bean
-  ConnectionBeanPostProcessor tcpControllerBeanPostProcessor() {
-    return new ConnectionBeanPostProcessor();
-  }
+          .getLogger(ApplicationConfiguration.class);
 
   @Bean
   public BiFunction<Socket, Connection.Listener, Connection> getConnectionFactory() {

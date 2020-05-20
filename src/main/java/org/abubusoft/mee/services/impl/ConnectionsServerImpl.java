@@ -37,7 +37,7 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
   public void start(int port) {
     new Thread(() -> {
       try (ServerSocket serverSocket = new ServerSocket(port)) {
-        logger.info("Server accept commands through TCP port {}", port);
+        logger.info("Server starts listening on port TCP port {}", port);
 
         while (true) {
           try {
@@ -78,7 +78,7 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
 
   @Override
   public void connected(Connection connection) {
-    logger.info("New connection! Ip: {}.", connection.getAddress().getCanonicalHostName());
+    logger.info("New connection! IP: {}.", connection.getAddress().getCanonicalHostName());
     connections.add(connection);
     logger.info("Current connections count: {}", connections.size());
     for (Connection.Listener listener : listeners) {
@@ -88,7 +88,7 @@ public class ConnectionsServerImpl implements ConnectionsServer, Connection.List
 
   @Override
   public void disconnected(Connection connection) {
-    logger.info("Disconnect! Ip: {}.", connection.getAddress().getCanonicalHostName());
+    logger.info("Disconnect! IP: {}.", connection.getAddress().getCanonicalHostName());
     connections.remove(connection);
     logger.info("Current connections count: {}", connections.size());
     for (Connection.Listener listener : listeners) {
