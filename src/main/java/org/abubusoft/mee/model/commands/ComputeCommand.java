@@ -3,9 +3,9 @@ package org.abubusoft.mee.model.commands;
 import org.abubusoft.mee.model.CommandType;
 import org.abubusoft.mee.model.VariableDefinition;
 import org.abubusoft.mee.model.VariableDefinitions;
+import org.abubusoft.mee.model.VariableValues;
 
 import java.util.List;
-import java.util.Set;
 import java.util.StringJoiner;
 
 public class ComputeCommand extends Command {
@@ -57,12 +57,25 @@ public class ComputeCommand extends Command {
   }
 
   @Override
-  public void execute() {
-    buildVariableValues();
+  public double execute() {
+    List<VariableValues> values = buildVariableValues();
+
+    switch (getComputationType()) {
+      case MIN:
+        break;
+      case AVG:
+        break;
+      case MAX:
+        break;
+      case COUNT:
+        return values.size();
+    }
+
+    return 0;
   }
 
-  private void buildVariableValues() {
-    variableDefinitions.buildValues(this.valuesType);
+  private List<VariableValues> buildVariableValues() {
+    return variableDefinitions.buildValues(this.valuesType);
   }
 
   public VariableDefinition getVariableDefinition(String variableName) {

@@ -61,7 +61,7 @@ public class ExpressionNoVariablesDefinitionParserImplTest {
   }
 
   private void evaluateExpression(String input, double aspectedValue) throws MalformedCommandException {
-    double evaluationResult = evaluator.execute(new VariableValues(), input);
+    double evaluationResult = evaluator.execute(VariableValues.Builder.create().build(), input);
     assertEquals(aspectedValue, evaluationResult, input + "=" + aspectedValue);
   }
 

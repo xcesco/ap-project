@@ -23,7 +23,7 @@ public class StatCommand extends Command {
   }
 
   @Override
-  public void execute() {
-
+  public double execute() {
+    return 0;
   }
 }

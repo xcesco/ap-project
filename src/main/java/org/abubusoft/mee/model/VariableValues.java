@@ -11,10 +11,6 @@ import java.util.StringJoiner;
 public class VariableValues {
   private final Map<String, Double> values;
 
-  public VariableValues() {
-    this.values = new LinkedHashMap<>();
-  }
-
   VariableValues(Map<String, Double> values) {
     this.values = values;
   }
@@ -28,6 +24,9 @@ public class VariableValues {
   }
 
   public static class Builder {
+    /**
+     * LinkedHashMap is used to respect insertion order
+     */
     private final Map<String, Double> values = new LinkedHashMap<>();
 
     public static Builder create() {

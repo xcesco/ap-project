@@ -1,9 +1,10 @@
-package org.abubusoft.mee.model;
+package org.abubusoft.mee.grammar;
 
 import org.abubusoft.mee.exceptions.AppAssert;
 import org.abubusoft.mee.exceptions.AppRuntimeException;
 import org.abubusoft.mee.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.grammar.CommandsParser;
+import org.abubusoft.mee.model.VariableValues;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.List;

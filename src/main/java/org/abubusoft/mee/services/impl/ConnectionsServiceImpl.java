@@ -1,7 +1,7 @@
 package org.abubusoft.mee.services.impl;
 
 import org.abubusoft.mee.model.Connection;
-import org.abubusoft.mee.services.ConnectionsServer;
+import org.abubusoft.mee.services.ConnectionsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class ConnectionsServerImpl implements ConnectionsServer, Connection.Listener {
+public class ConnectionsServiceImpl implements ConnectionsService, Connection.Listener {
   private static final Logger logger = LoggerFactory
-          .getLogger(ConnectionsServerImpl.class);
+          .getLogger(ConnectionsServiceImpl.class);
 
   private final List<Connection> connections = new CopyOnWriteArrayList<>();
   private final List<Connection.Listener> listeners = new ArrayList<>();

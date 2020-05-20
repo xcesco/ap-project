@@ -2,8 +2,8 @@ package org.abubusoft.mee;
 
 import org.abubusoft.mee.model.Connection;
 import org.abubusoft.mee.model.connection.ConnectionImpl;
-import org.abubusoft.mee.services.ConnectionsServer;
-import org.abubusoft.mee.services.impl.ConnectionsServerImpl;
+import org.abubusoft.mee.services.ConnectionsService;
+import org.abubusoft.mee.services.impl.ConnectionsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -55,7 +55,7 @@ public class ApplicationConfiguration {
   }
 
   @Bean
-  public ConnectionsServer getConnectionServer() {
-    return new ConnectionsServerImpl();
+  public ConnectionsService getConnectionServer() {
+    return new ConnectionsServiceImpl();
   }
 }

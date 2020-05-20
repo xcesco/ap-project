@@ -2,6 +2,7 @@ package org.abubusoft.mee.model;
 
 import org.abubusoft.mee.exceptions.MalformedCommandException;
 import org.abubusoft.mee.grammar.CommandsParser;
+import org.abubusoft.mee.grammar.ExpressionVisitor;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 public class ExpressionEvaluator {

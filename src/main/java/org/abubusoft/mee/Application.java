@@ -1,6 +1,6 @@
 package org.abubusoft.mee;
 
-import org.abubusoft.mee.services.ConnectionsServer;
+import org.abubusoft.mee.services.ConnectionsService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +18,11 @@ public class Application implements CommandLineRunner {
   @Value("${mee-server.port}")
   String serverPort;
 
-  private ConnectionsServer connectionsServer;
+  private ConnectionsService connectionsService;
 
   @Autowired
-  public void setConnectionsServer(ConnectionsServer connectionsServer) {
-    this.connectionsServer = connectionsServer;
+  public void setConnectionsService(ConnectionsService connectionsService) {
+    this.connectionsService = connectionsService;
   }
 
   private static Logger logger = LoggerFactory
@@ -45,7 +45,7 @@ public class Application implements CommandLineRunner {
       logger.info(String.format("Connection server port is %s (specified in application config)", port));
     }
 
-    connectionsServer.start(port);
+    connectionsService.start(port);
   }
 
 }

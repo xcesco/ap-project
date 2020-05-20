@@ -1,7 +1,6 @@
-package org.abubusoft.mee.model;
+package org.abubusoft.mee.grammar;
 
-import org.abubusoft.mee.grammar.CommandsBaseVisitor;
-import org.abubusoft.mee.grammar.CommandsParser;
+import org.abubusoft.mee.model.VariableValues;
 
 import java.util.List;
 import java.util.stream.Collectors;

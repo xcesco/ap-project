@@ -21,5 +21,5 @@ public abstract class Command {
     return sb.toString();
   }
 
-  public abstract void execute();
+  public abstract double execute();
 }

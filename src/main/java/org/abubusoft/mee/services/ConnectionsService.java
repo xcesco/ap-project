@@ -4,7 +4,7 @@ import org.abubusoft.mee.model.Connection;
 
 import java.util.List;
 
-public interface ConnectionsServer {
+public interface ConnectionsService {
   int getConnectionsCount();
 
   void start(int port);
