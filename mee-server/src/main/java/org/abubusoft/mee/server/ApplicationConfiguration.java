@@ -36,7 +36,8 @@ public class ApplicationConfiguration {
   @Bean(CONNECTION_EXECUTOR)
   public Executor connectionExecutor() {
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-    executor.setCorePoolSize(2);
+    executor.setCorePoolSize(10);
+    executor.setMaxPoolSize(256);
     executor.setThreadNamePrefix("Connection-");
     executor.initialize();
     return executor;
@@ -48,7 +49,7 @@ public class ApplicationConfiguration {
     int numberOfProcessors = runtime.availableProcessors();
     logger.info(String.format("commandExecutor max size is %d (number of processors available to this JVM)", numberOfProcessors));
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-    executor.setCorePoolSize(2);
+    //executor.setCorePoolSize(2);
     executor.setMaxPoolSize(numberOfProcessors);
     executor.setThreadNamePrefix("Command-");
     executor.initialize();
