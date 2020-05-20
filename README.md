@@ -25,3 +25,6 @@ Spring boot
 
 ASCII art
 - http://patorjk.com/software/taag/#p=display&f=Merlin1&t=MEE%20Server
+
+Command line tool client
+- https://picocli.info/

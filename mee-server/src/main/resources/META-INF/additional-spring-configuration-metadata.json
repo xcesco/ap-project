@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "mee-server.port",
+      "type": "java.lang.String",
+      "description": "Description for mee-server.port."
+    }
+  ]
+}
