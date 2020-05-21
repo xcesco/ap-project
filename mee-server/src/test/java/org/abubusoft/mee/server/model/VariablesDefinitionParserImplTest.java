@@ -2,6 +2,8 @@ package org.abubusoft.mee.server.model;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
+import org.abubusoft.mee.server.model.compute.VariableDefinition;
+import org.abubusoft.mee.server.services.impl.CommandParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

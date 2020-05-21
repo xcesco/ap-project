@@ -1,6 +1,6 @@
-package org.abubusoft.mee.server.model.commands;
+package org.abubusoft.mee.server.model;
 
-import org.abubusoft.mee.server.model.CommandType;
+import org.abubusoft.mee.server.model.stat.StatType;
 
 public class StatCommand extends Command {
   private final StatType subType;
@@ -16,6 +16,11 @@ public class StatCommand extends Command {
     sb.append("subType=").append(subType);
     sb.append('}');
     return sb.toString();
+  }
+
+  @Override
+  public CommandResponse accept(CommandVisitor visitor) {
+    return visitor.visit(this);
   }
 
   public StatType getSubType() {

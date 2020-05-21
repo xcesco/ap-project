@@ -1,4 +1,4 @@
-package org.abubusoft.mee.server.model.commands;
+package org.abubusoft.mee.server.model.stat;
 
 public enum StatType {
   REQS,

@@ -1,7 +1,7 @@
 package org.abubusoft.mee.server.services.impl;
 
 import org.abubusoft.mee.server.model.CommandResponse;
-import org.abubusoft.mee.server.model.commands.Command;
+import org.abubusoft.mee.server.model.Command;
 import org.abubusoft.mee.server.services.StatisticsService;
 import org.abubusoft.mee.server.support.ResponseTimeUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -45,7 +45,7 @@ public class StatisticsAspect {
       ((CommandResponse) proceed).setResponseTime(executionTime);
     }
 
-    logger.info("{} executed in {} ms", commandType, ResponseTimeUtils.formatResponseTime(executionTime));
+    logger.debug("{} executed in {} ms", commandType, ResponseTimeUtils.formatResponseTime(executionTime));
     return proceed;
   }
 }

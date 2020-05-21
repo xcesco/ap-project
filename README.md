@@ -28,3 +28,6 @@ ASCII art
 
 Command line tool client
 - https://picocli.info/
+
+Picocli Spring Boot integration
+- https://github.com/remkop/picocli/tree/master/picocli-spring-boot-starter

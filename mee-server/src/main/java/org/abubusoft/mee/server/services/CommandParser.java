@@ -1,7 +1,7 @@
-package org.abubusoft.mee.server.model;
+package org.abubusoft.mee.server.services;
 
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.model.commands.Command;
+import org.abubusoft.mee.server.model.Command;
 
 public interface CommandParser {
   /**

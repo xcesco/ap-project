@@ -13,7 +13,6 @@ public abstract class ResponseTimeUtils {
             .append(formatResponseTime(response.getResponseTime()));
 
     response.getValues().forEach(item-> builder.append(";"+String.format("%.6f", item)));
-    builder.append(System.lineSeparator());
     return builder.toString();
   }
 }

@@ -6,11 +6,13 @@ import java.util.List;
 public class CommandResponse {
   private final List<Double> values;
   private final CommandType commandType;
+  private final ResponseType responseType;
   private long responseTime;
 
-  private CommandResponse(CommandType commandType, List<Double> values) {
+  private CommandResponse(ResponseType responseType, CommandType commandType, List<Double> values) {
     this.commandType = commandType;
     this.values = values;
+    this.responseType = responseType;
   }
 
   public CommandType getCommandType() {
@@ -30,15 +32,17 @@ public class CommandResponse {
   }
 
   public static class Builder {
-    private CommandType commandType;
+    private final ResponseType responseType;
+    private final CommandType commandType;
     private List<Double> values = new ArrayList<>();
 
-    Builder(CommandType commandType) {
+    Builder(ResponseType responseType, CommandType commandType) {
       this.commandType = commandType;
+      this.responseType = responseType;
     }
 
-    public static Builder create(CommandType commandType) {
-      return new Builder(commandType);
+    public static Builder create(ResponseType responseType, CommandType commandType) {
+      return new Builder(responseType, commandType);
     }
 
     public Builder addValue(double value) {
@@ -46,13 +50,8 @@ public class CommandResponse {
       return this;
     }
 
-    public Builder addValue(CommandType commandType) {
-      this.commandType = commandType;
-      return this;
-    }
-
     public CommandResponse build() {
-      return new CommandResponse(commandType, values);
+      return new CommandResponse(responseType, commandType, values);
     }
   }
 }

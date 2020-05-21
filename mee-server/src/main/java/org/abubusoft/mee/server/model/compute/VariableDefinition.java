@@ -1,4 +1,4 @@
-package org.abubusoft.mee.server.model;
+package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.MalformedVariableDefinitionException;

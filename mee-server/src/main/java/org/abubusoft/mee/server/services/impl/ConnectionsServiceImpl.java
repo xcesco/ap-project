@@ -1,7 +1,7 @@
 package org.abubusoft.mee.server.services.impl;
 
 import org.abubusoft.mee.server.ApplicationConfiguration;
-import org.abubusoft.mee.server.model.Connection;
+import org.abubusoft.mee.server.services.Connection;
 import org.abubusoft.mee.server.services.ConnectionsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
@@ -23,8 +22,6 @@ public class ConnectionsServiceImpl implements ConnectionsService, Connection.Li
   private static final Logger logger = LoggerFactory
           .getLogger(ConnectionsServiceImpl.class);
   private final List<Connection> connections = new CopyOnWriteArrayList<>();
-  private final List<Connection.Listener> listeners = new ArrayList<>();
-
   private Executor executor;
   private ObjectProvider<Connection> connectionProvider;
 
@@ -37,11 +34,6 @@ public class ConnectionsServiceImpl implements ConnectionsService, Connection.Li
   @Autowired
   public void setConnectionProvider(ObjectProvider<Connection> connectionProvider) {
     this.connectionProvider = connectionProvider;
-  }
-
-  @Override
-  public int getConnectionsCount() {
-    return connections.size();
   }
 
   @Override
@@ -69,41 +61,22 @@ public class ConnectionsServiceImpl implements ConnectionsService, Connection.Li
   }
 
   @Override
-  public List<Connection> getConnections() {
-    return connections;
-  }
-
-  @Override
-  public void addListener(Connection.Listener listener) {
-    listeners.add(listener);
-  }
-
-  @Override
   public void messageReceived(Connection connection, Object message) {
     logger.trace("Received new message from {}", connection.getAddress().getCanonicalHostName());
     logger.trace("Class name: {}, toString: {}", message.getClass().getCanonicalName(), message.toString());
-    for (Connection.Listener listener : listeners) {
-      listener.messageReceived(connection, message);
-    }
   }
 
   @Override
   public void connected(Connection connection) {
-    logger.info("New connection! IP: {}.", connection.getAddress().getCanonicalHostName());
+    logger.info("New connection from {}.", connection.getAddress().getCanonicalHostName());
     connections.add(connection);
-    logger.info("Current connections count: {}", connections.size());
-    for (Connection.Listener listener : listeners) {
-      listener.connected(connection);
-    }
+    logger.debug("Current connections count: {}", connections.size());
   }
 
   @Override
   public void disconnected(Connection connection) {
-    logger.info("Disconnect! IP: {}.", connection.getAddress().getCanonicalHostName());
+    logger.info("Disconnect from {}.", connection.getAddress().getCanonicalHostName());
     connections.remove(connection);
-    logger.info("Current connections count: {}", connections.size());
-    for (Connection.Listener listener : listeners) {
-      listener.disconnected(connection);
-    }
+    logger.debug("Current connections count is {}", connections.size());
   }
 }

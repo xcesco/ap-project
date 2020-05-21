@@ -1,4 +1,4 @@
-package org.abubusoft.mee.server.model.commands;
+package org.abubusoft.mee.server.model.compute;
 
 public enum ComputationType {
   MIN,

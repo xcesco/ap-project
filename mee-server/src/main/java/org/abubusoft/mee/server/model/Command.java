@@ -1,9 +1,6 @@
-package org.abubusoft.mee.server.model.commands;
+package org.abubusoft.mee.server.model;
 
-import org.abubusoft.mee.server.model.CommandResponse;
-import org.abubusoft.mee.server.model.CommandType;
-
-public abstract class Command {
+public abstract class Command implements CommandVisitable {
   private final CommandType type;
 
   public Command(CommandType type) {
@@ -23,7 +20,7 @@ public abstract class Command {
   }
 
   public CommandResponse execute() {
-    return CommandResponse.Builder.create(type).build();
+    return CommandResponse.Builder.create(ResponseType.OK, type).build();
   }
 
 }

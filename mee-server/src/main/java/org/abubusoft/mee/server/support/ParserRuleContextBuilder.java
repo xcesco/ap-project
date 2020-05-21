@@ -1,8 +1,10 @@
-package org.abubusoft.mee.server.grammar;
+package org.abubusoft.mee.server.support;
 
 import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
+import org.abubusoft.mee.server.grammar.CommandsLexer;
+import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.antlr.v4.runtime.*;
 
 public abstract class ParserRuleContextBuilder {

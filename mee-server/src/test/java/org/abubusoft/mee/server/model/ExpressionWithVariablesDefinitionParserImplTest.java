@@ -2,14 +2,15 @@ package org.abubusoft.mee.server.model;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.services.ExpressionEvaluator;
+import org.abubusoft.mee.server.model.compute.VariableValues;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExpressionWithVariablesDefinitionParserImplTest {
-  ExpressionEvaluator evaluator = new ExpressionEvaluator();
+  ExpressionEvaluatorImpl evaluator = new ExpressionEvaluatorImpl();
 
   @Test
   public void testNumbersEvaluation() throws MalformedCommandException {

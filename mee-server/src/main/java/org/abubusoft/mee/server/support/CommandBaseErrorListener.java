@@ -1,4 +1,4 @@
-package org.abubusoft.mee.server.grammar;
+package org.abubusoft.mee.server.support;
 
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.Parser;

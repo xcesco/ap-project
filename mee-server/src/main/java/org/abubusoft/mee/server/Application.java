@@ -1,5 +1,6 @@
 package org.abubusoft.mee.server;
 
+//import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.abubusoft.mee.server.services.ConnectionsService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -10,7 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+//@EnableAdminServer
 @SpringBootApplication(
         scanBasePackages = {"org.abubusoft.mee.server"})
 public class Application implements CommandLineRunner {
@@ -39,10 +40,10 @@ public class Application implements CommandLineRunner {
 
     if (args.length == 1 && StringUtils.isNumeric(args[0])) {
       port = Integer.parseInt(args[0]);
-      logger.info(String.format("Connection server port is %s (specified in command line args)", port));
+      logger.info(String.format("Listening port %s is specified via command line args", port));
     } else {
       port = Integer.parseInt(serverPort);
-      logger.info(String.format("Connection server port is %s (specified in application config)", port));
+      logger.info(String.format("Listening port %s is specified via application config", port));
     }
 
     connectionsService.start(port);

@@ -1,6 +1,9 @@
 package org.abubusoft.mee.server.model;
 
-import org.abubusoft.mee.server.model.commands.ValuesType;
+import org.abubusoft.mee.server.model.compute.ValuesType;
+import org.abubusoft.mee.server.model.compute.VariableDefinition;
+import org.abubusoft.mee.server.model.compute.VariableDefinitions;
+import org.abubusoft.mee.server.model.compute.VariableValues;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

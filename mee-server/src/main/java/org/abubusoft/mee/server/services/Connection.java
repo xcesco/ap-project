@@ -1,10 +1,9 @@
-package org.abubusoft.mee.server.model;
+package org.abubusoft.mee.server.services;
 
 import java.net.InetAddress;
 
 public interface Connection {
     InetAddress getAddress();
-    void send(Object objectToSend);
     void addListener(Listener listener);
     void start();
 

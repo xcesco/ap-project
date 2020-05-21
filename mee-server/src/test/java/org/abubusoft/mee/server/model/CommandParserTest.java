@@ -1,9 +1,10 @@
 package org.abubusoft.mee.server.model;
 
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.model.commands.ComputationType;
-import org.abubusoft.mee.server.model.commands.ComputeCommand;
-import org.abubusoft.mee.server.model.commands.ValuesType;
+import org.abubusoft.mee.server.model.compute.ComputationType;
+import org.abubusoft.mee.server.model.compute.ValuesType;
+import org.abubusoft.mee.server.services.CommandParser;
+import org.abubusoft.mee.server.services.impl.CommandParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,8 @@
 package org.abubusoft.mee.server.services.impl;
 
 import org.abubusoft.mee.server.model.CommandResponse;
-import org.abubusoft.mee.server.model.commands.StatCommand;
+import org.abubusoft.mee.server.model.ResponseType;
+import org.abubusoft.mee.server.model.StatCommand;
 import org.abubusoft.mee.server.services.StatisticsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,42 +23,24 @@ public class StatisticsServiceImpl implements StatisticsService {
   private final Lock r = rwl.readLock();
   private final Lock w = rwl.writeLock();
 
-  public long getMaxExecutionTime() {
-    return maxExecutionTime;
-  }
-
-  public long getAverageExecuteTime() {
-    return averageExecuteTime;
-  }
-
-  public long getMinExecuteTime() {
-    return minExecuteTime;
-  }
-
-  public long getCommandCounter() {
-    return commandCounter;
-  }
-
   @LogExecutionTime
   @Override
   public CommandResponse compute(StatCommand command) {
-    CommandResponse.Builder builder = CommandResponse.Builder.create(command.getType());
+    CommandResponse.Builder builder = CommandResponse.Builder.create(ResponseType.OK, command.getType());
     r.lock();
-    try {
-      switch (command.getSubType()) {
-        case REQS:
-          builder.addValue(commandCounter);
-          break;
-        case AVG_TIME:
-          builder.addValue(averageExecuteTime);
-          break;
-        case MAX_TIME:
-          builder.addValue(maxExecutionTime);
-          break;
-      }
-    } finally {
-      r.unlock();
+
+    switch (command.getSubType()) {
+      case REQS:
+        builder.addValue(commandCounter);
+        break;
+      case AVG_TIME:
+        builder.addValue(averageExecuteTime);
+        break;
+      case MAX_TIME:
+        builder.addValue(maxExecutionTime);
+        break;
     }
+    r.unlock();
 
     return builder.build();
   }

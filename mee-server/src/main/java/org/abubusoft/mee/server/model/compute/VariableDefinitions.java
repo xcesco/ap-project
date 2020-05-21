@@ -1,7 +1,6 @@
-package org.abubusoft.mee.server.model;
+package org.abubusoft.mee.server.model.compute;
 
 import com.google.common.collect.Lists;
-import org.abubusoft.mee.server.model.commands.ValuesType;
 
 import java.util.ArrayList;
 import java.util.List;
