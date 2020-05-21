@@ -2,7 +2,10 @@ package org.abubusoft.mee.server.support;
 
 import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.grammar.CommandsParser;
-import org.abubusoft.mee.server.model.*;
+import org.abubusoft.mee.server.model.Command;
+import org.abubusoft.mee.server.model.ComputeCommand;
+import org.abubusoft.mee.server.model.QuitCommand;
+import org.abubusoft.mee.server.model.StatCommand;
 import org.abubusoft.mee.server.model.compute.ComputationType;
 import org.abubusoft.mee.server.model.compute.ValuesType;
 import org.abubusoft.mee.server.model.compute.VariableDefinition;
@@ -92,5 +95,10 @@ public class CommandVisitor extends CommandsBaseVisitor<Command> {
   @Override
   public Command visitStat_max_time_command(CommandsParser.Stat_max_time_commandContext ctx) {
     return new StatCommand(StatType.MAX_TIME);
+  }
+
+  @Override
+  public Command visitStat_min_time_command(CommandsParser.Stat_min_time_commandContext ctx) {
+    return new StatCommand(StatType.MIN_TIME);
   }
 }

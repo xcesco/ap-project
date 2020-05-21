@@ -1,4 +1,4 @@
-package org.abubusoft.mee.server.services.impl;
+package org.abubusoft.mee.server.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

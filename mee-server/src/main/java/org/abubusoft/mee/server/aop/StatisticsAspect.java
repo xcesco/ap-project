@@ -1,9 +1,9 @@
-package org.abubusoft.mee.server.services.impl;
+package org.abubusoft.mee.server.aop;
 
-import org.abubusoft.mee.server.model.CommandResponse;
 import org.abubusoft.mee.server.model.Command;
+import org.abubusoft.mee.server.model.CommandResponse;
+import org.abubusoft.mee.server.model.ResponseType;
 import org.abubusoft.mee.server.services.StatisticsService;
-import org.abubusoft.mee.server.support.ResponseTimeUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -27,25 +27,23 @@ public class StatisticsAspect {
 
   private StatisticsService statisticsService;
 
-  @Around("@annotation(LogExecutionTime)")
+  @Around("@annotation(org.abubusoft.mee.server.aop.LogExecutionTime)")
   public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
     long start = System.currentTimeMillis();
-
     Object proceed = joinPoint.proceed();
-
     long executionTime = System.currentTimeMillis() - start;
-    statisticsService.registryOperation(executionTime);
+    Command command = (Command) Arrays.stream(joinPoint.getArgs())
+            .filter(item -> item instanceof Command).findFirst().orElse(null);
 
-    String commandType = Arrays.stream(joinPoint.getArgs())
-            .filter(item -> item instanceof Command).findFirst()
-            .map(item -> ((Command) item).getType().toString())
-            .orElse("<unknown>");
-
-    if (proceed instanceof CommandResponse) {
-      ((CommandResponse) proceed).setResponseTime(executionTime);
+    if (command != null && proceed instanceof CommandResponse && ((CommandResponse) proceed).getResponseType() == ResponseType.OK) {
+      logger.debug(String.format("Measure execution time for %s.%s", joinPoint.getSignature().getDeclaringType().getSimpleName(), joinPoint.getSignature().getName()));
+      statisticsService.registryOperation(executionTime);
+      CommandResponse response = ((CommandResponse) proceed);
+      response.setResponseTime(executionTime);
+    } else {
+      logger.warn(String.format(" %s.%s has wrong signature for performance registration", joinPoint.getSignature().getDeclaringType().getSimpleName(), joinPoint.getSignature().getName()));
     }
 
-    logger.debug("{} executed in {} ms", commandType, ResponseTimeUtils.formatResponseTime(executionTime));
     return proceed;
   }
 }

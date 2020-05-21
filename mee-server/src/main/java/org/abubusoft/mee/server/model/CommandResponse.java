@@ -2,21 +2,34 @@ package org.abubusoft.mee.server.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class CommandResponse {
   private final List<Double> values;
-  private final CommandType commandType;
   private final ResponseType responseType;
+  private final String message;
   private long responseTime;
 
-  private CommandResponse(ResponseType responseType, CommandType commandType, List<Double> values) {
-    this.commandType = commandType;
-    this.values = values;
-    this.responseType = responseType;
+  @Override
+  public String toString() {
+    return new StringJoiner(", ", CommandResponse.class.getSimpleName() + "[", "]")
+            .add("values=" + values)
+            .add("responseType=" + responseType)
+            .add("message='" + message + "'")
+            .add("responseTime=" + responseTime)
+            .toString();
   }
 
-  public CommandType getCommandType() {
-    return commandType;
+  private CommandResponse(List<Double> values) {
+    this.responseType = ResponseType.OK;
+    this.values = values;
+    this.message = null;
+  }
+
+  private CommandResponse(Exception exception) {
+    this.responseType = ResponseType.ERR;
+    this.values = null;
+    this.message = String.format("(%s) %s", exception.getClass().getSimpleName(), exception.getMessage());
   }
 
   public List<Double> getValues() {
@@ -31,18 +44,28 @@ public class CommandResponse {
     this.responseTime = value;
   }
 
+  public ResponseType getResponseType() {
+    return this.responseType;
+  }
+
+  public static CommandResponse error(Exception exception) {
+    return new CommandResponse(exception);
+  }
+
+  public String getMessage() {
+    return this.message;
+  }
+
   public static class Builder {
     private final ResponseType responseType;
-    private final CommandType commandType;
     private List<Double> values = new ArrayList<>();
 
-    Builder(ResponseType responseType, CommandType commandType) {
-      this.commandType = commandType;
-      this.responseType = responseType;
+    Builder() {
+      this.responseType = ResponseType.OK;
     }
 
-    public static Builder create(ResponseType responseType, CommandType commandType) {
-      return new Builder(responseType, commandType);
+    public static Builder ok() {
+      return new Builder();
     }
 
     public Builder addValue(double value) {
@@ -51,7 +74,7 @@ public class CommandResponse {
     }
 
     public CommandResponse build() {
-      return new CommandResponse(responseType, commandType, values);
+      return new CommandResponse(values);
     }
   }
 }

@@ -6,7 +6,7 @@ import org.abubusoft.mee.server.services.CommandParser;
 import org.abubusoft.mee.server.services.ComputeService;
 import org.abubusoft.mee.server.services.Connection;
 import org.abubusoft.mee.server.services.StatisticsService;
-import org.abubusoft.mee.server.support.ResponseTimeUtils;
+import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,24 +66,24 @@ public class ConnectionImpl implements Connection, CommandVisitor {
       notifyConnectedEvent();
 
       Command command = null;
-      CommandResponse response = null;
+      CommandResponse response;
       while (command == null || CommandType.BYE != command.getType()) {
         String line = br.readLine();
         try {
           command = commandParser.parse(line);
           response = command.accept(this);
 
-         // logger.info(command.toString());
-
+          logger.debug(command.toString());
           notifyReceivedCommandEvent(command);
 
           if (command.getType() != CommandType.BYE) {
-            sendResponse(bw, ResponseTimeUtils.format(response));
+            logger.debug(response.toString());
+            sendResponse(bw, response);
           }
         } catch (MalformedCommandException e) {
-          String message = "Invalid command: " + e.getMessage();
-          logger.error(message);
-          sendResponse(bw, "ERR:" + message);
+          CommandResponse errorResponse = CommandResponse.error(e);
+          sendResponse(bw, errorResponse);
+          logger.error(CommandResponseUtils.format(errorResponse));
         }
       }
     } catch (IOException e) {
@@ -100,8 +100,8 @@ public class ConnectionImpl implements Connection, CommandVisitor {
     }
   }
 
-  private void sendResponse(BufferedWriter writer, String text) throws IOException {
-    writer.write(text + System.lineSeparator());
+  private void sendResponse(BufferedWriter writer, CommandResponse response) throws IOException {
+    writer.write(CommandResponseUtils.format(response) + System.lineSeparator());
     writer.flush();
   }
 

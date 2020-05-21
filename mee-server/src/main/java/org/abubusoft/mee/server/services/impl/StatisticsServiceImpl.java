@@ -1,7 +1,7 @@
 package org.abubusoft.mee.server.services.impl;
 
+import org.abubusoft.mee.server.aop.LogExecutionTime;
 import org.abubusoft.mee.server.model.CommandResponse;
-import org.abubusoft.mee.server.model.ResponseType;
 import org.abubusoft.mee.server.model.StatCommand;
 import org.abubusoft.mee.server.services.StatisticsService;
 import org.slf4j.Logger;
@@ -11,11 +11,17 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import static org.abubusoft.mee.server.support.CommandResponseUtils.formatDuration;
+import static org.abubusoft.mee.server.support.CommandResponseUtils.formatValue;
+
+/**
+ * Times is stored in milliseconds.
+ */
 @Component
 public class StatisticsServiceImpl implements StatisticsService {
   private static final Logger logger = LoggerFactory
           .getLogger(StatisticsServiceImpl.class);
-  private long maxExecutionTime;
+  private long maxExecutionTime = Long.MIN_VALUE;
   private long averageExecuteTime;
   private long minExecuteTime = Long.MAX_VALUE;
   private long commandCounter;
@@ -26,18 +32,22 @@ public class StatisticsServiceImpl implements StatisticsService {
   @LogExecutionTime
   @Override
   public CommandResponse compute(StatCommand command) {
-    CommandResponse.Builder builder = CommandResponse.Builder.create(ResponseType.OK, command.getType());
+    CommandResponse.Builder builder = CommandResponse.Builder.ok();
     r.lock();
 
+    // return time in seconds
     switch (command.getSubType()) {
       case REQS:
         builder.addValue(commandCounter);
         break;
       case AVG_TIME:
-        builder.addValue(averageExecuteTime);
+        builder.addValue(averageExecuteTime / 1000.0);
+        break;
+      case MIN_TIME:
+        builder.addValue(minExecuteTime / 1000.0);
         break;
       case MAX_TIME:
-        builder.addValue(maxExecutionTime);
+        builder.addValue(maxExecutionTime / 1000.0);
         break;
     }
     r.unlock();
@@ -59,8 +69,13 @@ public class StatisticsServiceImpl implements StatisticsService {
       commandCounter++;
       // AvgNew=AvgOld+(ValueNew-AvgOld)/SizeNew
       averageExecuteTime = averageExecuteTime + (executionTime - averageExecuteTime) / commandCounter;
-//    logger.info("Command execution time: average: {} ms,  minTime: {} ms, maxTime: {} ms, command counter: {}",
-//            averageExecuteTime, minExecuteTime, maxExecutionTime, commandCounter);
+      logger.debug("Stats: average = {} s,  min = {} s, max = {} s, counter = {}",
+              formatValue(averageExecuteTime / 1_000.0),
+              formatValue(minExecuteTime / 1_000.0),
+              formatValue(maxExecutionTime / 1_000.0),
+              commandCounter);
+      logger.debug("Commmand executed in {} s", formatDuration(executionTime));
+
     } finally {
       w.unlock();
     }

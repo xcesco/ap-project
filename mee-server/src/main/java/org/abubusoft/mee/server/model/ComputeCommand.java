@@ -60,7 +60,7 @@ public class ComputeCommand extends Command {
   @Override
   public CommandResponse execute() {
     List<VariableValues> values = buildVariableValues();
-    CommandResponse.Builder responseBuilder = CommandResponse.Builder.create(ResponseType.OK, getType());
+    CommandResponse.Builder responseBuilder = CommandResponse.Builder.ok();
 
     if (getComputationType() == ComputationType.COUNT) {
       return responseBuilder.addValue(values.size()).build();

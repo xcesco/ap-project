@@ -15,11 +15,13 @@ quite_command: K_BYE;
 stat_request
     : stat_reqs_command
     | stat_avg_time_command
+    | stat_min_time_command
     | stat_max_time_command;
 
 stat_reqs_command       : K_STAT_REQS;
 stat_avg_time_command   : K_STAT_AVG_TIME;
 stat_max_time_command   : K_STAT_MAX_TIME;
+stat_min_time_command   : K_STAT_MIN_TIME;
 
 computation_command: computation_kind UNDER values_kind SEMI_COLUMN variable_values_function SEMI_COLUMN expressions;
 computation_kind : K_MIN | K_MAX | K_AVG | K_COUNT;
@@ -69,6 +71,7 @@ K_BYE : B Y E;
 K_STAT_REQS : S T A T '_' R E Q S;
 K_STAT_AVG_TIME : S T A T '_' A V G '_' T I M E;
 K_STAT_MAX_TIME : S T A T '_' M A X '_' T I M E;
+K_STAT_MIN_TIME : S T A T '_' M I N '_' T I M E;
 
 K_GRID : G R I D;
 K_LIST : L I S T;

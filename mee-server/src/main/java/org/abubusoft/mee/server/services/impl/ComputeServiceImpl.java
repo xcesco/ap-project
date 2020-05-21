@@ -1,6 +1,7 @@
 package org.abubusoft.mee.server.services.impl;
 
 import org.abubusoft.mee.server.ApplicationConfiguration;
+import org.abubusoft.mee.server.aop.LogExecutionTime;
 import org.abubusoft.mee.server.model.CommandResponse;
 import org.abubusoft.mee.server.model.ComputeCommand;
 import org.abubusoft.mee.server.model.ResponseType;
@@ -36,12 +37,17 @@ public class ComputeServiceImpl implements ComputeService {
       return result.get();
     } catch (InterruptedException | ExecutionException e) {
       e.printStackTrace();
-      return CommandResponse.Builder.create(ResponseType.ERR, command.getType()).build();
+      return CommandResponse.error(e);
     }
   }
 
   private CommandResponse execute(ComputeCommand command) {
     logger.debug("executing " + command.getExpressionsList());
+//    try {
+//      Thread.sleep(10);
+//    } catch (InterruptedException e) {
+//      e.printStackTrace();
+//    }
     return command.execute();
   }
 }

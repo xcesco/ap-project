@@ -1,5 +1,7 @@
 package org.abubusoft.mee.server.model;
 
+import java.util.StringJoiner;
+
 public abstract class Command implements CommandVisitable {
   private final CommandType type;
 
@@ -13,14 +15,13 @@ public abstract class Command implements CommandVisitable {
 
   @Override
   public String toString() {
-    final StringBuilder sb = new StringBuilder("Command{");
-    sb.append("type=").append(type);
-    sb.append('}');
-    return sb.toString();
+    return new StringJoiner(", ", Command.class.getSimpleName() + "[", "]")
+            .add("type=" + type)
+            .toString();
   }
 
   public CommandResponse execute() {
-    return CommandResponse.Builder.create(ResponseType.OK, type).build();
+    return CommandResponse.Builder.ok().build();
   }
 
 }
