@@ -6,13 +6,11 @@ import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.grammar.CommandsBaseListener;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.Command;
-import org.abubusoft.mee.server.model.compute.VariableDefinition;
-import org.abubusoft.mee.server.model.compute.VariableValues;
 import org.abubusoft.mee.server.model.ComputeCommand;
+import org.abubusoft.mee.server.model.compute.VariableDefinition;
 import org.abubusoft.mee.server.services.CommandParser;
 import org.abubusoft.mee.server.services.ExpressionEvaluator;
 import org.abubusoft.mee.server.support.CommandVisitor;
-import org.abubusoft.mee.server.support.ExpressionVisitor;
 import org.abubusoft.mee.server.support.ParserRuleContextBuilder;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -24,9 +22,8 @@ import org.springframework.util.StringUtils;
 public class CommandParserImpl implements CommandParser {
 
   @Autowired
-  public CommandParserImpl setExpressionEvaluator(ExpressionEvaluator expressionEvaluator) {
+  public CommandParserImpl(ExpressionEvaluator expressionEvaluator) {
     this.expressionEvaluator = expressionEvaluator;
-    return this;
   }
 
   private ExpressionEvaluator expressionEvaluator;
@@ -49,12 +46,5 @@ public class CommandParserImpl implements CommandParser {
     ComputeCommand command = visitor.getComputeBuilder().build();
     return command.getVariableDefinition(variableName);
   }
-
-  public double evaluateExpression(VariableValues variableValues, String input) throws MalformedCommandException {
-    ParserRuleContext parser = ParserRuleContextBuilder.build(input, CommandsParser::expression);
-    ExpressionVisitor visitor = new ExpressionVisitor(variableValues);
-    return visitor.visit(parser);
-  }
-
 
 }

@@ -2,9 +2,9 @@ package org.abubusoft.mee.server.services.impl;
 
 import org.abubusoft.mee.server.ApplicationConfiguration;
 import org.abubusoft.mee.server.aop.LogExecutionTime;
+import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.model.CommandResponse;
 import org.abubusoft.mee.server.model.ComputeCommand;
-import org.abubusoft.mee.server.model.ResponseType;
 import org.abubusoft.mee.server.services.ComputeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,18 +36,24 @@ public class ComputeServiceImpl implements ComputeService {
     try {
       return result.get();
     } catch (InterruptedException | ExecutionException e) {
-      e.printStackTrace();
-      return CommandResponse.error(e);
+      if (e.getCause() instanceof AppRuntimeException) {
+        AppRuntimeException cause = (AppRuntimeException) e.getCause();
+        // error is already showed in log
+        return propagateError(cause, false);
+      } else {
+        return propagateError(e, true);
+      }
     }
   }
 
+  private CommandResponse propagateError(Exception e, boolean showLog) {
+    if (showLog) {
+      logger.error(e.getMessage());
+    }
+    return CommandResponse.error(e);
+  }
+
   private CommandResponse execute(ComputeCommand command) {
-    logger.debug("executing " + command.getExpressionsList());
-//    try {
-//      Thread.sleep(10);
-//    } catch (InterruptedException e) {
-//      e.printStackTrace();
-//    }
     return command.execute();
   }
 }

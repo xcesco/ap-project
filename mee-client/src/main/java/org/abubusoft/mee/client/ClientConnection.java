@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.List;
 
 public class ClientConnection {
+  public static final String BYE = "BYE";
   private final String serverAddress;
   private final int serverPort;
   private final List<String> commands;
@@ -34,6 +35,9 @@ public class ClientConnection {
 
       commands.forEach(command -> {
         try {
+          if (isCommentLine(command)) {
+            return;
+          }
           sendMessage(jobId, writer, command);
           String response = br.readLine();
           System.out.println(String.format(" %3d <-- RESP: " + response, jobId));
@@ -47,12 +51,16 @@ public class ClientConnection {
         }
       });
 
-      sendMessage(jobId, writer, "BYE");
+      sendMessage(jobId, writer, BYE);
     } catch (IOException e) {
       System.err.println(e);
     } finally {
       System.out.println(String.format("closing %s:%s to %s:%s", localAddress, localPort, serverAddress, serverPort));
     }
+  }
+
+  private boolean isCommentLine(String command) {
+    return command.startsWith("#");
   }
 
   void sendMessage(int jobId, BufferedWriter writer, String messsage) throws IOException {

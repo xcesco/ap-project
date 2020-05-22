@@ -2,11 +2,13 @@ package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
+import org.abubusoft.mee.server.support.CommandResponseUtils;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class VariableValues {
   private final Map<String, Double> values;
@@ -15,12 +17,12 @@ public class VariableValues {
     this.values = values;
   }
 
-  public int size() {
-    return values.size();
-  }
-
   public Double get(String name) {
     return values.get(name);
+  }
+
+  public int getSize() {
+    return values.size();
   }
 
   public static class Builder {
@@ -53,8 +55,10 @@ public class VariableValues {
 
   @Override
   public String toString() {
-    return new StringJoiner(", ", VariableValues.class.getSimpleName() + "[", "]")
-            .add("values=" + values)
+    return new StringJoiner(", ", "(", ")")
+            .add(values.entrySet().stream()
+                    .map(item -> item.getKey() + "=" + CommandResponseUtils.formatValue(item.getValue()))
+                    .collect(Collectors.joining(", ")))
             .toString();
   }
 }

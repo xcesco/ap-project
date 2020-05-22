@@ -1,15 +1,15 @@
-package org.abubusoft.mee.server.model;
+package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
+import org.abubusoft.mee.server.exceptions.EvaluationExpressionException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.model.compute.VariableValues;
 import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionNoVariablesDefinitionParserImplTest {
+public class ExpressionEvaluatorImplNoVariablesTest {
   ExpressionEvaluatorImpl evaluator = new ExpressionEvaluatorImpl();
 
   @Test
@@ -60,6 +60,12 @@ public class ExpressionNoVariablesDefinitionParserImplTest {
   public void testMixEvaluation() throws MalformedCommandException {
     evaluateExpression("(1+1)^2", 4.0);
     evaluateExpression("(1+1)^2-1", 3.0);
+  }
+
+  @Test
+  public void testMalformedExpression() throws MalformedCommandException {
+    Assertions.assertThrows(MalformedCommandException.class, () -> evaluateExpression("(1+", 4.0));
+    Assertions.assertThrows(EvaluationExpressionException.class, () -> evaluateExpression("1/0", 4.0));
   }
 
   private void evaluateExpression(String input, double aspectedValue) throws MalformedCommandException {

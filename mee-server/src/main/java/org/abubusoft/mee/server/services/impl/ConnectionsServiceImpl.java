@@ -61,9 +61,16 @@ public class ConnectionsServiceImpl implements ConnectionsService, Connection.Li
   }
 
   @Override
-  public void messageReceived(Connection connection, Object message) {
-    logger.trace("Received new message from {}", connection.getAddress().getCanonicalHostName());
-    logger.trace("Class name: {}, toString: {}", message.getClass().getCanonicalName(), message.toString());
+  public void messageSent(Connection connection, String message, boolean error) {
+    if (error) {
+      logger.error("{}", message);
+    }
+    logger.trace("Sent response '{}'", message);
+  }
+
+  @Override
+  public void messageReceived(Connection connection, String message) {
+    logger.trace("Received command '{}'", message);
   }
 
   @Override

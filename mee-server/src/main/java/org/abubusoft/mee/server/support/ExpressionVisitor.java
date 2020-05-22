@@ -1,7 +1,8 @@
 package org.abubusoft.mee.server.support;
 
 import org.abubusoft.mee.server.exceptions.AppAssert;
-import org.abubusoft.mee.server.exceptions.AppRuntimeException;
+import org.abubusoft.mee.server.exceptions.EvaluationExpressionException;
+import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.compute.VariableValues;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
   private final VariableValues variableValues;
+  private String expression;
 
   public ExpressionVisitor(VariableValues variableValues) {
     this.variableValues = variableValues;
@@ -18,6 +20,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
 
   @Override
   public Double visitExpression(CommandsParser.ExpressionContext ctx) {
+    expression=ctx.getText();
     List<CommandsParser.Mul_expressionContext> operandList = ctx.mul_expression();
     List<CommandsParser.Operator_add_subContext> operatorList = ctx.operator_add_sub();
 
@@ -77,7 +80,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
       if (operatorList.get(i).OP_MUL() != null) {
         result *= value;
       } else {
-        AppAssert.assertTrue(value != 0.0, AppRuntimeException.class, "Division by 0");
+        AppAssert.assertTrue(value != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s'", expression);
         result = result / value;
       }
     }
@@ -108,7 +111,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
 
     Double value = variableValues.get(name);
     if (value == null) {
-      AppAssert.fail("Variable %s is not defined", name);
+      AppAssert.fail(UndefinedVariableException.class, "Undefined variable '%s' used in '%s'", name, expression);
     }
     return value;
   }

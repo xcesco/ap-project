@@ -1,7 +1,7 @@
 package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.AppAssert;
-import org.abubusoft.mee.server.exceptions.MalformedVariableDefinitionException;
+import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,18 +66,18 @@ public class VariableDefinition {
 
       // step 0
       AppAssert.assertTrue(
-              stepValue != 0, MalformedVariableDefinitionException.class, "definition of variable '%s' has step 0", name);
+              stepValue != 0, InvalidVariableDefinitionException.class, "definition of variable '%s' has step 0", name);
 
       // step and interval are incosistent
       AppAssert.assertTrue(
               (lowerValue < highValue && stepValue > 0.0) || (lowerValue > highValue && stepValue < 0.0),
-              MalformedVariableDefinitionException.class,
+              InvalidVariableDefinitionException.class,
               "definition of variable '%s' is inconsistent", name);
 
       // step is greater than interval
       AppAssert.assertTrue(
               Math.abs(stepValue) < Math.abs(highValue - lowerValue),
-              MalformedVariableDefinitionException.class,
+              InvalidVariableDefinitionException.class,
               "definition of variable '%s' has step greater than interval", name);
 
       values = new ArrayList<>();

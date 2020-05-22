@@ -3,13 +3,20 @@ package org.abubusoft.mee.server.services;
 import java.net.InetAddress;
 
 public interface Connection {
-    InetAddress getAddress();
-    void addListener(Listener listener);
-    void start();
+  InetAddress getAddress();
 
-    interface Listener {
-        void messageReceived(Connection connection, Object message);
-        void connected(Connection connection);
-        void disconnected(Connection connection);
-    }
+  void addListener(Listener listener);
+
+  void start();
+
+  interface Listener {
+
+    void connected(Connection connection);
+
+    void disconnected(Connection connection);
+
+    void messageSent(Connection connection, String message, boolean error);
+
+    void messageReceived(Connection connection, String message);
+  }
 }

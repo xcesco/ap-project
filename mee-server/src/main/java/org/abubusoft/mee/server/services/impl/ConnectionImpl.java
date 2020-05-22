@@ -70,20 +70,18 @@ public class ConnectionImpl implements Connection, CommandVisitor {
       while (command == null || CommandType.BYE != command.getType()) {
         String line = br.readLine();
         try {
+          notifyReceivedCommandEvent(line);
           command = commandParser.parse(line);
           response = command.accept(this);
 
-          logger.debug(command.toString());
-          notifyReceivedCommandEvent(command);
-
           if (command.getType() != CommandType.BYE) {
-            logger.debug(response.toString());
             sendResponse(bw, response);
+            notifySentResponse(response);
           }
         } catch (MalformedCommandException e) {
           CommandResponse errorResponse = CommandResponse.error(e);
           sendResponse(bw, errorResponse);
-          logger.error(CommandResponseUtils.format(errorResponse));
+          notifySentResponse(errorResponse);
         }
       }
     } catch (IOException e) {
@@ -100,6 +98,13 @@ public class ConnectionImpl implements Connection, CommandVisitor {
     }
   }
 
+  private void notifySentResponse(CommandResponse response) {
+    String message = CommandResponseUtils.format(response);
+    for (Listener listener : listeners) {
+      listener.messageSent(this, message, response.getResponseType() == ResponseType.ERR);
+    }
+  }
+
   private void sendResponse(BufferedWriter writer, CommandResponse response) throws IOException {
     writer.write(CommandResponseUtils.format(response) + System.lineSeparator());
     writer.flush();
@@ -111,9 +116,9 @@ public class ConnectionImpl implements Connection, CommandVisitor {
     }
   }
 
-  private void notifyReceivedCommandEvent(Command command) {
+  private void notifyReceivedCommandEvent(String line) {
     for (Listener listener : listeners) {
-      listener.messageReceived(this, command.getType());
+      listener.messageReceived(this, line);
     }
   }
 
@@ -123,11 +128,9 @@ public class ConnectionImpl implements Connection, CommandVisitor {
     }
   }
 
-
   @Override
   public CommandResponse visit(QuitCommand command) {
     return command.execute();
-
   }
 
   @Override
@@ -138,6 +141,5 @@ public class ConnectionImpl implements Connection, CommandVisitor {
   @Override
   public CommandResponse visit(StatCommand command) {
     return statisticsService.compute(command);
-
   }
 }

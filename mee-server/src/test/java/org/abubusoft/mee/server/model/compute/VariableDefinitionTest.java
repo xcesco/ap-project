@@ -1,9 +1,9 @@
-package org.abubusoft.mee.server.model;
+package org.abubusoft.mee.server.model.compute;
 
-import org.abubusoft.mee.server.exceptions.AppRuntimeException;
+import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.model.compute.VariableDefinition;
 import org.abubusoft.mee.server.services.impl.CommandParserImpl;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class VariablesDefinitionParserImplTest {
-  CommandParserImpl parser = new CommandParserImpl();
+public class VariableDefinitionTest {
+  CommandParserImpl parser = new CommandParserImpl(new ExpressionEvaluatorImpl());
 
   @Test
   public void testVariableRange0_1() throws MalformedCommandException {
@@ -57,13 +57,13 @@ public class VariablesDefinitionParserImplTest {
   @Test
   public void testInvalidDefinitions() {
     // range and step are incosistent
-    Assertions.assertThrows(AppRuntimeException.class, () -> parser.parseVariableDefinition("x0", "x0 : 1 : 0.1 : -1"));
-    Assertions.assertThrows(AppRuntimeException.class, () -> parser.parseVariableDefinition("x0","x0 :-1 :-0.1 :  1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0 : 1 : 0.1 : -1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0","x0 :-1 :-0.1 :  1"));
     // step is 0
-    Assertions.assertThrows(AppRuntimeException.class, () -> parser.parseVariableDefinition("x0","x0 :-1 : 0   :  1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0","x0 :-1 : 0   :  1"));
 
     // step is greater than interval
-    Assertions.assertThrows(AppRuntimeException.class, () -> parser.parseVariableDefinition("x0","x0 :-1 : 10  :  1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0","x0 :-1 : 10  :  1"));
   }
 
   private List<String> fixPrecisionOfListOfDouble(List<Double> list) {

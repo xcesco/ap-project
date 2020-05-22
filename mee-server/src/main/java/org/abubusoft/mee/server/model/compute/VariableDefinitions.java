@@ -1,6 +1,8 @@
 package org.abubusoft.mee.server.model.compute;
 
 import com.google.common.collect.Lists;
+import org.abubusoft.mee.server.exceptions.AppAssert;
+import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +45,18 @@ public class VariableDefinitions {
               .stream()
               .map(value -> VariableValues.Builder.create().addAll(keysList, value).build()).collect(Collectors.toList());
     } else {
-      int count = variables.get(0).getValues().size();
+      int firstCount = variables.get(0).getValues().size();
+      String firstName = variables.get(0).getName();
+      int currentCount;
+      String currentName;
       List<List<Double>> values = new ArrayList<>();
-      for (int i = 0; i < count; i++) {
+      for (int i = 0; i < variables.size(); i++) {
         int finalI = i;
+        currentCount = variables.get(i).getValues().size();
+        currentName = variables.get(i).getName();
+        AppAssert.assertTrue(firstCount == currentCount, InvalidVariableDefinitionException.class,
+                "Variables '%s' and '%s' have different size (%s, %s)",
+                firstName, currentName, firstCount, currentCount);
         values.add(variables.stream().map(item -> item.getValues().get(finalI)).collect(Collectors.toList()));
       }
       return values.stream().map(value -> VariableValues.Builder.create().addAll(keysList, value).build()).collect(Collectors.toList());

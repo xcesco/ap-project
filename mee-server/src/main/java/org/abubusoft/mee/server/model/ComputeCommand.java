@@ -1,13 +1,20 @@
 package org.abubusoft.mee.server.model;
 
+import org.abubusoft.mee.server.exceptions.AppAssert;
+import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.compute.*;
 import org.abubusoft.mee.server.services.ExpressionEvaluator;
+import org.abubusoft.mee.server.support.CommandResponseUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.StringJoiner;
 
 public class ComputeCommand extends Command {
+  private static final Logger logger = LoggerFactory
+          .getLogger(ComputeCommand.class);
   private final ComputationType computationType;
   private final ValuesType valuesType;
   private final VariableDefinitions variableDefinitions;
@@ -73,7 +80,13 @@ public class ComputeCommand extends Command {
           result = mergeResults(result, expressionEvaluator.execute(value, expression));
         }
 
-        responseBuilder.addValue(finalizeResult(result, values.size()));
+        result = finalizeResult(result, values.size());
+        logger.debug(String.format("%s_%s of '%s' = %s",
+                getComputationType(),
+                getValuesType(),
+                expression,
+                CommandResponseUtils.formatValue(result)));
+        responseBuilder.addValue(result);
       }
     } catch (MalformedCommandException e) {
       e.printStackTrace();

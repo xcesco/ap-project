@@ -1,7 +1,8 @@
-package org.abubusoft.mee.server.model;
+package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
+import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.abubusoft.mee.server.model.compute.VariableValues;
 import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.junit.jupiter.api.Assertions;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionWithVariablesDefinitionParserImplTest {
+public class ExpressionEvaluatorImplWithVariablesTest {
   ExpressionEvaluatorImpl evaluator = new ExpressionEvaluatorImpl();
 
   @Test
@@ -51,6 +52,11 @@ public class ExpressionWithVariablesDefinitionParserImplTest {
     evaluateExpression("x^y1", 2, 1, 2.0);
     evaluateExpression("y1^x^2", 2, 2, 16.0);
     evaluateExpression("2^y1*y1", 0, 2, 8.0);
+  }
+
+  @Test
+  public void testVariableUndefined() throws MalformedCommandException {
+    Assertions.assertThrows(UndefinedVariableException.class, ()->evaluateExpression("x^y2", 2, 1, 2.0));
   }
 
   @Test
