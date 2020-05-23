@@ -14,7 +14,7 @@ public abstract class CommandResponseUtils {
       builder.append(response.getMessage());
     } else {
       builder.append(formatDuration(response.getResponseTime()));
-      response.getValues().forEach(item -> builder.append(";" + formatValue(item)));
+      builder.append(";" + formatValue(response.getValue()));
     }
 
     return builder.toString();

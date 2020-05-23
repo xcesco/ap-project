@@ -21,10 +21,6 @@ public class VariableValues {
     return values.get(name);
   }
 
-  public int getSize() {
-    return values.size();
-  }
-
   public static class Builder {
     /**
      * LinkedHashMap is used to respect insertion order

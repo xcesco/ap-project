@@ -22,7 +22,7 @@ public abstract class ParserRuleContextBuilder {
       @Override
       public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
                               int charPositionInLine, String msg, RecognitionException e) {
-        AppAssert.fail("unespected char at pos %s in command '%s'", charPositionInLine, input);
+        AppAssert.fail("Unespected char at pos %s", charPositionInLine);
       }
     });
 

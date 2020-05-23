@@ -63,7 +63,7 @@ public class ConnectionsServiceImpl implements ConnectionsService, Connection.Li
   @Override
   public void messageSent(Connection connection, String message, boolean error) {
     if (error) {
-      logger.error("{}", message);
+      logger.error(message);
     }
     logger.trace("Sent response '{}'", message);
   }

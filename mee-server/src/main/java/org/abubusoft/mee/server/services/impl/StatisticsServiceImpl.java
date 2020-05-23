@@ -37,16 +37,16 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     switch (command.getSubType()) {
       case REQS:
-        builder.addValue(commandCounter);
+        builder.setValue(commandCounter);
         break;
       case AVG_TIME:
-        builder.addValue(averageExecuteTime / 1000.0);
+        builder.setValue(averageExecuteTime / 1000.0);
         break;
       case MIN_TIME:
-        builder.addValue(minExecuteTime / 1000.0);
+        builder.setValue(minExecuteTime / 1000.0);
         break;
       case MAX_TIME:
-        builder.addValue(maxExecutionTime / 1000.0);
+        builder.setValue(maxExecutionTime / 1000.0);
         break;
     }
     r.unlock();

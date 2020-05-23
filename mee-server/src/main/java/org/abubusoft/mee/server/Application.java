@@ -1,6 +1,6 @@
 package org.abubusoft.mee.server;
 
-//import de.codecentric.boot.admin.server.config.EnableAdminServer;
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.abubusoft.mee.server.services.ConnectionsService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -11,7 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@EnableAdminServer
+@EnableAdminServer
 @SpringBootApplication(
         scanBasePackages = {"org.abubusoft.mee.server"})
 public class Application implements CommandLineRunner {

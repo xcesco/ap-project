@@ -1,39 +1,25 @@
 package org.abubusoft.mee.server.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringJoiner;
-
 public class CommandResponse {
-  private final List<Double> values;
+  private final double value;
   private final ResponseType responseType;
   private final String message;
   private long responseTime;
 
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", CommandResponse.class.getSimpleName() + "[", "]")
-            .add("values=" + values)
-            .add("responseType=" + responseType)
-            .add("message='" + message + "'")
-            .add("responseTime=" + responseTime)
-            .toString();
-  }
-
-  private CommandResponse(List<Double> values) {
+  private CommandResponse(double value) {
     this.responseType = ResponseType.OK;
-    this.values = values;
+    this.value = value;
     this.message = null;
   }
 
   private CommandResponse(Exception exception) {
     this.responseType = ResponseType.ERR;
-    this.values = null;
+    this.value = 0;
     this.message = String.format("(%s) %s", exception.getClass().getSimpleName(), exception.getMessage());
   }
 
-  public List<Double> getValues() {
-    return values;
+  public double getValue() {
+    return value;
   }
 
   public long getResponseTime() {
@@ -58,7 +44,7 @@ public class CommandResponse {
 
   public static class Builder {
     private final ResponseType responseType;
-    private List<Double> values = new ArrayList<>();
+    private double value = 0;
 
     Builder() {
       this.responseType = ResponseType.OK;
@@ -68,13 +54,13 @@ public class CommandResponse {
       return new Builder();
     }
 
-    public Builder addValue(double value) {
-      values.add(value);
+    public Builder setValue(double value) {
+      this.value=value;
       return this;
     }
 
     public CommandResponse build() {
-      return new CommandResponse(values);
+      return new CommandResponse(value);
     }
   }
 }

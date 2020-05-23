@@ -36,18 +36,16 @@ variable_upper_value    : ('-')? NUMBER;
 expressions : expression (SEMI_COLUMN expression)*;
 expression
    : mul_expression (operator_add_sub mul_expression)*;
-
 mul_expression
    : pow_expression (operator_mul_div pow_expression)*
    ;
-
 pow_expression
    : operand_left (operator_pow operand_right)*
    ;
 
 operator_add_sub: OP_ADD | OP_MINUS;
 operator_mul_div: OP_MUL | OP_DIV;
-operator_pow: OP_POW;
+operator_pow    : OP_POW;
 
 operand_left
     :   (OP_ADD | OP_MINUS)? variable

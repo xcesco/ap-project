@@ -1,5 +1,6 @@
 package org.abubusoft.mee.server.services.impl;
 
+import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.*;
 import org.abubusoft.mee.server.services.CommandParser;
@@ -78,7 +79,7 @@ public class ConnectionImpl implements Connection, CommandVisitor {
             sendResponse(bw, response);
             notifySentResponse(response);
           }
-        } catch (MalformedCommandException e) {
+        } catch (AppRuntimeException | MalformedCommandException e) {
           CommandResponse errorResponse = CommandResponse.error(e);
           sendResponse(bw, errorResponse);
           notifySentResponse(errorResponse);
@@ -91,7 +92,6 @@ public class ConnectionImpl implements Connection, CommandVisitor {
         socket.close();
       } catch (IOException e) {
         logger.error(e.getMessage());
-        //e.printStackTrace();
       }
 
       notifyDisconnetedEvent();

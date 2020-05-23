@@ -1,7 +1,5 @@
 package org.abubusoft.mee.server.model;
 
-import org.abubusoft.mee.server.exceptions.AppAssert;
-import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.compute.*;
 import org.abubusoft.mee.server.services.ExpressionEvaluator;
@@ -10,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.StringJoiner;
 
 public class ComputeCommand extends Command {
   private static final Logger logger = LoggerFactory
@@ -38,30 +35,8 @@ public class ComputeCommand extends Command {
     return valuesType;
   }
 
-  public VariableDefinitions getVariableDefinitions() {
-    return variableDefinitions;
-  }
-
   public List<String> getExpressionsList() {
     return expressionsList;
-  }
-
-  public int getVariableDefinitionCount() {
-    return variableDefinitions.size();
-  }
-
-  public List<String> getVariableNames() {
-    return variableDefinitions.getKeysList();
-  }
-
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", ComputeCommand.class.getSimpleName() + "[", "]")
-            .add("computationType=" + computationType)
-            .add("valuesType=" + valuesType)
-            .add("variableDefinitions=" + variableDefinitions)
-            .add("expressionsList=" + expressionsList)
-            .toString();
   }
 
   @Override
@@ -69,24 +44,38 @@ public class ComputeCommand extends Command {
     List<VariableValues> values = buildVariableValues();
     CommandResponse.Builder responseBuilder = CommandResponse.Builder.ok();
 
-    if (getComputationType() == ComputationType.COUNT) {
-      return responseBuilder.addValue(values.size()).build();
-    }
-
     try {
       double result = getInitialValue();
+      double actualValue;
+
+      // validate with first variable values tuple
+      for (String expression : expressionsList) {
+        expressionEvaluator.validate(values.get(0), expression);
+      }
+
+      if (getComputationType() == ComputationType.COUNT) {
+        return responseBuilder.setValue(values.size()).build();
+      }
+
       for (String expression : expressionsList) {
         for (VariableValues value : values) {
-          result = mergeResults(result, expressionEvaluator.execute(value, expression));
+          actualValue = expressionEvaluator.execute(value, expression);
+          result = mergeResults(result, actualValue);
         }
 
         result = finalizeResult(result, values.size());
-        logger.debug(String.format("%s_%s of '%s' = %s",
+        logger.debug(String.format("%s_%s of '%s' (%s values) = %s",
                 getComputationType(),
                 getValuesType(),
                 expression,
+                values.size(),
                 CommandResponseUtils.formatValue(result)));
-        responseBuilder.addValue(result);
+        responseBuilder.setValue(result);
+
+        // AVG require only 1st expression evaluation
+        if (getComputationType() == ComputationType.AVG) {
+          break;
+        }
       }
     } catch (MalformedCommandException e) {
       e.printStackTrace();

@@ -143,25 +143,25 @@
 
     <dependencies>
         <!-- -->
-        <!--Dependency for registering your app as a Spring Boot Admin Server-->
-        <!--        <dependency>-->
-        <!--            <groupId>de.codecentric</groupId>-->
-        <!--            <artifactId>spring-boot-admin-server</artifactId>-->
-        <!--            <version>2.2.3</version>-->
-        <!--        </dependency>-->
+        <!--Dependency for registering your app as a Spring Boot Admin Server -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server</artifactId>
+            <version>2.2.3</version>
+        </dependency>
 
         <!--Provide a nice looking ui-->
-        <!--        <dependency>-->
-        <!--            <groupId>de.codecentric</groupId>-->
-        <!--            <artifactId>spring-boot-admin-server-ui</artifactId>-->
-        <!--            <version>2.2.3</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui</artifactId>
+            <version>2.2.3</version>
+        </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>de.codecentric</groupId>-->
-        <!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
-        <!--            <version>2.2.3</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.2.3</version>
+        </dependency>
 
 
         <!--        &lt;!&ndash;Dependency for registering your app as a Spring Boot Admin Client&ndash;&gt;-->

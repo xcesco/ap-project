@@ -3,19 +3,16 @@ package org.abubusoft.mee.server.model.compute;
 import com.google.common.collect.Lists;
 import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class VariableDefinitions {
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", VariableDefinitions.class.getSimpleName() + "[", "]")
-            .add("variables=" + variables)
-            .toString();
-  }
+  private static final Logger logger = LoggerFactory
+          .getLogger(VariableDefinitions.class);
 
   private final List<VariableDefinition> variables;
 
@@ -23,15 +20,19 @@ public class VariableDefinitions {
     this.variables = new ArrayList<>();
   }
 
-  public int size() {
-    return variables.size();
-  }
-
   public List<String> getKeysList() {
     return variables.stream().map(VariableDefinition::getName).collect(Collectors.toList());
   }
 
+  private boolean isAlreadyDefined(String name) {
+    return variables.stream().filter(item -> item.getName().equals(name)).findFirst().map(item -> true).orElse(false);
+  }
+
   public VariableDefinitions add(VariableDefinition variableDefinition) {
+    if (isAlreadyDefined(variableDefinition.getName())) {
+      String message = String.format("Variable '%s' is defined twice", variableDefinition.getName());
+      AppAssert.fail(InvalidVariableDefinitionException.class, message);
+    }
     variables.add(variableDefinition);
     return this;
   }
@@ -50,16 +51,32 @@ public class VariableDefinitions {
       int currentCount;
       String currentName;
       List<List<Double>> values = new ArrayList<>();
+
+      // check variable interval size
       for (int i = 0; i < variables.size(); i++) {
-        int finalI = i;
         currentCount = variables.get(i).getValues().size();
         currentName = variables.get(i).getName();
         AppAssert.assertTrue(firstCount == currentCount, InvalidVariableDefinitionException.class,
                 "Variables '%s' and '%s' have different size (%s, %s)",
                 firstName, currentName, firstCount, currentCount);
-        values.add(variables.stream().map(item -> item.getValues().get(finalI)).collect(Collectors.toList()));
       }
-      return values.stream().map(value -> VariableValues.Builder.create().addAll(keysList, value).build()).collect(Collectors.toList());
+
+      // fills tuples
+      for (int i = 0; i < firstCount; i++) {
+        int finalI = i;
+        List<Double> valuesTuple = variables.stream()
+                .map(item -> item.getValues().get(finalI))
+                .collect(Collectors.toList());
+
+        values.add(valuesTuple);
+      }
+
+      // build variable values list
+      List<VariableValues> result = values.stream()
+              .map(value -> VariableValues.Builder.create().addAll(keysList, value).build())
+              .collect(Collectors.toList());
+
+      return result;
     }
 
   }

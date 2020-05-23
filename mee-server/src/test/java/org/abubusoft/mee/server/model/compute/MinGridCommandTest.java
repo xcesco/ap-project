@@ -3,9 +3,9 @@ package org.abubusoft.mee.server.model.compute;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.junit.jupiter.api.Test;
 
-public class MinListCommandTest extends BaseCommandTest {
-  public MinListCommandTest() {
-    super(ComputationType.MIN, ValuesType.LIST);
+public class MinGridCommandTest extends BaseCommandTest {
+  public MinGridCommandTest() {
+    super(ComputationType.MIN, ValuesType.GRID);
   }
 
   @Test

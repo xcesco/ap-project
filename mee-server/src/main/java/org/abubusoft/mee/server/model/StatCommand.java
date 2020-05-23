@@ -11,14 +11,6 @@ public class StatCommand extends Command {
   }
 
   @Override
-  public String toString() {
-    final StringBuilder sb = new StringBuilder("StatCommand{");
-    sb.append("subType=").append(subType);
-    sb.append('}');
-    return sb.toString();
-  }
-
-  @Override
   public CommandResponse accept(CommandVisitor visitor) {
     return visitor.visit(this);
   }

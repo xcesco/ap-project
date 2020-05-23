@@ -20,7 +20,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
 
   @Override
   public Double visitExpression(CommandsParser.ExpressionContext ctx) {
-    expression=ctx.getText();
+    expression = ctx.getText();
     List<CommandsParser.Mul_expressionContext> operandList = ctx.mul_expression();
     List<CommandsParser.Operator_add_subContext> operatorList = ctx.operator_add_sub();
 
@@ -46,9 +46,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
 
   @Override
   public Double visitOperand_right(CommandsParser.Operand_rightContext ctx) {
-    double value = evaluateOperand(ctx.variable(), ctx.expression(), ctx.num());
-
-    return value;
+    return evaluateOperand(ctx.variable(), ctx.expression(), ctx.num());
   }
 
   private double evaluateOperand(CommandsParser.VariableContext variable, CommandsParser.ExpressionContext expression, CommandsParser.NumContext num) {

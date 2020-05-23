@@ -73,7 +73,6 @@ public class CommandVisitor extends CommandsBaseVisitor<Command> {
   @Override
   public Command visitExpressions(CommandsParser.ExpressionsContext ctx) {
     computeBuilder.setExpressionsList(ctx.expression().stream().map(RuleContext::getText).collect(Collectors.toList()));
-    //TODO variable check
     return null;
   }
 
