@@ -79,7 +79,6 @@ K_MAX   : M A X;
 K_AVG   : A V G;
 K_COUNT : C O U N  T;
 
-
 PAR_OPEN    : '(';
 PAR_CLOSE   : ')';
 // Math operators

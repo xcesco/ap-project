@@ -21,7 +21,7 @@ public class CountListCommandTest extends BaseCommandTest {
 
   @Test
   public void testExample() throws MalformedCommandException {
-    verify("x0:1:0.001:100;x0", 10.0);
+    verify("x0:1:0.001:100;x0", 99001.0);
   }
 
 
