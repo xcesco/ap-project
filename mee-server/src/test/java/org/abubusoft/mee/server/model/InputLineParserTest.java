@@ -3,9 +3,10 @@ package org.abubusoft.mee.server.model;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.compute.ComputationType;
 import org.abubusoft.mee.server.model.compute.ValuesType;
-import org.abubusoft.mee.server.services.CommandParser;
-import org.abubusoft.mee.server.services.impl.CommandParserImpl;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
+import org.abubusoft.mee.server.services.InputLineParser;
+import org.abubusoft.mee.server.services.impl.InputLineParserImpl;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
+import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +14,9 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CommandParserTest {
+public class InputLineParserTest {
 
-  CommandParser parser = new CommandParserImpl(new ExpressionEvaluatorImpl());
+  InputLineParser parser = new InputLineParserImpl(new ExpressionEvaluatorServiceImpl());
 
   @Test
   public void testBye() throws MalformedCommandException {
@@ -27,6 +28,13 @@ public class CommandParserTest {
   public void testStatMaxTime() throws MalformedCommandException {
     Command command = parser.parse("STAT_MAX_TIME");
     assertEquals(command.getType(), CommandType.STAT);
+  }
+
+  @Test
+  public void testWrongCommand() {
+    Assertions.assertThrows(MalformedCommandException.class, () -> {
+      parser.parse("QUIT");
+    });
   }
 
   @Test
@@ -47,20 +55,26 @@ public class CommandParserTest {
     assertEquals(command.getType(), CommandType.COMPUTE);
   }
 
-
   @Test
   public void testCountList() throws MalformedCommandException {
-    Command command = parser.parse("COUNT_LIST;x0:1:0.001:100;x1");
-    assertEquals(command.getType(), CommandType.COMPUTE);
+    {
+      Command command = parser.parse("COUNT_LIST;x0:.0:0.001:100;x1");
+      assertEquals(command.getType(), CommandType.COMPUTE);
+      CommandResponse response = command.execute();
+      assertEquals("OK;0.000;100001.000000", CommandResponseUtils.format(response));
+    }
   }
 
   @Test
   public void testWrongCommandsSet1() {
-    Stream.of("bye",
+    Stream.of(
+            "bye",
             "COUNT_LIST;x0:1:0.001:100;",
             "MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)a",
             "MAX_LIST;x0:0:0,1:2;(x0+1)"
-    ).forEach(input -> Assertions.assertThrows(MalformedCommandException.class, () -> parser.parse(input)));
+    ).forEach(input -> Assertions.assertThrows(MalformedCommandException.class, () -> {
+      parser.parse(input);
+    }));
   }
 
   @Test

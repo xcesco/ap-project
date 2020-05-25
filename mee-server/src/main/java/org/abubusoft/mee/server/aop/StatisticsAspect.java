@@ -32,20 +32,19 @@ public class StatisticsAspect {
     long start = System.currentTimeMillis();
     Object proceed = joinPoint.proceed();
     long executionTime = System.currentTimeMillis() - start;
+
     Command command = (Command) Arrays.stream(joinPoint.getArgs())
             .filter(item -> item instanceof Command).findFirst().orElse(null);
-
     if (command != null && proceed instanceof CommandResponse) {
       if (((CommandResponse) proceed).getResponseType() == ResponseType.OK) {
-        statisticsService.registryOperation(executionTime);
+        statisticsService.registryCommandExecutionTime(executionTime);
         CommandResponse response = ((CommandResponse) proceed);
         response.setResponseTime(executionTime);
       } else {
         logger.debug(String.format("Response of type %s is not registered in stats", ResponseType.ERR));
       }
-
     } else {
-      logger.warn(String.format("%s.%s has wrong signature for performance registration", joinPoint.getSignature().getDeclaringType().getSimpleName(), joinPoint.getSignature().getName()));
+      logger.warn(String.format("%s.%s has wrong signature for stats registration", joinPoint.getSignature().getDeclaringType().getSimpleName(), joinPoint.getSignature().getName()));
     }
 
     return proceed;

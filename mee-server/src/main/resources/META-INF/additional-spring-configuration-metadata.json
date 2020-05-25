@@ -3,7 +3,7 @@
     {
       "name": "mee-server.port",
       "type": "java.lang.String",
-      "description": "Description for mee-server.port."
+      "description": "TCP Port used for commands execution."
     }
   ]
 }

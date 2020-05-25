@@ -33,15 +33,11 @@ variable_lower_value    : ('-')? NUMBER;
 variable_step_value     : ('-')? NUMBER;
 variable_upper_value    : ('-')? NUMBER;
 
-expressions : expression (SEMI_COLUMN expression)*;
-expression
-   : mul_expression (operator_add_sub mul_expression)*;
-mul_expression
-   : pow_expression (operator_mul_div pow_expression)*
-   ;
-pow_expression
-   : operand_left (operator_pow operand_right)*
-   ;
+expressions  : expression (SEMI_COLUMN expression)*;
+expression   : mul_expression (operator_add_sub mul_expression)*;
+
+mul_expression : pow_expression (operator_mul_div pow_expression)*;
+pow_expression : operand_left (operator_pow operand_right)*;
 
 operator_add_sub: OP_ADD | OP_MINUS;
 operator_mul_div: OP_MUL | OP_DIV;
@@ -96,17 +92,17 @@ COMMA       : ',';
 IDENTIFIER  : [a-z] [a-z0-9]*;
 
 // take from https://github.com/antlr/grammars-v4/blob/master/java/java/JavaLexer.g4
-NUMBER: (DIGITS '.' DIGITS? | '.' DIGITS) EXPONENT_PART?
+NUMBER
+    :   (DIGITS '.' DIGITS? | '.' DIGITS) EXPONENT_PART?
     |   DIGITS (EXPONENT_PART)?
     ;
 
-fragment DIGITS: [0-9] ([0-9_]* [0-9])?
+fragment DIGITS: [0-9] ([0-9]* [0-9])?
     ;
 fragment EXPONENT_PART
     : [eE] [+-]? DIGITS
     ;
 
-fragment DIGIT : [0-9];
 fragment A : [A];
 fragment B : [B];
 fragment C : [C];

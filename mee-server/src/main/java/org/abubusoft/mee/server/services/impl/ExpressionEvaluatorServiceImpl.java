@@ -3,7 +3,7 @@ package org.abubusoft.mee.server.services.impl;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.compute.VariableValues;
-import org.abubusoft.mee.server.services.ExpressionEvaluator;
+import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.abubusoft.mee.server.support.ExpressionVariableCheckerVisitor;
 import org.abubusoft.mee.server.support.ExpressionVisitor;
@@ -14,11 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ExpressionEvaluatorImpl implements ExpressionEvaluator {
+public class ExpressionEvaluatorServiceImpl implements ExpressionEvaluatorService {
   private static final Logger logger = LoggerFactory
-          .getLogger(ExpressionEvaluatorImpl.class);
+          .getLogger(ExpressionEvaluatorServiceImpl.class);
 
-  public double execute(VariableValues variableValues, String input) throws MalformedCommandException {
+  public double evaluate(VariableValues variableValues, String input) throws MalformedCommandException {
     try {
       ParserRuleContext parser = ParserRuleContextBuilder.build(input, CommandsParser::expression);
       ExpressionVisitor visitor = new ExpressionVisitor(variableValues);

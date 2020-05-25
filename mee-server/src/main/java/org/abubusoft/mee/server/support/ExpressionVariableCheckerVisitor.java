@@ -8,6 +8,9 @@ import org.abubusoft.mee.server.model.compute.VariableValues;
 
 import java.util.List;
 
+/**
+ * Visit the expresion to check if all used variables are used.
+ */
 public class ExpressionVariableCheckerVisitor extends CommandsBaseVisitor<Void> {
   private final VariableValues variableValues;
   private String expression;
@@ -20,12 +23,7 @@ public class ExpressionVariableCheckerVisitor extends CommandsBaseVisitor<Void> 
   public Void visitExpression(CommandsParser.ExpressionContext ctx) {
     expression = ctx.getText();
     List<CommandsParser.Mul_expressionContext> operandList = ctx.mul_expression();
-    List<CommandsParser.Operator_add_subContext> operatorList = ctx.operator_add_sub();
-
-    visit(operandList.get(0));
-    for (int i = 0; i < operatorList.size(); i++) {
-      visit(operandList.get(i + 1));
-    }
+    operandList.stream().forEach(this::visit);
     return null;
   }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,6 +28,10 @@
         <antlr.version>4.7.1</antlr.version>
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <hamcrest.version>2.2</hamcrest.version>
+
+        <spring-boot-admin-server.version>2.2.3</spring-boot-admin-server.version>
+        <spring-boot-admin-starter-client.version>2.2.3</spring-boot-admin-starter-client.version>
+        <spring-boot-admin-server-ui-login.version>1.5.7</spring-boot-admin-server-ui-login.version>
     </properties>
 
     <licenses>
@@ -85,20 +89,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>templating-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <executions>
-                    <execution>
-                        <id>generate-verion-class</id>
-                        <goals>
-                            <goal>filter-sources</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.3.0</version>
@@ -109,7 +99,6 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.5</version>
             </plugin>
-
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -142,39 +131,6 @@
     </reporting>
 
     <dependencies>
-        <!-- -->
-        <!--Dependency for registering your app as a Spring Boot Admin Server -->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-server</artifactId>
-            <version>2.2.3</version>
-        </dependency>
-
-        <!--Provide a nice looking ui-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-server-ui</artifactId>
-            <version>2.2.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>2.2.3</version>
-        </dependency>
-
-
-        <!--        &lt;!&ndash;Dependency for registering your app as a Spring Boot Admin Client&ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>de.codecentric</groupId>-->
-        <!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
-        <!--            <version>2.2.3</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.jolokia</groupId>-->
-        <!--            <artifactId>jolokia-core</artifactId>-->
-        <!--        </dependency>-->
 
         <!-- server dependencies -->
         <dependency>
@@ -185,23 +141,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -230,6 +169,18 @@
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
             <version>${antlr.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- junit 5 -->

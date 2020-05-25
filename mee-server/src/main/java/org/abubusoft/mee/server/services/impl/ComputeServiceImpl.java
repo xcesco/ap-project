@@ -32,13 +32,12 @@ public class ComputeServiceImpl implements ComputeService {
   @LogExecutionTime
   @Override
   public CommandResponse compute(ComputeCommand command) {
-    Future<CommandResponse> result = executor.submit(() -> execute(command));
+    Future<CommandResponse> result = executor.submit(command::execute);
     try {
       return result.get();
     } catch (InterruptedException | ExecutionException e) {
       if (e.getCause() instanceof AppRuntimeException) {
         AppRuntimeException cause = (AppRuntimeException) e.getCause();
-        // error is already showed in log
         return propagateError(cause, false);
       } else {
         return propagateError(e, true);
@@ -53,7 +52,4 @@ public class ComputeServiceImpl implements ComputeService {
     return CommandResponse.error(e);
   }
 
-  private CommandResponse execute(ComputeCommand command) {
-    return command.execute();
-  }
 }

@@ -18,8 +18,8 @@ public class CountGridCommandTest extends BaseCommandTest {
 
   @Test
   public void tesValidCommand() throws MalformedCommandException {
-    Assertions.assertThrows(UndefinedVariableException.class, () -> verify(" x0:0:.1:1 ;  x0 ; y0 ", 5.5));
-
+    verify(" x0:0:.1:1 ;  x0 ; y0 ", 11.0);
+    verify(" x0:0:.1:1 ;  y0 ; x0 ", 11.0);
     verify(" x0:1:1:10 ;  x0 ", 10.0);
     verify(" x0:0:.1:1 ;  x0 ", 11.0);
     verify(" x0:0:.1:1 ;  x0 ; x0 ", 11.0);

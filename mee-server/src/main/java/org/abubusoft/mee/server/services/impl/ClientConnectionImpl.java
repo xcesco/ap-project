@@ -3,9 +3,9 @@ package org.abubusoft.mee.server.services.impl;
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.*;
-import org.abubusoft.mee.server.services.CommandParser;
+import org.abubusoft.mee.server.services.ClientConnection;
 import org.abubusoft.mee.server.services.ComputeService;
-import org.abubusoft.mee.server.services.Connection;
+import org.abubusoft.mee.server.services.InputLineParser;
 import org.abubusoft.mee.server.services.StatisticsService;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.slf4j.Logger;
@@ -15,36 +15,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ConnectionImpl implements Connection, CommandVisitor {
+public class ClientConnectionImpl implements ClientConnection, CommandVisitor {
   private static final Logger logger = LoggerFactory
-          .getLogger(ConnectionImpl.class);
+          .getLogger(ClientConnectionImpl.class);
   private final Socket socket;
-  private final List<Listener> listeners = new ArrayList<>();
-  private CommandParser commandParser;
+  private final Listener listener;
+  private InputLineParser inputLineParser;
   private StatisticsService statisticsService;
   private ComputeService computeService;
 
-  public ConnectionImpl(Socket socket, Listener listener) {
+  public ClientConnectionImpl(Socket socket, Listener listener) {
     this.socket = socket;
-    this.listeners.add(listener);
+    this.listener = listener;
   }
 
   @Autowired
-  public void setCommandParser(CommandParser commandParser) {
-    this.commandParser = commandParser;
+  public void setInputLineParser(InputLineParser inputLineParser) {
+    this.inputLineParser = inputLineParser;
   }
 
   @Autowired
-  public ConnectionImpl setStatisticsService(StatisticsService statisticsService) {
+  public ClientConnectionImpl setStatisticsService(StatisticsService statisticsService) {
     this.statisticsService = statisticsService;
     return this;
   }
 
   @Autowired
-  public ConnectionImpl setComputeService(ComputeService computeService) {
+  public ClientConnectionImpl setComputeService(ComputeService computeService) {
     this.computeService = computeService;
     return this;
   }
@@ -55,16 +53,10 @@ public class ConnectionImpl implements Connection, CommandVisitor {
   }
 
   @Override
-  public void addListener(Listener listener) {
-    listeners.add(listener);
-  }
-
-  @Override
   public void start() {
+    notifyConnectedEvent();
     try (BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));) {
-
-      notifyConnectedEvent();
+         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
 
       Command command = null;
       CommandResponse response;
@@ -72,8 +64,8 @@ public class ConnectionImpl implements Connection, CommandVisitor {
         String line = br.readLine();
         try {
           notifyReceivedCommandEvent(line);
-          command = commandParser.parse(line);
-          response = command.accept(this);
+          command = inputLineParser.parse(line);
+          response = execute(command);
 
           if (command.getType() != CommandType.BYE) {
             sendResponse(bw, response);
@@ -98,9 +90,13 @@ public class ConnectionImpl implements Connection, CommandVisitor {
     }
   }
 
+  private CommandResponse execute(Command command) {
+    return command.accept(this);
+  }
+
   private void notifySentResponse(CommandResponse response) {
     String message = CommandResponseUtils.format(response);
-    for (Listener listener : listeners) {
+    if (listener != null) {
       listener.messageSent(this, message, response.getResponseType() == ResponseType.ERR);
     }
   }
@@ -111,19 +107,19 @@ public class ConnectionImpl implements Connection, CommandVisitor {
   }
 
   private void notifyDisconnetedEvent() {
-    for (Listener listener : listeners) {
+    if (listener != null) {
       listener.disconnected(this);
     }
   }
 
-  private void notifyReceivedCommandEvent(String line) {
-    for (Listener listener : listeners) {
-      listener.messageReceived(this, line);
+  private void notifyReceivedCommandEvent(String command) {
+    if (listener != null) {
+      listener.messageReceived(this, command);
     }
   }
 
   private void notifyConnectedEvent() {
-    for (Listener listener : listeners) {
+    if (listener != null) {
       listener.connected(this);
     }
   }

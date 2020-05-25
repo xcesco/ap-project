@@ -1,7 +1,7 @@
 package org.abubusoft.mee.server;
 
-import org.abubusoft.mee.server.services.Connection;
-import org.abubusoft.mee.server.services.impl.ConnectionImpl;
+import org.abubusoft.mee.server.services.ClientConnection;
+import org.abubusoft.mee.server.services.impl.ClientConnectionImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -13,7 +13,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.net.Socket;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.function.BiFunction;
 
 @Configuration
@@ -24,14 +23,9 @@ public class ApplicationConfiguration {
   public static final String COMMAND_EXECUTOR = "commandExecutor";
 
   @Bean
-  public BiFunction<Socket, Connection.Listener, Connection> connectionFactory() {
-    return this::connection;
-  }
-
-  @Bean
   @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-  public Connection connection(Socket socket, Connection.Listener listener) {
-    return new ConnectionImpl(socket, listener);
+  public ClientConnection clientConnection(Socket socket, ClientConnection.Listener listener) {
+    return new ClientConnectionImpl(socket, listener);
   }
 
   @Bean(CONNECTION_EXECUTOR)
@@ -49,7 +43,7 @@ public class ApplicationConfiguration {
   public AsyncTaskExecutor commandExecutor() {
     Runtime runtime = Runtime.getRuntime();
     int numberOfProcessors = runtime.availableProcessors();
-    logger.info(String.format("commandExecutor max size is %d (number of processors available to this JVM)", numberOfProcessors));
+    logger.info(String.format("commandExecutor max size is %d (available processors to this JVM)", numberOfProcessors));
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
     executor.setCorePoolSize(numberOfProcessors);
     executor.setMaxPoolSize(numberOfProcessors);

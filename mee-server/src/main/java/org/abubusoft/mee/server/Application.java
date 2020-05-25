@@ -1,7 +1,6 @@
 package org.abubusoft.mee.server;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
-import org.abubusoft.mee.server.services.ConnectionsService;
+import org.abubusoft.mee.server.services.TcpServer;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,19 +10,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@EnableAdminServer
-@SpringBootApplication(
-        scanBasePackages = {"org.abubusoft.mee.server"})
+@SpringBootApplication(scanBasePackages = {"org.abubusoft.mee.server"})
 public class Application implements CommandLineRunner {
 
   @Value("${mee-server.port}")
   String serverPort;
 
-  private ConnectionsService connectionsService;
+  private TcpServer tcpServer;
 
   @Autowired
-  public void setConnectionsService(ConnectionsService connectionsService) {
-    this.connectionsService = connectionsService;
+  public void setTCPConnectionServer(TcpServer tcpServer) {
+    this.tcpServer = tcpServer;
   }
 
   private static Logger logger = LoggerFactory
@@ -46,7 +43,7 @@ public class Application implements CommandLineRunner {
       logger.info(String.format("Listening port %s is specified via application config", port));
     }
 
-    connectionsService.start(port);
+    tcpServer.start(port);
   }
 
 }

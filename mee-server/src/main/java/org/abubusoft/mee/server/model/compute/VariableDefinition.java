@@ -45,13 +45,13 @@ public class VariableDefinition {
 
         // step and interval are incosistent
         AppAssert.assertTrue(
-                (lowerValue < higherValue && stepValue > 0.0) || (lowerValue > higherValue && stepValue < 0.0),
+                lowerValue < higherValue,
                 InvalidVariableDefinitionException.class,
                 "Definition of variable '%s' is inconsistent", name);
 
         // step is greater than interval
         AppAssert.assertTrue(
-                Math.abs(stepValue) < Math.abs(higherValue - lowerValue),
+                stepValue < Math.abs(higherValue - lowerValue),
                 InvalidVariableDefinitionException.class,
                 "Definition of variable '%s' has step greater than interval", name);
 
@@ -62,8 +62,6 @@ public class VariableDefinition {
           values.add(value);
           value = lowerValue + stepValue * i;
         }
-
-        //values.add(highValue);
 
         return this;
       } catch (InvalidVariableDefinitionException e) {

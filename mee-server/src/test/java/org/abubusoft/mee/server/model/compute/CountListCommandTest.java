@@ -12,8 +12,7 @@ public class CountListCommandTest extends BaseCommandTest {
 
   @Test
   public void testValidCommand() throws MalformedCommandException {
-    Assertions.assertThrows(UndefinedVariableException.class, () -> verify(" x0:0:.1:1 ;  x0 ; y0 ", 5.5));
-
+    verify(" x0:0:.1:1 ;  x0 ; y0 ", 11.0);
     verify(" x0:1:1:10 ;  x0 ", 10.0);
     verify(" x0:1:1:10 , y0:1:1:10 ;  x0 ", 10.0);
     verify(" x0:1:1:10 , y0:1:1:10 , y2:1:1:10 ;  x0 ", 10.0);

@@ -1,5 +1,7 @@
 package org.abubusoft.mee.server.support;
 
+import org.abubusoft.mee.server.exceptions.AppAssert;
+import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.Command;
@@ -10,7 +12,7 @@ import org.abubusoft.mee.server.model.compute.ComputationType;
 import org.abubusoft.mee.server.model.compute.ValuesType;
 import org.abubusoft.mee.server.model.compute.VariableDefinition;
 import org.abubusoft.mee.server.model.stat.StatType;
-import org.abubusoft.mee.server.services.ExpressionEvaluator;
+import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
 import org.antlr.v4.runtime.RuleContext;
 
 import java.util.stream.Collectors;
@@ -18,8 +20,8 @@ import java.util.stream.Collectors;
 public class CommandVisitor extends CommandsBaseVisitor<Command> {
   private final ComputeCommand.Builder computeBuilder;
 
-  public CommandVisitor(ExpressionEvaluator expressionEvaluator) {
-    computeBuilder = ComputeCommand.Builder.create(expressionEvaluator);
+  public CommandVisitor(ExpressionEvaluatorService expressionEvaluatorService) {
+    computeBuilder = ComputeCommand.Builder.create(expressionEvaluatorService);
   }
 
   public ComputeCommand.Builder getComputeBuilder() {
@@ -49,12 +51,16 @@ public class CommandVisitor extends CommandsBaseVisitor<Command> {
 
   @Override
   public Command visitVariable_values(CommandsParser.Variable_valuesContext ctx) {
-    computeBuilder.addVariableDefinition(VariableDefinition.Builder.create()
-            .setName(ctx.variable().getText())
-            .setInterval(
-                    Double.parseDouble(ctx.variable_lower_value().getText()),
-                    Double.parseDouble(ctx.variable_step_value().getText()),
-                    Double.parseDouble(ctx.variable_upper_value().getText())).build());
+    try {
+      computeBuilder.addVariableDefinition(VariableDefinition.Builder.create()
+              .setName(ctx.variable().getText())
+              .setInterval(
+                      Double.parseDouble(ctx.variable_lower_value().getText()),
+                      Double.parseDouble(ctx.variable_step_value().getText()),
+                      Double.parseDouble(ctx.variable_upper_value().getText())).build());
+    } catch (NumberFormatException e) {
+      AppAssert.fail(InvalidVariableDefinitionException.class, "%s definition contains invalid char", ctx.variable().getText());
+    }
     return null;
   }
 

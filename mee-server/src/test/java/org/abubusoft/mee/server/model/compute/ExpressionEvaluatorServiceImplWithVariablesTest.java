@@ -3,15 +3,14 @@ package org.abubusoft.mee.server.model.compute;
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
-import org.abubusoft.mee.server.model.compute.VariableValues;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionEvaluatorImplWithVariablesTest {
-  ExpressionEvaluatorImpl evaluator = new ExpressionEvaluatorImpl();
+public class ExpressionEvaluatorServiceImplWithVariablesTest {
+  ExpressionEvaluatorServiceImpl evaluator = new ExpressionEvaluatorServiceImpl();
 
   @Test
   public void testNumbersEvaluation() throws MalformedCommandException {
@@ -66,7 +65,7 @@ public class ExpressionEvaluatorImplWithVariablesTest {
   }
 
   private void evaluateExpression(String input, double variableValueX, double variableValueY1, double aspectedValue) throws MalformedCommandException {
-    double evaluationResult = evaluator.execute(VariableValues.Builder.create()
+    double evaluationResult = evaluator.evaluate(VariableValues.Builder.create()
             .add("x", variableValueX)
             .add("y1", variableValueY1)
             .build(), input);

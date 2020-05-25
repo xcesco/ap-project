@@ -23,19 +23,19 @@ public class ClientApplication implements Callable<Integer> {
   @Parameters(index = "0", description = "File containg commands")
   private File file;
 
-  @Option(names = {"-s", "--server"}, description = "IP or name of the MEE server")
+  @Option(names = {"-s", "--server"}, description = "IP or name of the MEE server. Default value is 'localhost'.")
   private String host = "localhost";
 
-  @Option(names = {"-p", "--port"}, description = "port used by the MEE server")
+  @Option(names = {"-p", "--port"}, description = "port used by the MEE server. Default value is 10000.")
   private int port = 10_000;
 
   @Option(names = {"-d", "--delay"}, description = "wait time (ms) before client send another command (in the same connection)")
   private int delay = 0;
 
-  @Option(names = {"-c", "--connections"}, description = "connections pool size (default=1).")
-  private int connectionPoolSize = 1;
+  @Option(names = {"-r", "--repeat"}, description = "how time time the sequence of command is repated. Default value is 1.")
+  private int repeat = 1;
 
-  @Option(names = {"-t", "--threads"}, description = "used threads (default=1).")
+  @Option(names = {"-t", "--threads"}, description = "used threads. Default value is 1.")
   private int threadPoolSize = 1;
 
   // this example implements Callable, so parsing, error handling and handling user
@@ -51,7 +51,7 @@ public class ClientApplication implements Callable<Integer> {
     List<String> lines = FileUtils.readLines(file, "UTF-8");
     ExecutorService pool = Executors.newFixedThreadPool(threadPoolSize);
     System.out.println("Start thread pool " + threadPoolSize);
-    IntStream.range(0, connectionPoolSize).forEach(job -> {
+    IntStream.range(0, repeat).forEach(job -> {
       pool.submit(() -> {
         System.out.println("Start job " + job + " on "+Thread.currentThread().getName());
         ClientConnection connection = new ClientConnection(job, host, port, lines, delay);

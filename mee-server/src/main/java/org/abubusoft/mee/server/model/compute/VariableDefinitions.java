@@ -40,7 +40,6 @@ public class VariableDefinitions {
   public List<VariableValues> buildValues(ValuesType valuesType) {
     final List<String> keysList = getKeysList();
     if (valuesType == ValuesType.GRID) {
-
       List<List<Double>> values = variables.stream().map(VariableDefinition::getValues).collect(Collectors.toList());
       return Lists.cartesianProduct(values)
               .stream()

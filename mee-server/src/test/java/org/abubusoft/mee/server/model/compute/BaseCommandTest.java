@@ -4,9 +4,9 @@ import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.CommandResponse;
 import org.abubusoft.mee.server.model.ComputeCommand;
 import org.abubusoft.mee.server.model.ResponseType;
-import org.abubusoft.mee.server.services.CommandParser;
-import org.abubusoft.mee.server.services.impl.CommandParserImpl;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
+import org.abubusoft.mee.server.services.InputLineParser;
+import org.abubusoft.mee.server.services.impl.InputLineParserImpl;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
 import org.junit.jupiter.api.Assertions;
 
 public abstract class BaseCommandTest {
@@ -15,7 +15,7 @@ public abstract class BaseCommandTest {
     this.valueKind = valuesType;
   }
 
-  private final CommandParser parser = new CommandParserImpl(new ExpressionEvaluatorImpl());
+  private final InputLineParser parser = new InputLineParserImpl(new ExpressionEvaluatorServiceImpl());
   private ComputationType operation;
   private ValuesType valueKind;
 

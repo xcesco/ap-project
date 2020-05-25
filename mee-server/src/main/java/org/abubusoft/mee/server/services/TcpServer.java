@@ -1,5 +1,5 @@
 package org.abubusoft.mee.server.services;
 
-public interface ConnectionsService {
+public interface TcpServer {
   void start(int port);
 }

@@ -2,19 +2,19 @@ package org.abubusoft.mee.server.model;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.services.CommandParser;
-import org.abubusoft.mee.server.services.impl.CommandParserImpl;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
+import org.abubusoft.mee.server.services.InputLineParser;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
+import org.abubusoft.mee.server.services.impl.InputLineParserImpl;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CommandResponseTest {
-  CommandParser parser = new CommandParserImpl(new ExpressionEvaluatorImpl());
+  InputLineParser parser = new InputLineParserImpl(new ExpressionEvaluatorServiceImpl());
 
   @Test
   public void testOKResponse() throws MalformedCommandException {
-    Command command = parser.parse("MAX_GRID ; x0:-1:0.1:1 ;x0");
+    ComputeCommand command = parser.parse("MAX_GRID ; x0:-1:0.1:1 ;x0");
     CommandResponse response = command.execute();
     Assertions.assertEquals("OK;0.000;1.000000", CommandResponseUtils.format(response));
     Assertions.assertEquals(ResponseType.OK, response.getResponseType());
@@ -24,7 +24,7 @@ public class CommandResponseTest {
   }
 
   @Test
-  public void testERROResponse() throws MalformedCommandException {
+  public void testERROResponse() {
     CommandResponse response;
     try {
       Command command = parser.parse("MAX_GRID ; x0:-1:0.1:1 ;;x0a");

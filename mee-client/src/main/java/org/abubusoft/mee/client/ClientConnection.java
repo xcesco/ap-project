@@ -1,5 +1,7 @@
 package org.abubusoft.mee.client;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
@@ -60,7 +62,7 @@ public class ClientConnection {
   }
 
   private boolean isCommentLine(String command) {
-    return command.startsWith("#");
+    return command.startsWith("#") || StringUtils.isAllBlank(command);
   }
 
   void sendMessage(int jobId, BufferedWriter writer, String messsage) throws IOException {

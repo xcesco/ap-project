@@ -34,22 +34,24 @@ public class StatisticsServiceImpl implements StatisticsService {
   public CommandResponse compute(StatCommand command) {
     CommandResponse.Builder builder = CommandResponse.Builder.ok();
     r.lock();
-
-    switch (command.getSubType()) {
-      case REQS:
-        builder.setValue(commandCounter);
-        break;
-      case AVG_TIME:
-        builder.setValue(averageExecuteTime / 1000.0);
-        break;
-      case MIN_TIME:
-        builder.setValue(minExecuteTime / 1000.0);
-        break;
-      case MAX_TIME:
-        builder.setValue(maxExecutionTime / 1000.0);
-        break;
+    try {
+      switch (command.getSubType()) {
+        case REQS:
+          builder.setValue(commandCounter);
+          break;
+        case AVG_TIME:
+          builder.setValue(averageExecuteTime / 1000.0);
+          break;
+        case MIN_TIME:
+          builder.setValue(minExecuteTime / 1000.0);
+          break;
+        case MAX_TIME:
+          builder.setValue(maxExecutionTime / 1000.0);
+          break;
+      }
+    } finally {
+      r.unlock();
     }
-    r.unlock();
 
     return builder.build();
   }
@@ -60,7 +62,7 @@ public class StatisticsServiceImpl implements StatisticsService {
    * @param executionTime
    */
   @Override
-  public void registryOperation(long executionTime) {
+  public void registryCommandExecutionTime(long executionTime) {
     w.lock();
     try {
       maxExecutionTime = Math.max(maxExecutionTime, executionTime);
@@ -74,7 +76,6 @@ public class StatisticsServiceImpl implements StatisticsService {
               formatValue(maxExecutionTime / 1_000.0),
               commandCounter);
       logger.debug("Last commmand executed in {} s", formatDuration(executionTime));
-
     } finally {
       w.unlock();
     }
