@@ -63,12 +63,12 @@ public class ExpressionEvaluatorServiceImplNoVariablesTest {
   }
 
   @Test
-  public void testMalformedExpression() throws MalformedCommandException {
+  public void testMalformedExpression() {
     Assertions.assertThrows(MalformedCommandException.class, () -> evaluateExpression("(1+", 4.0));
     Assertions.assertThrows(EvaluationExpressionException.class, () -> evaluateExpression("1/0", 4.0));
   }
 
-  private void evaluateExpression(String input, double aspectedValue) throws MalformedCommandException {
+  private void evaluateExpression(String input, double aspectedValue) {
     double evaluationResult = evaluator.evaluate(VariableValues.Builder.create().build(), input);
     assertEquals(aspectedValue, evaluationResult, input + "=" + aspectedValue);
   }

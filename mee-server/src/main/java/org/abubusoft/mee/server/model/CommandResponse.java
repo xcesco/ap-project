@@ -12,7 +12,7 @@ public class CommandResponse {
     this.message = null;
   }
 
-  private CommandResponse(Exception exception) {
+  private CommandResponse(Throwable exception) {
     this.responseType = ResponseType.ERR;
     this.value = 0;
     this.message = String.format("(%s) %s", exception.getClass().getSimpleName(), exception.getMessage());
@@ -34,7 +34,7 @@ public class CommandResponse {
     return this.responseType;
   }
 
-  public static CommandResponse error(Exception exception) {
+  public static CommandResponse error(Throwable exception) {
     return new CommandResponse(exception);
   }
 

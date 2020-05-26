@@ -1,11 +1,10 @@
 package org.abubusoft.mee.server.services.impl;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
-import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.*;
-import org.abubusoft.mee.server.services.ClientConnection;
+import org.abubusoft.mee.server.services.ClientHandler;
+import org.abubusoft.mee.server.services.ClientRequestParser;
 import org.abubusoft.mee.server.services.ComputeService;
-import org.abubusoft.mee.server.services.InputLineParser;
 import org.abubusoft.mee.server.services.StatisticsService;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.slf4j.Logger;
@@ -16,33 +15,33 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class ClientConnectionImpl implements ClientConnection, CommandVisitor {
+public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
   private static final Logger logger = LoggerFactory
-          .getLogger(ClientConnectionImpl.class);
+          .getLogger(ClientHandlerImpl.class);
   private final Socket socket;
   private final Listener listener;
-  private InputLineParser inputLineParser;
+  private ClientRequestParser clientRequestParser;
   private StatisticsService statisticsService;
   private ComputeService computeService;
 
-  public ClientConnectionImpl(Socket socket, Listener listener) {
+  public ClientHandlerImpl(Socket socket, Listener listener) {
     this.socket = socket;
     this.listener = listener;
   }
 
   @Autowired
-  public void setInputLineParser(InputLineParser inputLineParser) {
-    this.inputLineParser = inputLineParser;
+  public void setClientRequestParser(ClientRequestParser clientRequestParser) {
+    this.clientRequestParser = clientRequestParser;
   }
 
   @Autowired
-  public ClientConnectionImpl setStatisticsService(StatisticsService statisticsService) {
+  public ClientHandlerImpl setStatisticsService(StatisticsService statisticsService) {
     this.statisticsService = statisticsService;
     return this;
   }
 
   @Autowired
-  public ClientConnectionImpl setComputeService(ComputeService computeService) {
+  public ClientHandlerImpl setComputeService(ComputeService computeService) {
     this.computeService = computeService;
     return this;
   }
@@ -61,24 +60,24 @@ public class ClientConnectionImpl implements ClientConnection, CommandVisitor {
       Command command = null;
       CommandResponse response;
       while (command == null || CommandType.BYE != command.getType()) {
-        String line = br.readLine();
+        String request = br.readLine();
         try {
-          notifyReceivedCommandEvent(line);
-          command = inputLineParser.parse(line);
+          notifyReceivedCommandEvent(request);
+          command = clientRequestParser.parse(request);
           response = execute(command);
 
           if (command.getType() != CommandType.BYE) {
             sendResponse(bw, response);
             notifySentResponse(response);
           }
-        } catch (AppRuntimeException | MalformedCommandException e) {
+        } catch (AppRuntimeException e) {
           CommandResponse errorResponse = CommandResponse.error(e);
           sendResponse(bw, errorResponse);
           notifySentResponse(errorResponse);
         }
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      logger.error(e.getMessage());
     } finally {
       try {
         socket.close();

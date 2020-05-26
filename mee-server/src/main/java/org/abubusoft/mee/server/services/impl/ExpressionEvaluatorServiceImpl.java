@@ -1,6 +1,6 @@
 package org.abubusoft.mee.server.services.impl;
 
-import org.abubusoft.mee.server.exceptions.MalformedCommandException;
+import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.compute.VariableValues;
 import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
@@ -18,25 +18,29 @@ public class ExpressionEvaluatorServiceImpl implements ExpressionEvaluatorServic
   private static final Logger logger = LoggerFactory
           .getLogger(ExpressionEvaluatorServiceImpl.class);
 
-  public double evaluate(VariableValues variableValues, String input) throws MalformedCommandException {
+  public double evaluate(VariableValues variableValues, String expression) {
     try {
-      ParserRuleContext parser = ParserRuleContextBuilder.build(input, CommandsParser::expression);
-      ExpressionVisitor visitor = new ExpressionVisitor(variableValues);
+      ParserRuleContext parser = ParserRuleContextBuilder.build(expression, CommandsParser::expression);
+      ExpressionVisitor visitor = new ExpressionVisitor(variableValues, expression);
       double value = visitor.visit(parser);
-      logger.trace(String.format("'%s' with %s = %s", input, variableValues, CommandResponseUtils.formatValue(value)));
+      logger.trace(String.format("'%s' with %s = %s", expression, variableValues, CommandResponseUtils.formatValue(value)));
       return value;
-    } catch (Exception e) {
+    } catch (AppRuntimeException e) {
       throw e;
+    } catch (Exception e) {
+      throw new AppRuntimeException(e.getMessage());
     }
   }
 
-  public void validate(VariableValues variableValues, String input) throws MalformedCommandException {
+  public void validate(VariableValues variableValues, String input) {
     try {
       ParserRuleContext parser = ParserRuleContextBuilder.build(input, CommandsParser::expression);
       ExpressionVariableCheckerVisitor visitor = new ExpressionVariableCheckerVisitor(variableValues);
       visitor.visit(parser);
-    } catch (Exception e) {
+    } catch (AppRuntimeException e) {
       throw e;
+    } catch (Exception e) {
+      throw new AppRuntimeException(e.getMessage());
     }
   }
 }

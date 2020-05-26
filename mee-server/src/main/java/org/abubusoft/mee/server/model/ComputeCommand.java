@@ -1,6 +1,5 @@
 package org.abubusoft.mee.server.model;
 
-import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.compute.*;
 import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
@@ -44,41 +43,40 @@ public class ComputeCommand extends Command {
     List<VariableValues> values = buildVariableValues();
     CommandResponse.Builder responseBuilder = CommandResponse.Builder.ok();
 
-    try {
-      double result = getInitialValue();
-      double actualValue;
+    double result = getInitialValue();
+    double actualValue;
 
-      if (getComputationType() == ComputationType.COUNT) {
-        return responseBuilder.setValue(values.size()).build();
+    if (getComputationType() == ComputationType.COUNT) {
+      return responseBuilder.setValue(values.size()).build();
+    }
+
+    // validate with first variable values tuple
+    expressionsList.forEach(expr -> {
+      expressionEvaluatorService.validate(values.get(0), expr);
+    });
+    for (String expression : expressionsList) {
+      expressionEvaluatorService.validate(values.get(0), expression);
+    }
+
+    for (String expression : expressionsList) {
+      for (VariableValues value : values) {
+        actualValue = expressionEvaluatorService.evaluate(value, expression);
+        result = mergeResults(result, actualValue);
       }
 
-      // validate with first variable values tuple
-      for (String expression : expressionsList) {
-        expressionEvaluatorService.validate(values.get(0), expression);
+      result = finalizeResult(result, values.size());
+      logger.debug(String.format("%s_%s of '%s' (%s values) = %s",
+              getComputationType(),
+              getValuesType(),
+              expression,
+              values.size(),
+              CommandResponseUtils.formatValue(result)));
+      responseBuilder.setValue(result);
+
+      // AVG require only 1st expression evaluation
+      if (getComputationType() == ComputationType.AVG) {
+        break;
       }
-
-      for (String expression : expressionsList) {
-        for (VariableValues value : values) {
-          actualValue = expressionEvaluatorService.evaluate(value, expression);
-          result = mergeResults(result, actualValue);
-        }
-
-        result = finalizeResult(result, values.size());
-        logger.debug(String.format("%s_%s of '%s' (%s values) = %s",
-                getComputationType(),
-                getValuesType(),
-                expression,
-                values.size(),
-                CommandResponseUtils.formatValue(result)));
-        responseBuilder.setValue(result);
-
-        // AVG require only 1st expression evaluation
-        if (getComputationType() == ComputationType.AVG) {
-          break;
-        }
-      }
-    } catch (MalformedCommandException e) {
-      e.printStackTrace();
     }
 
     return responseBuilder.build();

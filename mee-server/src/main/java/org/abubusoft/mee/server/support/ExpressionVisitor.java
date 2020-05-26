@@ -12,15 +12,15 @@ import java.util.List;
 
 public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
   private final VariableValues variableValues;
-  private String expression;
+  private final String expression;
 
-  public ExpressionVisitor(VariableValues variableValues) {
+  public ExpressionVisitor(VariableValues variableValues, String expression) {
+    this.expression=expression;
     this.variableValues = variableValues;
   }
 
   @Override
   public Double visitExpression(CommandsParser.ExpressionContext ctx) {
-    expression = ctx.getText();
     List<CommandsParser.Mul_expressionContext> operandList = ctx.mul_expression();
     List<CommandsParser.Operator_add_subContext> operatorList = ctx.operator_add_sub();
 
@@ -59,7 +59,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
     } else if (num != null) {
       subContext = num;
     } else {
-      AppAssert.fail("Inconsistent status");
+      AppAssert.fail(EvaluationExpressionException.class, "Inconsistent status");
     }
     value = visit(subContext);
 
@@ -78,7 +78,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
       if (operatorList.get(i).OP_MUL() != null) {
         result *= value;
       } else {
-        AppAssert.assertTrue(value != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s'", expression);
+        AppAssert.assertTrue(value != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s' with %s", expression, this.variableValues.toString());
         result = result / value;
       }
     }

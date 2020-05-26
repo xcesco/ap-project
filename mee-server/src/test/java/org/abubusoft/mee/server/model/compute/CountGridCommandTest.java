@@ -1,8 +1,6 @@
 package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
-import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +15,7 @@ public class CountGridCommandTest extends BaseCommandTest {
   }
 
   @Test
-  public void tesValidCommand() throws MalformedCommandException {
+  public void tesValidCommand() {
     verify(" x0:0:.1:1 ;  x0 ; y0 ", 11.0);
     verify(" x0:0:.1:1 ;  y0 ; x0 ", 11.0);
     verify(" x0:1:1:10 ;  x0 ", 10.0);

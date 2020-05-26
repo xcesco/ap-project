@@ -42,7 +42,7 @@ public class ClientConnection {
           }
           sendMessage(jobId, writer, command);
           String response = br.readLine();
-          System.out.println(String.format(" %3d <-- RESP: " + response, jobId));
+          System.out.println(String.format("JobId: %3d <-- RESP: " + response, jobId));
 
           if (delay > 0) {
             Thread.sleep(delay);
@@ -68,6 +68,6 @@ public class ClientConnection {
   void sendMessage(int jobId, BufferedWriter writer, String messsage) throws IOException {
     writer.write(messsage + System.lineSeparator());
     writer.flush();
-    System.out.println(String.format(" %3d --> SEND: %s", jobId, messsage));
+    System.out.println(String.format("JobId: %3d --> SEND: %s", jobId, messsage));
   }
 }

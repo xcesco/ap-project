@@ -1,11 +1,10 @@
 package org.abubusoft.mee.server.model.compute;
 
-import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.CommandResponse;
 import org.abubusoft.mee.server.model.ComputeCommand;
 import org.abubusoft.mee.server.model.ResponseType;
-import org.abubusoft.mee.server.services.InputLineParser;
-import org.abubusoft.mee.server.services.impl.InputLineParserImpl;
+import org.abubusoft.mee.server.services.ClientRequestParser;
+import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
 import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
 import org.junit.jupiter.api.Assertions;
 
@@ -15,7 +14,7 @@ public abstract class BaseCommandTest {
     this.valueKind = valuesType;
   }
 
-  private final InputLineParser parser = new InputLineParserImpl(new ExpressionEvaluatorServiceImpl());
+  private final ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorServiceImpl());
   private ComputationType operation;
   private ValuesType valueKind;
 
@@ -23,7 +22,7 @@ public abstract class BaseCommandTest {
     return operation + "_" + valueKind + ";" + input;
   }
 
-  protected void verify(String expression, double value) throws MalformedCommandException {
+  protected void verify(String expression, double value) {
     ComputeCommand command = parser.parse(prependType(expression));
     CommandResponse response = command.execute();
 

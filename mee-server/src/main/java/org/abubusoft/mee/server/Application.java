@@ -1,6 +1,6 @@
 package org.abubusoft.mee.server;
 
-import org.abubusoft.mee.server.services.TcpServer;
+import org.abubusoft.mee.server.services.MEEServer;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +16,11 @@ public class Application implements CommandLineRunner {
   @Value("${mee-server.port}")
   String serverPort;
 
-  private TcpServer tcpServer;
+  private MEEServer MEEServer;
 
   @Autowired
-  public void setTCPConnectionServer(TcpServer tcpServer) {
-    this.tcpServer = tcpServer;
+  public void setTCPConnectionServer(MEEServer MEEServer) {
+    this.MEEServer = MEEServer;
   }
 
   private static Logger logger = LoggerFactory
@@ -43,7 +43,7 @@ public class Application implements CommandLineRunner {
       logger.info(String.format("Listening port %s is specified via application config", port));
     }
 
-    tcpServer.start(port);
+    MEEServer.start(port);
   }
 
 }

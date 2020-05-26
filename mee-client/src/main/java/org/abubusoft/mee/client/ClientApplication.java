@@ -32,14 +32,12 @@ public class ClientApplication implements Callable<Integer> {
   @Option(names = {"-d", "--delay"}, description = "wait time (ms) before client send another command (in the same connection)")
   private int delay = 0;
 
-  @Option(names = {"-r", "--repeat"}, description = "how time time the sequence of command is repated. Default value is 1.")
+  @Option(names = {"-r", "--repeat"}, description = "how many time the sequence of command is repated. Default value is 1.")
   private int repeat = 1;
 
   @Option(names = {"-t", "--threads"}, description = "used threads. Default value is 1.")
   private int threadPoolSize = 1;
 
-  // this example implements Callable, so parsing, error handling and handling user
-  // requests for usage help or version help can be done with one line of code.
   public static void main(String... args) {
     int exitCode = new CommandLine(new ClientApplication()).execute(args);
     System.exit(exitCode);
@@ -63,11 +61,6 @@ public class ClientApplication implements Callable<Integer> {
     return 0;
   }
 
-  /**
-   * https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html
-   *
-   * @param pool
-   */
   void shutdownAndAwaitTermination(ExecutorService pool) {
     pool.shutdown(); // Disable new tasks from being submitted
     try {

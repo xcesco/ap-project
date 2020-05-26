@@ -3,8 +3,8 @@ package org.abubusoft.mee.server.model;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.compute.ComputationType;
 import org.abubusoft.mee.server.model.compute.ValuesType;
-import org.abubusoft.mee.server.services.InputLineParser;
-import org.abubusoft.mee.server.services.impl.InputLineParserImpl;
+import org.abubusoft.mee.server.services.ClientRequestParser;
+import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
 import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.junit.jupiter.api.Assertions;
@@ -14,18 +14,18 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InputLineParserTest {
+public class ClientRequestParserTest {
 
-  InputLineParser parser = new InputLineParserImpl(new ExpressionEvaluatorServiceImpl());
+  ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorServiceImpl());
 
   @Test
-  public void testBye() throws MalformedCommandException {
+  public void testBye() {
     Command command = parser.parse("BYE");
     assertEquals(command.getType(), CommandType.BYE);
   }
 
   @Test
-  public void testStatMaxTime() throws MalformedCommandException {
+  public void testStatMaxTime() {
     Command command = parser.parse("STAT_MAX_TIME");
     assertEquals(command.getType(), CommandType.STAT);
   }
@@ -38,25 +38,25 @@ public class InputLineParserTest {
   }
 
   @Test
-  public void testMaxGrid() throws MalformedCommandException {
+  public void testMaxGrid() {
     Command command = parser.parse("MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
     assertEquals(command.getType(), CommandType.COMPUTE);
   }
 
   @Test
-  public void testAvgGrid() throws MalformedCommandException {
+  public void testAvgGrid() {
     Command command = parser.parse("AVG_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
     assertEquals(command.getType(), CommandType.COMPUTE);
   }
 
   @Test
-  public void testMinGrid() throws MalformedCommandException {
+  public void testMinGrid() {
     Command command = parser.parse("MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
     assertEquals(command.getType(), CommandType.COMPUTE);
   }
 
   @Test
-  public void testCountList() throws MalformedCommandException {
+  public void testCountList() {
     {
       Command command = parser.parse("COUNT_LIST;x0:.0:0.001:100;x1");
       assertEquals(command.getType(), CommandType.COMPUTE);
@@ -78,7 +78,7 @@ public class InputLineParserTest {
   }
 
   @Test
-  public void testCommand() throws MalformedCommandException {
+  public void testCommand() {
     String input = "MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));y1";
 
     ComputeCommand command = parser.parse(input);

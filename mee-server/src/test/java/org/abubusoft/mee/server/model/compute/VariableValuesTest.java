@@ -2,8 +2,8 @@ package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.services.impl.InputLineParserImpl;
 import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
+import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VariableValuesTest {
-  InputLineParserImpl parser = new InputLineParserImpl(new ExpressionEvaluatorServiceImpl());
+  ClientRequestParserImpl parser = new ClientRequestParserImpl(new ExpressionEvaluatorServiceImpl());
 
   @Test
   public void testVariableRange1_10() throws MalformedCommandException {
@@ -74,7 +74,6 @@ public class VariableValuesTest {
   }
 
 
-
   /**
    * 2.3.2.1 Parsing of VariabileValuesFunction - Error check
    */
@@ -85,9 +84,6 @@ public class VariableValuesTest {
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0 :-1 :-0.1 :  1"));
     // step is 0
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0 :-1 : 0   :  1"));
-
-    // step is greater than interval
-    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0 :-1 : 10  :  1"));
   }
 
   private List<String> fixPrecisionOfListOfDouble(List<Double> list) {

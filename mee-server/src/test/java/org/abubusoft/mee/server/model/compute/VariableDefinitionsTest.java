@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class VariableDefinitionsTest {
 
   @Test
@@ -23,17 +25,17 @@ class VariableDefinitionsTest {
       builVariableDefinitions(3, 1, 1);
     });
 
-    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> {
-      builVariableDefinitions(1, 4, 3);
-    });
 
+    assertEquals(1, builVariableDefinitions(1, 4, 3));
   }
 
-  private void builVariableDefinitions(int i, int i2, int i3) {
+  private int builVariableDefinitions(int i, int i2, int i3) {
     VariableDefinitions variableDefinitions = new VariableDefinitions();
     variableDefinitions
             .add(VariableDefinition.Builder.create()
                     .setName("x0").setInterval(i, i2, i3).build());
+
+    return variableDefinitions.get("x0").getValues().size();
   }
 
   @Test
@@ -48,11 +50,11 @@ class VariableDefinitionsTest {
 
     List<VariableValues> values = variableDefinitions.buildValues(ValuesType.GRID);
 
-    Assertions.assertEquals(values.size(), 100);
-    Assertions.assertEquals(values.get(0).get("x0"), 1);
-    Assertions.assertEquals(values.get(0).get("x1"), 11);
-    Assertions.assertEquals(values.get(99).get("x0"), 10);
-    Assertions.assertEquals(values.get(99).get("x1"), 20);
+    assertEquals(values.size(), 100);
+    assertEquals(values.get(0).get("x0"), 1);
+    assertEquals(values.get(0).get("x1"), 11);
+    assertEquals(values.get(99).get("x0"), 10);
+    assertEquals(values.get(99).get("x1"), 20);
   }
 
   @Test
@@ -67,11 +69,11 @@ class VariableDefinitionsTest {
 
     List<VariableValues> values = variableDefinitions.buildValues(ValuesType.LIST);
 
-    Assertions.assertEquals(values.size(), 10);
-    Assertions.assertEquals(values.get(0).get("x0"), 1);
-    Assertions.assertEquals(values.get(0).get("x1"), 11);
-    Assertions.assertEquals(values.get(9).get("x0"), 10);
-    Assertions.assertEquals(values.get(9).get("x1"), 20);
+    assertEquals(values.size(), 10);
+    assertEquals(values.get(0).get("x0"), 1);
+    assertEquals(values.get(0).get("x1"), 11);
+    assertEquals(values.get(9).get("x0"), 10);
+    assertEquals(values.get(9).get("x1"), 20);
   }
 
   @Test
@@ -85,7 +87,7 @@ class VariableDefinitionsTest {
             );
     {
       List<VariableValues> values = variableDefinitions.buildValues(ValuesType.GRID);
-      Assertions.assertEquals(values.get(0).get("x1"), 1);
+      assertEquals(values.get(0).get("x1"), 1);
     }
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> {
       variableDefinitions.buildValues(ValuesType.LIST);

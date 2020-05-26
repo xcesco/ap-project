@@ -18,15 +18,7 @@ public abstract class AppAssert {
     }
   }
 
-  public static void failWithMalformedException(String message, Object... params) throws MalformedCommandException {
-    throw new MalformedCommandException(String.format(message, params));
-  }
-
   public static void fail(Class<? extends AppRuntimeException> exceptionClazz, String message, Object... params) {
     assertTrue(false, exceptionClazz, message, params);
-  }
-
-  public static void fail(String message, Object... params) {
-    assertTrue(false, AppRuntimeException.class, message, params);
   }
 }
