@@ -20,6 +20,8 @@ public class ApplicationConfiguration {
           .getLogger(ApplicationConfiguration.class);
   public static final String CONNECTION_EXECUTOR = "connectionExecutor";
   public static final String COMPUTE_EXECUTOR = "computeExecutor";
+  public static final String COMPUTE_THREAD_PREFIX = "Compute-";
+  public static final String CONNECTION_THREAD_PREFIX = "Connection-";
 
   @Bean
   @Scope(BeanDefinition.SCOPE_PROTOTYPE)
@@ -33,20 +35,20 @@ public class ApplicationConfiguration {
     executor.setCorePoolSize(2);
     executor.setMaxPoolSize(256);
     executor.setQueueCapacity(0);
-    executor.setThreadNamePrefix("Connection-");
+    executor.setThreadNamePrefix(CONNECTION_THREAD_PREFIX);
     executor.initialize();
     return executor;
   }
 
   @Bean(COMPUTE_EXECUTOR)
-  public AsyncTaskExecutor commandExecutor() {
+  public AsyncTaskExecutor computeExecutor() {
     Runtime runtime = Runtime.getRuntime();
     int numberOfProcessors = runtime.availableProcessors();
     logger.info(String.format("%s max size is %d (available processors to this JVM)", COMPUTE_EXECUTOR, numberOfProcessors));
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
     executor.setCorePoolSize(numberOfProcessors);
     executor.setMaxPoolSize(numberOfProcessors);
-    executor.setThreadNamePrefix("Compute-");
+    executor.setThreadNamePrefix(COMPUTE_THREAD_PREFIX);
     executor.initialize();
     return executor;
   }

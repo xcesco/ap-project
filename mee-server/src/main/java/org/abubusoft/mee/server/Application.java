@@ -16,11 +16,11 @@ public class Application implements CommandLineRunner {
   @Value("${mee-server.port}")
   String serverPort;
 
-  private MeeServer MEEServer;
+  private MeeServer meeServer;
 
   @Autowired
   public void setMeeServer(MeeServer meeServer) {
-    this.MEEServer = meeServer;
+    this.meeServer = meeServer;
   }
 
   private static Logger logger = LoggerFactory
@@ -43,7 +43,7 @@ public class Application implements CommandLineRunner {
       logger.info(String.format("Listening port %s is specified via application config", port));
     }
 
-    MEEServer.start(port);
+    meeServer.start(port);
   }
 
 }

@@ -13,8 +13,9 @@ public abstract class CommandResponseUtils {
     if (response.getResponseType() == ResponseType.ERR) {
       builder.append(response.getMessage());
     } else {
-      builder.append(formatDuration(response.getResponseTime()));
-      builder.append(";" + formatValue(response.getValue()));
+      builder.append(formatDuration(response.getResponseTime()))
+              .append(";")
+              .append(formatValue(response.getValue()));
     }
 
     return builder.toString();

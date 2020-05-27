@@ -17,7 +17,7 @@ public class VariablesDefinition {
     this.variables = new ArrayList<>();
   }
 
-  public List<String> getKeysList() {
+  public List<String> getVariableNameList() {
     return variables.stream().map(VariableTuple::getName).collect(Collectors.toList());
   }
 
@@ -40,7 +40,7 @@ public class VariablesDefinition {
   }
 
   public Stream<VariablesValue> buildValuesAsStream(ValuesType valuesType) {
-    final List<String> keysList = getKeysList();
+    final List<String> variableNames = getVariableNameList();
     if (valuesType == ValuesType.GRID) {
       List<List<Double>> values = variables.stream()
               .map(VariableTuple::getValues)
@@ -48,7 +48,7 @@ public class VariablesDefinition {
       return Lists.cartesianProduct(values)
               .stream()
               .map(value -> VariablesValue.Builder.create()
-                      .addAll(keysList, value).build());
+                      .addAll(variableNames, value).build());
     } else {
       int firstCount = variables.get(0).getValues().size();
       String firstName = variables.get(0).getName();
@@ -69,7 +69,7 @@ public class VariablesDefinition {
 
       return stream
               .map(value -> VariablesValue.Builder.create()
-                      .addAll(keysList, value).build());
+                      .addAll(variableNames, value).build());
     }
   }
 
