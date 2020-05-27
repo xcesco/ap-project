@@ -5,18 +5,18 @@ import org.abubusoft.mee.server.exceptions.EvaluationExpressionException;
 import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.grammar.CommandsParser;
-import org.abubusoft.mee.server.model.compute.VariableValues;
+import org.abubusoft.mee.server.model.compute.ValuesTuple;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.List;
 
 public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
-  private final VariableValues variableValues;
+  private final ValuesTuple valuesTuple;
   private final String expression;
 
-  public ExpressionVisitor(VariableValues variableValues, String expression) {
+  public ExpressionVisitor(ValuesTuple valuesTuple, String expression) {
     this.expression=expression;
-    this.variableValues = variableValues;
+    this.valuesTuple = valuesTuple;
   }
 
   @Override
@@ -78,7 +78,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
       if (operatorList.get(i).OP_MUL() != null) {
         result *= value;
       } else {
-        AppAssert.assertTrue(value != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s' with %s", expression, this.variableValues.toString());
+        AppAssert.assertTrue(value != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s' with %s", expression, this.valuesTuple.toString());
         result = result / value;
       }
     }
@@ -107,7 +107,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
   public Double visitVariable(CommandsParser.VariableContext ctx) {
     String name = ctx.getText();
 
-    Double value = variableValues.get(name);
+    Double value = valuesTuple.get(name);
     if (value == null) {
       AppAssert.fail(UndefinedVariableException.class, "Undefined variable '%s' used in '%s'", name, expression);
     }

@@ -4,7 +4,7 @@ import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.grammar.CommandsParser;
-import org.abubusoft.mee.server.model.compute.VariableValues;
+import org.abubusoft.mee.server.model.compute.ValuesTuple;
 
 import java.util.List;
 
@@ -12,11 +12,11 @@ import java.util.List;
  * Visit the expresion to check if all used variables are used.
  */
 public class ExpressionVariableCheckerVisitor extends CommandsBaseVisitor<Void> {
-  private final VariableValues variableValues;
+  private final ValuesTuple valuesTuple;
   private String expression;
 
-  public ExpressionVariableCheckerVisitor(VariableValues variableValues) {
-    this.variableValues = variableValues;
+  public ExpressionVariableCheckerVisitor(ValuesTuple valuesTuple) {
+    this.valuesTuple = valuesTuple;
   }
 
   @Override
@@ -31,7 +31,7 @@ public class ExpressionVariableCheckerVisitor extends CommandsBaseVisitor<Void> 
   public Void visitVariable(CommandsParser.VariableContext ctx) {
     String name = ctx.getText();
 
-    Double value = variableValues.get(name);
+    Double value = valuesTuple.get(name);
     if (value == null) {
       AppAssert.fail(UndefinedVariableException.class, "Undefined variable '%s' used in '%s'", name, expression);
     }

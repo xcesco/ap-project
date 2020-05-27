@@ -40,7 +40,7 @@ public class ComputeCommand extends Command {
 
   @Override
   public CommandResponse execute() {
-    List<VariableValues> values = buildVariableValues();
+    List<ValuesTuple> values = buildVariableValues();
     CommandResponse.Builder responseBuilder = CommandResponse.Builder.ok();
 
     double result = getInitialValue();
@@ -50,16 +50,11 @@ public class ComputeCommand extends Command {
       return responseBuilder.setValue(values.size()).build();
     }
 
-    // validate with first variable values tuple
-    expressionsList.forEach(expr -> {
-      expressionEvaluatorService.validate(values.get(0), expr);
-    });
     for (String expression : expressionsList) {
+      // validate expression once, with first available var values
       expressionEvaluatorService.validate(values.get(0), expression);
-    }
 
-    for (String expression : expressionsList) {
-      for (VariableValues value : values) {
+      for (ValuesTuple value : values) {
         actualValue = expressionEvaluatorService.evaluate(value, expression);
         result = mergeResults(result, actualValue);
       }
@@ -71,13 +66,14 @@ public class ComputeCommand extends Command {
               expression,
               values.size(),
               CommandResponseUtils.formatValue(result)));
-      responseBuilder.setValue(result);
 
       // AVG require only 1st expression evaluation
       if (getComputationType() == ComputationType.AVG) {
         break;
       }
     }
+
+    responseBuilder.setValue(result);
 
     return responseBuilder.build();
   }
@@ -121,7 +117,7 @@ public class ComputeCommand extends Command {
     }
   }
 
-  private List<VariableValues> buildVariableValues() {
+  private List<ValuesTuple> buildVariableValues() {
     return variableDefinitions.buildValues(this.valuesType);
   }
 

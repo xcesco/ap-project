@@ -49,12 +49,6 @@ public class VariableDefinition {
                 InvalidVariableDefinitionException.class,
                 "Definition of variable '%s' is inconsistent", name);
 
-        // step is greater than interval
-//        AppAssert.assertTrue(
-//                stepValue <= Math.abs(higherValue - lowerValue),
-//                InvalidVariableDefinitionException.class,
-//                "Definition of variable '%s' has step greater than interval", name);
-
         values = new ArrayList<>();
         double currentValue = lowerValue;
         int i = 1;

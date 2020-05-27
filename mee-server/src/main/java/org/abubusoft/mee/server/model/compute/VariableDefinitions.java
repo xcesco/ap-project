@@ -3,17 +3,13 @@ package org.abubusoft.mee.server.model.compute;
 import com.google.common.collect.Lists;
 import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class VariableDefinitions {
-  private static final Logger logger = LoggerFactory
-          .getLogger(VariableDefinitions.class);
-
   private final List<VariableDefinition> variables;
 
   public VariableDefinitions() {
@@ -37,13 +33,17 @@ public class VariableDefinitions {
     return this;
   }
 
-  public List<VariableValues> buildValues(ValuesType valuesType) {
+  public List<ValuesTuple> buildValues(ValuesType valuesType) {
+    return buildValuesAsStream(valuesType).collect(Collectors.toList());
+  }
+
+  public Stream<ValuesTuple> buildValuesAsStream(ValuesType valuesType) {
     final List<String> keysList = getKeysList();
     if (valuesType == ValuesType.GRID) {
       List<List<Double>> values = variables.stream().map(VariableDefinition::getValues).collect(Collectors.toList());
       return Lists.cartesianProduct(values)
               .stream()
-              .map(value -> VariableValues.Builder.create().addAll(keysList, value).build()).collect(Collectors.toList());
+              .map(value -> ValuesTuple.Builder.create().addAll(keysList, value).build());
     } else {
       int firstCount = variables.get(0).getValues().size();
       String firstName = variables.get(0).getName();
@@ -71,11 +71,8 @@ public class VariableDefinitions {
       }
 
       // build variable values list
-      List<VariableValues> result = values.stream()
-              .map(value -> VariableValues.Builder.create().addAll(keysList, value).build())
-              .collect(Collectors.toList());
-
-      return result;
+      return values.stream()
+              .map(value -> ValuesTuple.Builder.create().addAll(keysList, value).build());
     }
 
   }
