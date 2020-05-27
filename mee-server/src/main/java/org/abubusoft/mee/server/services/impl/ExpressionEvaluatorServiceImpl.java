@@ -20,7 +20,7 @@ public class ExpressionEvaluatorServiceImpl implements ExpressionEvaluatorServic
 
   public double evaluate(VariablesValue variablesValue, String expression) {
     try {
-      ParserRuleContext parser = ParserRuleContextBuilder.build(expression, CommandsParser::expression);
+      ParserRuleContext parser = ParserRuleContextBuilder.build(expression, CommandsParser::evaluate);
       ExpressionVisitor visitor = new ExpressionVisitor(variablesValue, expression);
       double value = visitor.visit(parser);
       logger.trace(String.format("'%s' with %s = %s", expression, variablesValue, CommandResponseUtils.formatValue(value)));
@@ -34,7 +34,7 @@ public class ExpressionEvaluatorServiceImpl implements ExpressionEvaluatorServic
 
   public void validate(VariablesValue variablesValue, String input) {
     try {
-      ParserRuleContext parser = ParserRuleContextBuilder.build(input, CommandsParser::expression);
+      ParserRuleContext parser = ParserRuleContextBuilder.build(input, CommandsParser::evaluate);
       ExpressionVariableCheckerVisitor visitor = new ExpressionVariableCheckerVisitor(variablesValue);
       visitor.visit(parser);
     } catch (AppRuntimeException e) {

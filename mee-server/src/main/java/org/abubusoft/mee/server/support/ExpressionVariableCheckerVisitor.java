@@ -2,11 +2,9 @@ package org.abubusoft.mee.server.support;
 
 import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
-import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.grammar.CommandsParser;
+import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.model.compute.VariablesValue;
-
-import java.util.List;
 
 /**
  * Visit the expresion to check if all used variables are used.
@@ -22,8 +20,10 @@ public class ExpressionVariableCheckerVisitor extends CommandsBaseVisitor<Void> 
   @Override
   public Void visitExpression(CommandsParser.ExpressionContext ctx) {
     expression = ctx.getText();
-    List<CommandsParser.Mul_expressionContext> operandList = ctx.mul_expression();
-    operandList.stream().forEach(this::visit);
+
+    if (ctx.variable() != null) {
+      visit(ctx.variable());
+    }
     return null;
   }
 

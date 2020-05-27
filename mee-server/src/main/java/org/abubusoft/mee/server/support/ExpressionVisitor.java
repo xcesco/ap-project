@@ -6,7 +6,6 @@ import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.compute.VariablesValue;
-import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.List;
 
@@ -15,91 +14,47 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
   private final String expression;
 
   public ExpressionVisitor(VariablesValue variablesValue, String expression) {
-    this.expression=expression;
+    this.expression = expression;
     this.variablesValue = variablesValue;
   }
 
   @Override
+  public Double visitEvaluate(CommandsParser.EvaluateContext ctx) {
+    return visitExpression(ctx.expression());
+  }
+
+  @Override
   public Double visitExpression(CommandsParser.ExpressionContext ctx) {
-    List<CommandsParser.Mul_expressionContext> operandList = ctx.mul_expression();
-    List<CommandsParser.Operator_add_subContext> operatorList = ctx.operator_add_sub();
+    CommandsParser.VariableContext varContext = ctx.variable();
+    CommandsParser.NumberContext numContext = ctx.number();
+    List<CommandsParser.ExpressionContext> expr = ctx.expression();
+    CommandsParser.OperatorContext operator = ctx.operator();
 
-    double result = visit(operandList.get(0));
-    double value;
-    for (int i = 0; i < operatorList.size(); i++) {
-      value = visit(operandList.get(i + 1));
-      if (operatorList.get(i).OP_ADD() != null) {
-        result += value;
-      } else {
-        result -= value;
-      }
-    }
-    return result;
-  }
+    double result = 0;
 
-  @Override
-  public Double visitOperand_left(CommandsParser.Operand_leftContext ctx) {
-    double value = evaluateOperand(ctx.variable(), ctx.expression(), ctx.num());
-
-    return ctx.OP_MINUS() != null ? -value : value;
-  }
-
-  @Override
-  public Double visitOperand_right(CommandsParser.Operand_rightContext ctx) {
-    return evaluateOperand(ctx.variable(), ctx.expression(), ctx.num());
-  }
-
-  private double evaluateOperand(CommandsParser.VariableContext variable, CommandsParser.ExpressionContext expression, CommandsParser.NumContext num) {
-    double value;
-    ParserRuleContext subContext = null;
-    if (variable != null) {
-      subContext = variable;
-    } else if (expression != null) {
-      subContext = expression;
-    } else if (num != null) {
-      subContext = num;
+    if (varContext != null) {
+      result = visitVariable(varContext);
+    } else if (numContext != null) {
+      result = visitNumber(numContext);
     } else {
-      AppAssert.fail(EvaluationExpressionException.class, "Inconsistent status");
-    }
-    value = visit(subContext);
+      double operand1 = visit(expr.get(0));
+      double operand2 = visit(expr.get(1));
 
-    return value;
-  }
-
-  @Override
-  public Double visitMul_expression(CommandsParser.Mul_expressionContext ctx) {
-    List<CommandsParser.Pow_expressionContext> operandList = ctx.pow_expression();
-    List<CommandsParser.Operator_mul_divContext> operatorList = ctx.operator_mul_div();
-
-    double result = visit(operandList.get(0));
-    double value;
-    for (int i = 0; i < operatorList.size(); i++) {
-      value = visit(operandList.get(i + 1));
-      if (operatorList.get(i).OP_MUL() != null) {
-        result *= value;
+      if (operator.OP_ADD() != null) {
+        result = operand1 + operand2;
+      } else if (operator.OP_MINUS() != null) {
+        result = operand1 - operand2;
+      } else if (operator.OP_MUL() != null) {
+        result = operand1 * operand2;
+      } else if (operator.OP_DIV() != null) {
+        AppAssert.assertTrue(operand2 != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s' with %s", expression, this.variablesValue.toString());
+        result = operand1 / operand2;
+      } else if (operator.OP_POW() != null) {
+        result = Math.pow(operand1, operand2);
       } else {
-        AppAssert.assertTrue(value != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s' with %s", expression, this.variablesValue.toString());
-        result = result / value;
+        AppAssert.fail(EvaluationExpressionException.class, "Inconsistent status");
       }
     }
-
-    return result;
-  }
-
-  @Override
-  public Double visitPow_expression(CommandsParser.Pow_expressionContext ctx) {
-    List<CommandsParser.Operand_rightContext> operandList = ctx.operand_right();
-    List<CommandsParser.Operator_powContext> operatorList = ctx.operator_pow();
-
-    double result = visit(ctx.operand_left());
-    double value;
-    for (int i = 0; i < operatorList.size(); i++) {
-      value = visit(operandList.get(i));
-      if (operatorList.get(i).OP_POW() != null) {
-        result = Math.pow(result, value);
-      }
-    }
-
     return result;
   }
 
@@ -115,7 +70,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
   }
 
   @Override
-  public Double visitNum(CommandsParser.NumContext ctx) {
+  public Double visitNumber(CommandsParser.NumberContext ctx) {
     return Double.parseDouble(ctx.getText());
   }
 }

@@ -8,40 +8,42 @@ import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.DoubleStream;
+
 public class CommandResponseTest {
   ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorServiceImpl());
 
   @Test
   public void testOkResponse() {
+    checkCommand("MAX_GRID;x0:-1:2:0;(2-1)", "1.000000");
     //checkCommand("MAX_GRID ; x0:-1:2:100000000000000000000000000000000000000000000000000 ;-1+2", "1.000000");
-    checkCommand("MAX_GRID;x0:-1:2:0;-1+2", "1.000000");
-    checkCommand("MAX_GRID;x0:-1:2:0;1+2*3", "7.000000");
-    checkCommand("MAX_GRID;x0:-1:2:0;x0^0.5", "NaN");
-    checkCommand("MAX_GRID;x0:-1:2:0;x0^0.5", "NaN");
-    checkCommand("MAX_GRID;x0:1:2:2;x0^(1)", "1.000000");
+    checkCommand("MAX_GRID;x0:-1:2:0;(2-1)", "1.000000");
+    checkCommand("MAX_GRID;x0:-1:2:0;(1+(2*3))", "7.000000");
+    checkCommand("MAX_GRID;x0:-1:2:0;(x0^0.5)", "NaN");
+    checkCommand("MAX_GRID;x0:-1:2:0;(x0^0.5)", "NaN");
+    checkCommand("MAX_GRID;x0:1:2:2;(x0^1)", "1.000000");
     checkCommand("MAX_GRID;x0:0:2:1;x0", "0.000000");
     checkCommand("MAX_GRID;x0:-1:0.1:1;x0", "1.000000");
 
-    checkCommand("MAX_GRID;x0:99999:1:100000;x0^x0", "Infinity");
-    checkCommand("MIN_GRID;x0:99999:1:100000;-x0^x0", "-Infinity");
+    checkCommand("MAX_GRID;x0:99999:1:100000;(x0^x0)", "Infinity");
+    checkCommand("MIN_GRID;x0:99999:1:100000;((0-1)*(x0^x0))", "-Infinity");
   }
 
   @Test
   public void testBlank() {
-    checkCommand("MAX_GRID;x0:-1:2:0;-1+2", "1.000000");
     checkErrorCommand("MAX_GRID ; x0:-1:2:0 ;-1+2","(MalformedCommandException) Unespected char at pos 8");
   }
 
   @Test
   public void testDivisionBy0() {
-    checkErrorCommand("MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;x1;1/(x0+2.0^x1)", "(EvaluationExpressionException) Division by 0 in '1/(x0+2.0^x1)' with (x0=-1.000000, x1=0.000000)");
+    checkErrorCommand("MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;x1;(1/(x0+(2.0^x1)))", "(EvaluationExpressionException) Division by 0 in '(1/(x0+(2.0^x1)))' with (x0=-1.000000, x1=0.000000)");
   }
 
   private void checkErrorCommand(String inputLine, String result) {
-    CommandResponse response = null;
+    CommandResponse response;
     try {
       ComputeCommand command = parser.parse(inputLine);
-      command.execute();
+      response=command.execute();
     } catch (AppRuntimeException e) {
       response = CommandResponse.error(e);
     }
@@ -55,6 +57,14 @@ public class CommandResponseTest {
     Assertions.assertEquals(ResponseType.OK, response.getResponseType());
     Assertions.assertEquals(0, response.getResponseTime());
     Assertions.assertEquals(null, response.getMessage());
+  }
+
+  @Test
+  public void testI() {
+    double nan= Double.parseDouble("NaN");
+    double infinite= Double.parseDouble("Infinity");
+    double minfinite= Double.parseDouble("-Infinity");
+    System.out.println(nan+infinite+minfinite);
   }
 
   @Test

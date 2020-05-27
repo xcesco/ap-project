@@ -15,8 +15,8 @@ public abstract class BaseCommandTest {
   }
 
   private final ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorServiceImpl());
-  private ComputationType operation;
-  private ValuesType valueKind;
+  private final ComputationType operation;
+  private final ValuesType valueKind;
 
   public String prependType(String input) {
     return operation + "_" + valueKind + ";" + input;

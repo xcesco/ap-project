@@ -29,37 +29,25 @@ values_kind : K_GRID| K_LIST;
 
 variable_values_function: variable_values (COMMA variable_values)*;
 variable_values         : variable COLUMN variable_lower_value COLUMN variable_step_value COLUMN variable_upper_value;
-variable_lower_value    : ('-')? NUMBER;
-variable_step_value     : ('-')? NUMBER;
-variable_upper_value    : ('-')? NUMBER;
+variable_lower_value    : java_number;
+variable_step_value     : java_number;
+variable_upper_value    : java_number;
 
-expressions  : expression (SEMI_COLUMN expression)*;
-expression   : mul_expression (operator_add_sub mul_expression)*;
+java_number : ('-')? (DIGITS '.' DIGITS? | '.' DIGITS) EXPONENT_PART?
+            | ('-')? DIGITS (EXPONENT_PART)?;
 
-mul_expression : pow_expression (operator_mul_div pow_expression)*;
-pow_expression : operand_left (operator_pow operand_right)*;
-
-operator_add_sub: OP_ADD | OP_MINUS;
-operator_mul_div: OP_MUL | OP_DIV;
-operator_pow    : OP_POW;
-
-operand_left
-    :   (OP_ADD | OP_MINUS)? variable
-    |   (OP_ADD | OP_MINUS)? num
-    |   (OP_ADD | OP_MINUS)? PAR_OPEN expression PAR_CLOSE;
-
-operand_right
-    :   variable
-    |   num
-    |   PAR_OPEN expression PAR_CLOSE;
-
-variable    : IDENTIFIER;
-num         : NUMBER;
+expressions: expression (SEMI_COLUMN expression)*;
+evaluate: expression EOF;
+expression : variable
+           | number
+           | PAR_OPEN expression operator expression PAR_CLOSE;
+operator   : OP_ADD | OP_MINUS | OP_MUL | OP_DIV | OP_POW;
+variable   : IDENTIFIER;
+number     : DIGITS ('.' DIGITS)?;
 
 /**
 * Lexer rules
 */
-
 K_BYE : B Y E;
 K_STAT_REQS : S T A T '_' R E Q S;
 K_STAT_AVG_TIME : S T A T '_' A V G '_' T I M E;
@@ -90,15 +78,9 @@ COMMA       : ',';
 
 IDENTIFIER  : [a-z] [a-z0-9]*;
 
-// take from https://github.com/antlr/grammars-v4/blob/master/java/java/JavaLexer.g4
-NUMBER
-    :   (DIGITS '.' DIGITS? | '.' DIGITS) EXPONENT_PART?
-    |   DIGITS (EXPONENT_PART)?
+DIGITS: [0-9] ([0-9]* [0-9])?
     ;
-
-fragment DIGITS: [0-9] ([0-9]* [0-9])?
-    ;
-fragment EXPONENT_PART
+EXPONENT_PART
     : [eE] [+-]? DIGITS
     ;
 
