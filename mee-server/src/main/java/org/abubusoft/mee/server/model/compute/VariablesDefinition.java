@@ -17,7 +17,7 @@ public class VariablesDefinition {
     this.variables = new ArrayList<>();
   }
 
-  public List<String> getNameList() {
+  public List<String> getKeysList() {
     return variables.stream().map(VariableTuple::getName).collect(Collectors.toList());
   }
 
@@ -40,7 +40,7 @@ public class VariablesDefinition {
   }
 
   public Stream<VariablesValue> buildValuesAsStream(ValuesType valuesType) {
-    final List<String> keysList = getNameList();
+    final List<String> keysList = getKeysList();
     if (valuesType == ValuesType.GRID) {
       List<List<Double>> values = variables.stream()
               .map(VariableTuple::getValues)

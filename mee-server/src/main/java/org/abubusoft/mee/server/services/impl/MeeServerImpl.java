@@ -2,7 +2,7 @@ package org.abubusoft.mee.server.services.impl;
 
 import org.abubusoft.mee.server.ApplicationConfiguration;
 import org.abubusoft.mee.server.services.ClientHandler;
-import org.abubusoft.mee.server.services.MEEServer;
+import org.abubusoft.mee.server.services.MeeServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
@@ -16,9 +16,9 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class MEEServerImpl implements MEEServer, ClientHandler.Listener {
+public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
   private static final Logger logger = LoggerFactory
-          .getLogger(MEEServerImpl.class);
+          .getLogger(MeeServerImpl.class);
   private final AtomicInteger clientConnectionCounter = new AtomicInteger(0);
   private Executor executor;
   private ObjectProvider<ClientHandler> clientHandlerProvider;

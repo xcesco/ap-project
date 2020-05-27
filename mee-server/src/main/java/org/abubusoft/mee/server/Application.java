@@ -1,6 +1,6 @@
 package org.abubusoft.mee.server;
 
-import org.abubusoft.mee.server.services.MEEServer;
+import org.abubusoft.mee.server.services.MeeServer;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +16,11 @@ public class Application implements CommandLineRunner {
   @Value("${mee-server.port}")
   String serverPort;
 
-  private MEEServer MEEServer;
+  private MeeServer MEEServer;
 
   @Autowired
-  public void setTCPConnectionServer(MEEServer MEEServer) {
-    this.MEEServer = MEEServer;
+  public void setMeeServer(MeeServer meeServer) {
+    this.MEEServer = meeServer;
   }
 
   private static Logger logger = LoggerFactory

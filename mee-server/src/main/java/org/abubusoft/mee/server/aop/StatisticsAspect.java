@@ -41,7 +41,7 @@ public class StatisticsAspect {
         CommandResponse response = ((CommandResponse) proceed);
         response.setResponseTime(executionTime);
       } else {
-        logger.debug(String.format("Response of type %s is not registered in stats", ResponseType.ERR));
+        logger.debug(String.format("%s response is not registered in stats", ResponseType.ERR));
       }
     } else {
       logger.warn(String.format("%s.%s has wrong signature for stats registration", joinPoint.getSignature().getDeclaringType().getSimpleName(), joinPoint.getSignature().getName()));
