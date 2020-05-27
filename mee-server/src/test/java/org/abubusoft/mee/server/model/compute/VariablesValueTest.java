@@ -80,10 +80,10 @@ public class VariablesValueTest {
   @Test
   public void testInvalidDefinitions() {
     // range and step are incosistent
-    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0 : 1 : 0.1 : -1"));
-    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0 :-1 :-0.1 :  1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0:1:0.1:-1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0:-1:-0.1:1"));
     // step is 0
-    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0 :-1 : 0   :  1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0:-1:0:1"));
   }
 
   private List<String> fixPrecisionOfListOfDouble(List<Double> list) {

@@ -12,9 +12,9 @@ public class MaxGridCommandTest extends BaseCommandTest {
 
   @Test
   public void tesValidCommand() throws MalformedCommandException {
-    verify(" x0:1:1:10 ;  x0 ", 10.0);
-    verify(" x0:1:1:10 , y0:1:1:10 ; x0 ; y0 + x0 ", 20.0);
-    verify(" x0:1:1:10 , y0:1:1:10 ; y0 + x0 ; x0", 20.0);
+    verify("x0:1:1:10;x0", 10.0);
+    verify("x0:1:1:10,y0:1:1:10;x0;y0+x0", 20.0);
+    verify("x0:1:1:10,y0:1:1:10;y0+x0;x0", 20.0);
   }
 
   @Test

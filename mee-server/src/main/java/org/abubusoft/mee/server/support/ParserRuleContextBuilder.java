@@ -15,6 +15,12 @@ public abstract class ParserRuleContextBuilder {
   public static ParserRuleContext build(final String input, final RuleChooser chooser) {
     CommandsLexer lexer = new CommandsLexer(CharStreams.fromString(input));
     lexer.removeErrorListeners();
+    lexer.addErrorListener(new BaseErrorListener() {
+      @Override
+      public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
+        AppAssert.fail(MalformedCommandException.class, "Unespected char at pos %s", charPositionInLine);
+      }
+    });
 
     CommonTokenStream tokens = new CommonTokenStream(lexer);
     CommandsParser parser = new CommandsParser(tokens);

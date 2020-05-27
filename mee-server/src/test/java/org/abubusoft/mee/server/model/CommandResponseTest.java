@@ -14,16 +14,22 @@ public class CommandResponseTest {
   @Test
   public void testOkResponse() {
     //checkCommand("MAX_GRID ; x0:-1:2:100000000000000000000000000000000000000000000000000 ;-1+2", "1.000000");
-    checkCommand("MAX_GRID ; x0:-1:2:0 ;-1+2", "1.000000");
-    checkCommand("MAX_GRID ; x0:-1:2:0 ;1+2*3", "7.000000");
-    checkCommand("MAX_GRID ; x0:-1:2:0 ;x0^0.5", "NaN");
-    checkCommand("MAX_GRID ; x0:-1:2:0 ;x0^0.5", "NaN");
-    checkCommand("MAX_GRID ; x0:1:2:2 ;x0^(1)", "1.000000");
-    checkCommand("MAX_GRID ; x0:0:2:1 ;x0", "0.000000");
-    checkCommand("MAX_GRID ; x0:-1:0.1:1 ;x0", "1.000000");
+    checkCommand("MAX_GRID;x0:-1:2:0;-1+2", "1.000000");
+    checkCommand("MAX_GRID;x0:-1:2:0;1+2*3", "7.000000");
+    checkCommand("MAX_GRID;x0:-1:2:0;x0^0.5", "NaN");
+    checkCommand("MAX_GRID;x0:-1:2:0;x0^0.5", "NaN");
+    checkCommand("MAX_GRID;x0:1:2:2;x0^(1)", "1.000000");
+    checkCommand("MAX_GRID;x0:0:2:1;x0", "0.000000");
+    checkCommand("MAX_GRID;x0:-1:0.1:1;x0", "1.000000");
 
-    checkCommand("MAX_GRID ; x0:99999:1:100000 ; x0^x0", "Infinity");
-    checkCommand("MIN_GRID ; x0:99999:1:100000 ; -x0^x0", "-Infinity");
+    checkCommand("MAX_GRID;x0:99999:1:100000;x0^x0", "Infinity");
+    checkCommand("MIN_GRID;x0:99999:1:100000;-x0^x0", "-Infinity");
+  }
+
+  @Test
+  public void testBlank() {
+    checkCommand("MAX_GRID;x0:-1:2:0;-1+2", "1.000000");
+    checkErrorCommand("MAX_GRID ; x0:-1:2:0 ;-1+2","(MalformedCommandException) Unespected char at pos 8");
   }
 
   @Test
@@ -32,9 +38,9 @@ public class CommandResponseTest {
   }
 
   private void checkErrorCommand(String inputLine, String result) {
-    ComputeCommand command = parser.parse(inputLine);
     CommandResponse response = null;
     try {
+      ComputeCommand command = parser.parse(inputLine);
       command.execute();
     } catch (AppRuntimeException e) {
       response = CommandResponse.error(e);
@@ -55,12 +61,12 @@ public class CommandResponseTest {
   public void testErrorResponse() {
     CommandResponse response;
     try {
-      Command command = parser.parse("MAX_GRID ; x0:-1:0.1:1 ;;x0a");
+      Command command = parser.parse("MAX_GRID;x0:-1:0.1:1;;x0a");
       response = command.execute();
     } catch (AppRuntimeException e) {
       response = CommandResponse.error(e);
     }
-    Assertions.assertEquals("ERR;(MalformedCommandException) Unespected char at pos 24", CommandResponseUtils.format(response));
+    Assertions.assertEquals("ERR;(MalformedCommandException) Unespected char at pos 21", CommandResponseUtils.format(response));
     Assertions.assertEquals(ResponseType.ERR, response.getResponseType());
     Assertions.assertEquals(0, response.getResponseTime());
     Assertions.assertEquals(0, response.getValue());
