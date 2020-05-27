@@ -13,15 +13,15 @@ public class ComputeCommand extends Command {
           .getLogger(ComputeCommand.class);
   private final ComputationType computationType;
   private final ValuesType valuesType;
-  private final VariableDefinitions variableDefinitions;
+  private final VariablesDefinition variablesDefinition;
   private final List<String> expressionsList;
   private final ExpressionEvaluatorService expressionEvaluatorService;
 
-  public ComputeCommand(ComputationType computationType, ValuesType valuesType, VariableDefinitions variableDefinitions, List<String> expressionsList, ExpressionEvaluatorService expressionEvaluatorService) {
+  public ComputeCommand(ComputationType computationType, ValuesType valuesType, VariablesDefinition variablesDefinition, List<String> expressionsList, ExpressionEvaluatorService expressionEvaluatorService) {
     super(CommandType.COMPUTE);
     this.computationType = computationType;
     this.valuesType = valuesType;
-    this.variableDefinitions = variableDefinitions;
+    this.variablesDefinition = variablesDefinition;
     this.expressionsList = expressionsList;
     this.expressionEvaluatorService = expressionEvaluatorService;
   }
@@ -40,7 +40,7 @@ public class ComputeCommand extends Command {
 
   @Override
   public CommandResponse execute() {
-    List<ValuesTuple> values = buildVariableValues();
+    List<VariablesValue> values = buildVariableValues();
     CommandResponse.Builder responseBuilder = CommandResponse.Builder.ok();
 
     double result = getInitialValue();
@@ -54,7 +54,7 @@ public class ComputeCommand extends Command {
       // validate expression once, with first available var values
       expressionEvaluatorService.validate(values.get(0), expression);
 
-      for (ValuesTuple value : values) {
+      for (VariablesValue value : values) {
         actualValue = expressionEvaluatorService.evaluate(value, expression);
         result = mergeResults(result, actualValue);
       }
@@ -117,12 +117,12 @@ public class ComputeCommand extends Command {
     }
   }
 
-  private List<ValuesTuple> buildVariableValues() {
-    return variableDefinitions.buildValues(this.valuesType);
+  private List<VariablesValue> buildVariableValues() {
+    return variablesDefinition.buildValues(valuesType);
   }
 
-  public VariableDefinition getVariableDefinition(String variableName) {
-    return variableDefinitions.get(variableName);
+  public VariableTuple getVariableDefinition(String variableName) {
+    return variablesDefinition.get(variableName);
   }
 
   @Override
@@ -133,7 +133,7 @@ public class ComputeCommand extends Command {
   public static class Builder {
     private ComputationType computationType;
     private ValuesType valuesType;
-    private VariableDefinitions variableDefinitions = new VariableDefinitions();
+    private VariablesDefinition variablesDefinition = new VariablesDefinition();
     private List<String> expressionsList;
     private final ExpressionEvaluatorService expressionEvaluatorService;
 
@@ -156,11 +156,11 @@ public class ComputeCommand extends Command {
     }
 
     public ComputeCommand build() {
-      return new ComputeCommand(computationType, valuesType, variableDefinitions, expressionsList, expressionEvaluatorService);
+      return new ComputeCommand(computationType, valuesType, variablesDefinition, expressionsList, expressionEvaluatorService);
     }
 
-    public Builder addVariableDefinition(VariableDefinition variableDefinition) {
-      variableDefinitions.add(variableDefinition);
+    public Builder addVariableDefinition(VariableTuple variableTuple) {
+      variablesDefinition.add(variableTuple);
       return this;
     }
 

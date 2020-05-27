@@ -14,16 +14,25 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import static org.abubusoft.mee.server.support.CommandResponseUtils.formatDuration;
 import static org.abubusoft.mee.server.support.CommandResponseUtils.formatValue;
 
-/**
- * Times is stored in milliseconds.
- */
 @Component
 public class StatisticsServiceImpl implements StatisticsService {
   private static final Logger logger = LoggerFactory
           .getLogger(StatisticsServiceImpl.class);
+  /**
+   * Max command execution time in milliseconds.
+   */
   private long maxExecutionTime = Long.MIN_VALUE;
+
+  /**
+   * Average command execution time in milliseconds.
+   */
   private long averageExecuteTime;
+
+  /**
+   * Min command execution time in milliseconds.
+   */
   private long minExecuteTime = Long.MAX_VALUE;
+
   private long commandCounter;
   private final ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
   private final Lock r = rwl.readLock();

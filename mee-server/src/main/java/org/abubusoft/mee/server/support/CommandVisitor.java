@@ -10,7 +10,7 @@ import org.abubusoft.mee.server.model.QuitCommand;
 import org.abubusoft.mee.server.model.StatCommand;
 import org.abubusoft.mee.server.model.compute.ComputationType;
 import org.abubusoft.mee.server.model.compute.ValuesType;
-import org.abubusoft.mee.server.model.compute.VariableDefinition;
+import org.abubusoft.mee.server.model.compute.VariableTuple;
 import org.abubusoft.mee.server.model.stat.StatType;
 import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
 import org.antlr.v4.runtime.RuleContext;
@@ -52,7 +52,7 @@ public class CommandVisitor extends CommandsBaseVisitor<Command> {
   @Override
   public Command visitVariable_values(CommandsParser.Variable_valuesContext ctx) {
     try {
-      computeBuilder.addVariableDefinition(VariableDefinition.Builder.create()
+      computeBuilder.addVariableDefinition(VariableTuple.Builder.create()
               .setName(ctx.variable().getText())
               .setInterval(
                       Double.parseDouble(ctx.variable_lower_value().getText()),

@@ -68,12 +68,10 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
 
           if (command.getType() != CommandType.BYE) {
             sendResponse(bw, response);
-            notifySentResponse(response);
           }
         } catch (AppRuntimeException e) {
           CommandResponse errorResponse = CommandResponse.error(e);
           sendResponse(bw, errorResponse);
-          notifySentResponse(errorResponse);
         }
       }
     } catch (IOException e) {
@@ -103,6 +101,7 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
   private void sendResponse(BufferedWriter writer, CommandResponse response) throws IOException {
     writer.write(CommandResponseUtils.format(response) + System.lineSeparator());
     writer.flush();
+    notifySentResponse(response);
   }
 
   private void notifyDisconnetedEvent() {

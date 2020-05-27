@@ -19,7 +19,8 @@ public class AvgGridCommandTest extends BaseCommandTest {
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> verify(" x0:0:0:10 ;  x0 ", 5.5));
     verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + x1", 11.0);
     verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + x1 - 1", 10.0);
-    Assertions.assertThrows(UndefinedVariableException.class, () -> verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + x1 - 1 ; y1", 10.0));
+    verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + x1 - 1 ; y1", 10.0);
+    Assertions.assertThrows(UndefinedVariableException.class, () -> verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + y1 - 1 ; x1", 10.0));
   }
 
 }

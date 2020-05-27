@@ -11,7 +11,6 @@ import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 @Service
 public class ComputeServiceImpl implements ComputeService {
@@ -26,9 +25,8 @@ public class ComputeServiceImpl implements ComputeService {
   @LogExecutionTime
   @Override
   public CommandResponse compute(ComputeCommand command) {
-    Future<CommandResponse> result = executor.submit(command::execute);
     try {
-      return result.get();
+      return executor.submit(command::execute).get();
     } catch (InterruptedException | ExecutionException e) {
       return CommandResponse.error(e.getCause());
     }

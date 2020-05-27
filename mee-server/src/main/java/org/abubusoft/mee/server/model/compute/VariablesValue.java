@@ -10,15 +10,24 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-public class ValuesTuple {
+public class VariablesValue {
   private final Map<String, Double> values;
 
-  ValuesTuple(Map<String, Double> values) {
+  VariablesValue(Map<String, Double> values) {
     this.values = values;
   }
 
   public Double get(String name) {
     return values.get(name);
+  }
+
+  @Override
+  public String toString() {
+    return new StringJoiner(", ", "(", ")")
+            .add(values.entrySet().stream()
+                    .map(item -> item.getKey() + "=" + CommandResponseUtils.formatValue(item.getValue()))
+                    .collect(Collectors.joining(", ")))
+            .toString();
   }
 
   public static class Builder {
@@ -44,17 +53,8 @@ public class ValuesTuple {
       return this;
     }
 
-    public ValuesTuple build() {
-      return new ValuesTuple(values);
+    public VariablesValue build() {
+      return new VariablesValue(values);
     }
-  }
-
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", "(", ")")
-            .add(values.entrySet().stream()
-                    .map(item -> item.getKey() + "=" + CommandResponseUtils.formatValue(item.getValue()))
-                    .collect(Collectors.joining(", ")))
-            .toString();
   }
 }

@@ -7,7 +7,7 @@ import org.abubusoft.mee.server.grammar.CommandsBaseListener;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.Command;
 import org.abubusoft.mee.server.model.ComputeCommand;
-import org.abubusoft.mee.server.model.compute.VariableDefinition;
+import org.abubusoft.mee.server.model.compute.VariableTuple;
 import org.abubusoft.mee.server.services.ClientRequestParser;
 import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
 import org.abubusoft.mee.server.support.CommandVisitor;
@@ -39,7 +39,7 @@ public class ClientRequestParserImpl implements ClientRequestParser {
     return visitor.visit(parser);
   }
 
-  public VariableDefinition parseVariableDefinition(String variableName, String request) {
+  public VariableTuple parseVariableDefinition(String variableName, String request) {
     ParserRuleContext parser = ParserRuleContextBuilder.build(request, CommandsParser::variable_values);
     CommandVisitor visitor = new CommandVisitor(expressionEvaluatorService);
     visitor.visit(parser);

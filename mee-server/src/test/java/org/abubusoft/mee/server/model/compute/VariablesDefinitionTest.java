@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class VariableDefinitionsTest {
+class VariablesDefinitionTest {
 
   @Test
   public void testWrongDefinitions() {
@@ -30,25 +30,25 @@ class VariableDefinitionsTest {
   }
 
   private int builVariableDefinitions(int i, int i2, int i3) {
-    VariableDefinitions variableDefinitions = new VariableDefinitions();
-    variableDefinitions
-            .add(VariableDefinition.Builder.create()
+    VariablesDefinition variablesDefinition = new VariablesDefinition();
+    variablesDefinition
+            .add(VariableTuple.Builder.create()
                     .setName("x0").setInterval(i, i2, i3).build());
 
-    return variableDefinitions.get("x0").getValues().size();
+    return variablesDefinition.get("x0").getValues().size();
   }
 
   @Test
   void testGridValuesGeneration() {
-    VariableDefinitions variableDefinitions = new VariableDefinitions();
-    variableDefinitions
-            .add(VariableDefinition.Builder.create()
+    VariablesDefinition variablesDefinition = new VariablesDefinition();
+    variablesDefinition
+            .add(VariableTuple.Builder.create()
                     .setName("x0").setInterval(1, 1, 10).build())
-            .add(VariableDefinition.Builder.create()
+            .add(VariableTuple.Builder.create()
                     .setName("x1").setInterval(11, 1, 20).build()
             );
 
-    List<VariableValues> values = variableDefinitions.buildValues(ValuesType.GRID);
+    List<VariablesValue> values = variablesDefinition.buildValues(ValuesType.GRID);
 
     assertEquals(values.size(), 100);
     assertEquals(values.get(0).get("x0"), 1);
@@ -59,15 +59,15 @@ class VariableDefinitionsTest {
 
   @Test
   void testListValuesGeneration() {
-    VariableDefinitions variableDefinitions = new VariableDefinitions();
-    variableDefinitions
-            .add(VariableDefinition.Builder.create()
+    VariablesDefinition variablesDefinition = new VariablesDefinition();
+    variablesDefinition
+            .add(VariableTuple.Builder.create()
                     .setName("x0").setInterval(1, 1, 10).build())
-            .add(VariableDefinition.Builder.create()
+            .add(VariableTuple.Builder.create()
                     .setName("x1").setInterval(11, 1, 20).build()
             );
 
-    List<VariableValues> values = variableDefinitions.buildValues(ValuesType.LIST);
+    List<VariablesValue> values = variablesDefinition.buildValues(ValuesType.LIST);
 
     assertEquals(values.size(), 10);
     assertEquals(values.get(0).get("x0"), 1);
@@ -78,19 +78,19 @@ class VariableDefinitionsTest {
 
   @Test
   void testWrongListValues() {
-    VariableDefinitions variableDefinitions = new VariableDefinitions();
-    variableDefinitions
-            .add(VariableDefinition.Builder.create()
+    VariablesDefinition variablesDefinition = new VariablesDefinition();
+    variablesDefinition
+            .add(VariableTuple.Builder.create()
                     .setName("x0").setInterval(1, 1, 10).build())
-            .add(VariableDefinition.Builder.create()
+            .add(VariableTuple.Builder.create()
                     .setName("x1").setInterval(1, 1, 20).build()
             );
     {
-      List<VariableValues> values = variableDefinitions.buildValues(ValuesType.GRID);
+      List<VariablesValue> values = variablesDefinition.buildValues(ValuesType.GRID);
       assertEquals(values.get(0).get("x1"), 1);
     }
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> {
-      variableDefinitions.buildValues(ValuesType.LIST);
+      variablesDefinition.buildValues(ValuesType.LIST);
     });
 
   }

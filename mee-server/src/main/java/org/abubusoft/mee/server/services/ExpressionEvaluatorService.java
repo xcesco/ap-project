@@ -1,9 +1,9 @@
 package org.abubusoft.mee.server.services;
 
-import org.abubusoft.mee.server.model.compute.ValuesTuple;
+import org.abubusoft.mee.server.model.compute.VariablesValue;
 
 public interface ExpressionEvaluatorService {
-  double evaluate(ValuesTuple valuesTuple, String input);
+  double evaluate(VariablesValue variablesValue, String input);
 
-  void validate(ValuesTuple valuesTuple, String input);
+  void validate(VariablesValue variablesValue, String input);
 }

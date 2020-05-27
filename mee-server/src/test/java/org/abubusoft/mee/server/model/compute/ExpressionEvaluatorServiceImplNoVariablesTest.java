@@ -69,7 +69,7 @@ public class ExpressionEvaluatorServiceImplNoVariablesTest {
   }
 
   private void evaluateExpression(String input, double aspectedValue) {
-    double evaluationResult = evaluator.evaluate(VariableValues.Builder.create().build(), input);
+    double evaluationResult = evaluator.evaluate(VariablesValue.Builder.create().build(), input);
     assertEquals(aspectedValue, evaluationResult, input + "=" + aspectedValue);
   }
 

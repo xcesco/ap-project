@@ -6,11 +6,11 @@ import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VariableDefinition {
+public class VariableTuple {
   private final String name;
   private final List<Double> values;
 
-  public VariableDefinition(String name, List<Double> values) {
+  public VariableTuple(String name, List<Double> values) {
     this.name = name;
     this.values = values;
   }
@@ -64,8 +64,8 @@ public class VariableDefinition {
       }
     }
 
-    public VariableDefinition build() {
-      return new VariableDefinition(this.name, this.values);
+    public VariableTuple build() {
+      return new VariableTuple(this.name, this.values);
     }
   }
 }

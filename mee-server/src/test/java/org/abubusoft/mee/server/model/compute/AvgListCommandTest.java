@@ -19,7 +19,8 @@ public class AvgListCommandTest extends BaseCommandTest {
     verify(" x0:1:1:10 , a1:1:1:10  ;  x0 + a1", 11.0);
     verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + x1 - 1", 10.0);
     verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + x1 - 1 ; x0^2", 10.0);
-    Assertions.assertThrows(UndefinedVariableException.class, () -> verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + x1 - 1 ; y0^2", 10.0));
+    verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + x1 - 1 ; y0^2", 10.0);
+    Assertions.assertThrows(UndefinedVariableException.class, () -> verify(" x0:1:1:10 , x1:1:1:10  ;  x0 + y0 - 1 ; y0^2", 10.0));
   }
 
 }

@@ -65,7 +65,7 @@ public class ExpressionEvaluatorServiceImplWithVariablesTest {
   }
 
   private void evaluateExpression(String input, double variableValueX, double variableValueY1, double aspectedValue) throws MalformedCommandException {
-    double evaluationResult = evaluator.evaluate(VariableValues.Builder.create()
+    double evaluationResult = evaluator.evaluate(VariablesValue.Builder.create()
             .add("x", variableValueX)
             .add("y1", variableValueY1)
             .build(), input);

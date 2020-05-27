@@ -2,7 +2,7 @@ package org.abubusoft.mee.server.services.impl;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.grammar.CommandsParser;
-import org.abubusoft.mee.server.model.compute.ValuesTuple;
+import org.abubusoft.mee.server.model.compute.VariablesValue;
 import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.abubusoft.mee.server.support.ExpressionVariableCheckerVisitor;
@@ -18,12 +18,12 @@ public class ExpressionEvaluatorServiceImpl implements ExpressionEvaluatorServic
   private static final Logger logger = LoggerFactory
           .getLogger(ExpressionEvaluatorServiceImpl.class);
 
-  public double evaluate(ValuesTuple valuesTuple, String expression) {
+  public double evaluate(VariablesValue variablesValue, String expression) {
     try {
       ParserRuleContext parser = ParserRuleContextBuilder.build(expression, CommandsParser::expression);
-      ExpressionVisitor visitor = new ExpressionVisitor(valuesTuple, expression);
+      ExpressionVisitor visitor = new ExpressionVisitor(variablesValue, expression);
       double value = visitor.visit(parser);
-      logger.trace(String.format("'%s' with %s = %s", expression, valuesTuple, CommandResponseUtils.formatValue(value)));
+      logger.trace(String.format("'%s' with %s = %s", expression, variablesValue, CommandResponseUtils.formatValue(value)));
       return value;
     } catch (AppRuntimeException e) {
       throw e;
@@ -32,10 +32,10 @@ public class ExpressionEvaluatorServiceImpl implements ExpressionEvaluatorServic
     }
   }
 
-  public void validate(ValuesTuple valuesTuple, String input) {
+  public void validate(VariablesValue variablesValue, String input) {
     try {
       ParserRuleContext parser = ParserRuleContextBuilder.build(input, CommandsParser::expression);
-      ExpressionVariableCheckerVisitor visitor = new ExpressionVariableCheckerVisitor(valuesTuple);
+      ExpressionVariableCheckerVisitor visitor = new ExpressionVariableCheckerVisitor(variablesValue);
       visitor.visit(parser);
     } catch (AppRuntimeException e) {
       throw e;
