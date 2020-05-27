@@ -59,8 +59,6 @@ num         : NUMBER;
 /**
 * Lexer rules
 */
-// To disable space between chars, uncomment following line
-WS:                 [ \t]+ -> channel(HIDDEN);
 
 K_BYE : B Y E;
 K_STAT_REQS : S T A T '_' R E Q S;
