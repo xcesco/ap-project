@@ -40,7 +40,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
   @LogExecutionTime
   @Override
-  public CommandResponse compute(StatCommand command) {
+  public CommandResponse execute(StatCommand command) {
     CommandResponse.Builder builder = CommandResponse.Builder.ok();
     r.lock();
     try {
@@ -68,10 +68,9 @@ public class StatisticsServiceImpl implements StatisticsService {
   /**
    * <code>https://math.stackexchange.com/questions/22348/how-to-add-and-subtract-values-from-an-average</code>
    *
-   * @param executionTime
    */
   @Override
-  public void registryCommandExecutionTime(long executionTime) {
+  public void recordCommandExecutionTime(long executionTime) {
     w.lock();
     try {
       maxExecutionTime = Math.max(maxExecutionTime, executionTime);

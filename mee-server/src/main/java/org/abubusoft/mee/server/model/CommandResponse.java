@@ -55,7 +55,7 @@ public class CommandResponse {
     }
 
     public Builder setValue(double value) {
-      this.value=value;
+      this.value = value;
       return this;
     }
 

@@ -24,7 +24,7 @@ public class ComputeServiceImpl implements ComputeService {
 
   @LogExecutionTime
   @Override
-  public CommandResponse compute(ComputeCommand command) {
+  public CommandResponse execute(ComputeCommand command) {
     try {
       return executor.submit(command::execute).get();
     } catch (InterruptedException | ExecutionException e) {

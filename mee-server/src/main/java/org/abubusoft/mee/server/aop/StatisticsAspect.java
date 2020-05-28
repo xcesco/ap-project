@@ -37,7 +37,7 @@ public class StatisticsAspect {
             .filter(item -> item instanceof Command).findFirst().orElse(null);
     if (command != null && proceed instanceof CommandResponse) {
       if (((CommandResponse) proceed).getResponseType() == ResponseType.OK) {
-        statisticsService.registryCommandExecutionTime(executionTime);
+        statisticsService.recordCommandExecutionTime(executionTime);
         CommandResponse response = ((CommandResponse) proceed);
         response.setResponseTime(executionTime);
       } else {

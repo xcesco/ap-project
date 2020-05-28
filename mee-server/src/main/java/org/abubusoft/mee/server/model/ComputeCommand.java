@@ -52,7 +52,7 @@ public class ComputeCommand extends Command {
 
     for (String expression : expressionsList) {
       // validate expression once, with first available var values
-      expressionEvaluatorService.validate(values.get(0), expression);
+      expressionEvaluatorService.checkVariablesInExpression(values.get(0), expression);
 
       for (VariablesValue value : values) {
         actualValue = expressionEvaluatorService.evaluate(value, expression);

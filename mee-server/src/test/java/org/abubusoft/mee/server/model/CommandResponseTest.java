@@ -60,14 +60,6 @@ public class CommandResponseTest {
   }
 
   @Test
-  public void testI() {
-    double nan= Double.parseDouble("NaN");
-    double infinite= Double.parseDouble("Infinity");
-    double minfinite= Double.parseDouble("-Infinity");
-    System.out.println(nan+infinite+minfinite);
-  }
-
-  @Test
   public void testErrorResponse() {
     CommandResponse response;
     try {

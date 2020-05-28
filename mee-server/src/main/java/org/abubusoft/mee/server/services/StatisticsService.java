@@ -4,7 +4,7 @@ import org.abubusoft.mee.server.model.CommandResponse;
 import org.abubusoft.mee.server.model.StatCommand;
 
 public interface StatisticsService {
-  CommandResponse compute(StatCommand command);
+  CommandResponse execute(StatCommand command);
 
-  void registryCommandExecutionTime(long executionTime);
+  void recordCommandExecutionTime(long executionTime);
 }

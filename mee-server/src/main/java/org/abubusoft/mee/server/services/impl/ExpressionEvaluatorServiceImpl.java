@@ -32,7 +32,7 @@ public class ExpressionEvaluatorServiceImpl implements ExpressionEvaluatorServic
     }
   }
 
-  public void validate(VariablesValue variablesValue, String input) {
+  public void checkVariablesInExpression(VariablesValue variablesValue, String input) {
     try {
       ParserRuleContext parser = ParserRuleContextBuilder.build(input, CommandsParser::evaluate);
       ExpressionVariableCheckerVisitor visitor = new ExpressionVariableCheckerVisitor(variablesValue);

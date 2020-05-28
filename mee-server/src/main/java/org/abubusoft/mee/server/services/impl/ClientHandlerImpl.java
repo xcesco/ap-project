@@ -129,11 +129,11 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
 
   @Override
   public CommandResponse visit(ComputeCommand command) {
-    return computeService.compute(command);
+    return computeService.execute(command);
   }
 
   @Override
   public CommandResponse visit(StatCommand command) {
-    return statisticsService.compute(command);
+    return statisticsService.execute(command);
   }
 }

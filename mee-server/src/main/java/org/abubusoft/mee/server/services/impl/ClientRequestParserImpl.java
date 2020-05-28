@@ -26,7 +26,7 @@ public class ClientRequestParserImpl implements ClientRequestParser {
     this.expressionEvaluatorService = expressionEvaluatorService;
   }
 
-  private ExpressionEvaluatorService expressionEvaluatorService;
+  private final ExpressionEvaluatorService expressionEvaluatorService;
 
   public Command parse(String request) {
     if (!StringUtils.hasText(request)) {
