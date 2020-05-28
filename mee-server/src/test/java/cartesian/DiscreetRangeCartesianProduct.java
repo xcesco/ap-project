@@ -17,13 +17,13 @@ import java.util.stream.StreamSupport;
  * @param <T>
  * @param <C>
  */
-public class DiscreetIntervalCartesianProduct<T, C> extends Spliterators.AbstractSpliterator<C> {
-  final List<DiscreetInterval<T>> dimensions;
+public class DiscreetRangeCartesianProduct<T, C> extends Spliterators.AbstractSpliterator<C> {
+  final List<DiscreetRange<T>> dimensions;
   final int[] currentLocation;
   final BiFunction<C, T, C> combiner;
   final Deque<C> partialValues;
 
-  protected DiscreetIntervalCartesianProduct(List<DiscreetInterval<T>> dimensions, C initialValue, BiFunction<C, T, C> combiner) {
+  protected DiscreetRangeCartesianProduct(List<DiscreetRange<T>> dimensions, C initialValue, BiFunction<C, T, C> combiner) {
     super(
             dimensions.stream().mapToLong(d -> d.getSize()).reduce(Math::multiplyExact).orElse(0),
             SIZED | DISTINCT | IMMUTABLE);
@@ -69,8 +69,8 @@ public class DiscreetIntervalCartesianProduct<T, C> extends Spliterators.Abstrac
     }
   }
 
-  public static <T, C> Stream<C> productOf(List<DiscreetInterval<T>> dimensions, C initialValue, BiFunction<C, T, C> combiner) {
-    return StreamSupport.stream(new DiscreetIntervalCartesianProduct<>(dimensions, initialValue, combiner), false);
+  public static <T, C> Stream<C> productOf(List<DiscreetRange<T>> dimensions, C initialValue, BiFunction<C, T, C> combiner) {
+    return StreamSupport.stream(new DiscreetRangeCartesianProduct<>(dimensions, initialValue, combiner), false);
   }
 
 }

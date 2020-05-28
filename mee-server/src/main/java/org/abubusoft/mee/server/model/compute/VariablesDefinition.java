@@ -11,14 +11,14 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class VariablesDefinition {
-  private final List<VariableTuple> variables;
+  private final List<VariableValuesRange> variables;
 
   public VariablesDefinition() {
     this.variables = new ArrayList<>();
   }
 
   public List<String> getVariableNameList() {
-    return variables.stream().map(VariableTuple::getName).collect(Collectors.toList());
+    return variables.stream().map(VariableValuesRange::getName).collect(Collectors.toList());
   }
 
   private boolean isAlreadyDefined(String name) {
@@ -26,12 +26,12 @@ public class VariablesDefinition {
             .anyMatch(item -> item.getName().equals(name));
   }
 
-  public VariablesDefinition add(VariableTuple variableTuple) {
-    if (isAlreadyDefined(variableTuple.getName())) {
-      String message = String.format("Variable '%s' is defined twice", variableTuple.getName());
+  public VariablesDefinition add(VariableValuesRange variableValuesList) {
+    if (isAlreadyDefined(variableValuesList.getName())) {
+      String message = String.format("Variable '%s' is defined twice", variableValuesList.getName());
       AppAssert.fail(InvalidVariableDefinitionException.class, message);
     }
-    variables.add(variableTuple);
+    variables.add(variableValuesList);
     return this;
   }
 
@@ -43,19 +43,19 @@ public class VariablesDefinition {
     final List<String> variableNames = getVariableNameList();
     if (valueType == ValueType.GRID) {
       List<List<Double>> values = variables.stream()
-              .map(VariableTuple::getValues)
+              .map(VariableValuesRange::getValues)
               .collect(Collectors.toList());
       return Lists.cartesianProduct(values)
               .stream()
               .map(value -> MultiVariableValue.Builder.create()
                       .addAll(variableNames, value).build());
     } else {
-      int firstCount = variables.get(0).getValues().size();
+      int firstCount = variables.get(0).getSize();
       String firstName = variables.get(0).getName();
 
       // check variable interval size
       variables.forEach(variable -> {
-        int currentCount = variable.getValues().size();
+        int currentCount = variable.getSize();
         String currentName = variable.getName();
         AppAssert.assertTrue(firstCount == currentCount, InvalidVariableDefinitionException.class,
                 "Variables '%s' and '%s' have different size (%s, %s)",
@@ -64,7 +64,7 @@ public class VariablesDefinition {
 
       Stream<List<Double>> stream = IntStream.range(0, firstCount)
               .mapToObj(index -> variables.stream()
-                      .map(item -> item.getValues().get(index))
+                      .map(item -> item.get(index))
                       .collect(Collectors.toList()));
 
       return stream
@@ -73,7 +73,7 @@ public class VariablesDefinition {
     }
   }
 
-  public VariableTuple get(String variableName) {
+  public VariableValuesRange get(String variableName) {
     return this.variables.stream().filter(item -> item.getName().equals(variableName)).findFirst().orElse(null);
   }
 }

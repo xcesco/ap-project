@@ -2,8 +2,8 @@ package cartesian;
 
 import java.util.stream.Stream;
 
-public interface DiscreetInterval<T> {
-  Stream<T> stream();
+public interface DiscreetRange<T> {
+  Stream<T> getValuesStream();
 
   T get(long index);
 
@@ -11,5 +11,5 @@ public interface DiscreetInterval<T> {
 
   T getHighValue();
 
-  long getSize();
+  int getSize();
 }

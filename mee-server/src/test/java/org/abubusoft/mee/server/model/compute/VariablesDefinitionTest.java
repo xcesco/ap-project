@@ -32,7 +32,7 @@ class VariablesDefinitionTest {
   private int builVariableDefinitions(int i, int i2, int i3) {
     VariablesDefinition variablesDefinition = new VariablesDefinition();
     variablesDefinition
-            .add(VariableTuple.Builder.create()
+            .add(VariableValuesRange.Builder.create()
                     .setName("x0").setInterval(i, i2, i3).build());
 
     return variablesDefinition.get("x0").getValues().size();
@@ -42,9 +42,9 @@ class VariablesDefinitionTest {
   void testGridValuesGeneration() {
     VariablesDefinition variablesDefinition = new VariablesDefinition();
     variablesDefinition
-            .add(VariableTuple.Builder.create()
+            .add(VariableValuesRange.Builder.create()
                     .setName("x0").setInterval(1, 1, 10).build())
-            .add(VariableTuple.Builder.create()
+            .add(VariableValuesRange.Builder.create()
                     .setName("x1").setInterval(11, 1, 20).build()
             );
 
@@ -61,9 +61,9 @@ class VariablesDefinitionTest {
   void testListValuesGeneration() {
     VariablesDefinition variablesDefinition = new VariablesDefinition();
     variablesDefinition
-            .add(VariableTuple.Builder.create()
+            .add(VariableValuesRange.Builder.create()
                     .setName("x0").setInterval(1, 1, 10).build())
-            .add(VariableTuple.Builder.create()
+            .add(VariableValuesRange.Builder.create()
                     .setName("x1").setInterval(11, 1, 20).build()
             );
 
@@ -80,9 +80,9 @@ class VariablesDefinitionTest {
   void testWrongListValues() {
     VariablesDefinition variablesDefinition = new VariablesDefinition();
     variablesDefinition
-            .add(VariableTuple.Builder.create()
+            .add(VariableValuesRange.Builder.create()
                     .setName("x0").setInterval(1, 1, 10).build())
-            .add(VariableTuple.Builder.create()
+            .add(VariableValuesRange.Builder.create()
                     .setName("x1").setInterval(1, 1, 20).build()
             );
     {

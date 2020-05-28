@@ -125,7 +125,7 @@ public class ComputeCommand extends Command {
     return variablesDefinition.buildValues(valueType);
   }
 
-  public VariableTuple getVariableDefinition(String variableName) {
+  public VariableValuesRange getVariableDefinition(String variableName) {
     return variablesDefinition.get(variableName);
   }
 
@@ -163,8 +163,8 @@ public class ComputeCommand extends Command {
       return new ComputeCommand(computationType, valueType, variablesDefinition, expressionsList, expressionEvaluator);
     }
 
-    public Builder addVariableDefinition(VariableTuple variableTuple) {
-      variablesDefinition.add(variableTuple);
+    public Builder addVariableDefinition(VariableValuesRange variableValuesRange) {
+      variablesDefinition.add(variableValuesRange);
       return this;
     }
 
