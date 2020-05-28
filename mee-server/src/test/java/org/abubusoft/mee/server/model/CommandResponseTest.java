@@ -13,12 +13,12 @@ public class CommandResponseTest {
 
   @Test
   public void testMalformedRequest() {
-    checkErrorCommand("ciao","(MalformedCommandException) Unespected char at pos 0");
+    checkErrorCommand("ciao", "(MalformedCommandException) Unespected char at pos 0");
     checkErrorCommand("MAX_GRID;x0:0:1:0;x1", "(UndefinedVariableException) Undefined variable 'x1' is used in expression 'x1'");
-    checkErrorCommand("","(MalformedCommandException) No command specified");
-    checkErrorCommand("   ","(MalformedCommandException) No command specified");
-    checkErrorCommand("b\t^H","(MalformedCommandException) Unespected char at pos 1");
-    checkErrorCommand("MAX_GRID ; x0:-1:2:0 ; (2-1)","(MalformedCommandException) Unespected char at pos 8");
+    checkErrorCommand("", "(MalformedCommandException) No command specified");
+    checkErrorCommand("   ", "(MalformedCommandException) No command specified");
+    checkErrorCommand("b\t^H", "(MalformedCommandException) Unespected char at pos 1");
+    checkErrorCommand("MAX_GRID ; x0:-1:2:0 ; (2-1)", "(MalformedCommandException) Unespected char at pos 8");
   }
 
   @Test
@@ -85,7 +85,7 @@ public class CommandResponseTest {
   private void checkErrorCommand(String inputLine, String result) {
     CommandResponse response;
     try {
-      ComputeCommand command = parser.parse(inputLine);
+      ComputeCommand command = (ComputeCommand) parser.parse(inputLine);
       response = command.execute();
     } catch (AppRuntimeException e) {
       response = CommandResponse.error(e);
@@ -94,7 +94,7 @@ public class CommandResponseTest {
   }
 
   private void checkCommand(String inputLine, String result) {
-    ComputeCommand command = parser.parse(inputLine);
+    ComputeCommand command = (ComputeCommand) parser.parse(inputLine);
     CommandResponse response = command.execute();
     Assertions.assertEquals("OK;0.000;" + result, CommandResponseUtils.format(response));
     Assertions.assertEquals(ResponseType.OK, response.getResponseType());

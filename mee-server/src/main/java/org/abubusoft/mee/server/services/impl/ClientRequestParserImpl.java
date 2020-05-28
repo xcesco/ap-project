@@ -28,6 +28,8 @@ public class ClientRequestParserImpl implements ClientRequestParser {
 
   private final ExpressionEvaluator expressionEvaluator;
 
+
+  @Override
   public Command parse(String request) {
     if (!StringUtils.hasText(request)) {
       AppAssert.fail(MalformedCommandException.class, "No command specified");

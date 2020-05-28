@@ -23,7 +23,7 @@ public abstract class BaseCommandTest {
   }
 
   protected void verify(String expression, double value) {
-    ComputeCommand command = parser.parse(prependType(expression));
+    ComputeCommand command = (ComputeCommand)parser.parse(prependType(expression));
     CommandResponse response = command.execute();
 
     Assertions.assertEquals(ResponseType.OK, response.getResponseType());

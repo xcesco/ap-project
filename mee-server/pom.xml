@@ -22,16 +22,11 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
-        <!-- The main class to start by executing "java -jar" -->
         <spring.boot.mainclass>org.abubusoft.mee.server.Application</spring.boot.mainclass>
 
         <antlr.version>4.7.1</antlr.version>
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <hamcrest.version>2.2</hamcrest.version>
-
-        <spring-boot-admin-server.version>2.2.3</spring-boot-admin-server.version>
-        <spring-boot-admin-starter-client.version>2.2.3</spring-boot-admin-starter-client.version>
-        <spring-boot-admin-server-ui-login.version>1.5.7</spring-boot-admin-server-ui-login.version>
     </properties>
 
     <licenses>
@@ -131,15 +126,14 @@
     </reporting>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <dependency>

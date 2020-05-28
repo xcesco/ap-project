@@ -36,7 +36,7 @@ public class StatisticsAspect {
     Command command = (Command) Arrays.stream(joinPoint.getArgs())
             .filter(item -> item instanceof Command).findFirst().orElse(null);
     if (command != null && proceed instanceof CommandResponse) {
-      if (((CommandResponse) proceed).getResponseType() == ResponseType.OK) {
+      if (ResponseType.OK == ((CommandResponse) proceed).getResponseType()) {
         statisticsService.recordCommandExecutionTime(executionTime);
         CommandResponse response = ((CommandResponse) proceed);
         response.setResponseTime(executionTime);

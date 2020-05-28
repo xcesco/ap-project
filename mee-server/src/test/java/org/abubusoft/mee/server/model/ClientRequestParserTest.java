@@ -81,7 +81,7 @@ public class ClientRequestParserTest {
   public void testCommand() {
     String input = "MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));y1";
 
-    ComputeCommand command = parser.parse(input);
+    ComputeCommand command = (ComputeCommand) parser.parse(input);
     assertEquals(command.getType(), CommandType.COMPUTE);
     assertEquals(command.getComputationType(), ComputationType.MIN);
     assertEquals(command.getValueType(), ValueType.GRID);

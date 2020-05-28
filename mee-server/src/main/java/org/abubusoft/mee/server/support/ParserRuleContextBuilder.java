@@ -1,7 +1,6 @@
 package org.abubusoft.mee.server.support;
 
 import org.abubusoft.mee.server.exceptions.AppAssert;
-import org.abubusoft.mee.server.exceptions.AppCheckedException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.grammar.CommandsLexer;
 import org.abubusoft.mee.server.grammar.CommandsParser;
@@ -9,7 +8,7 @@ import org.antlr.v4.runtime.*;
 
 public abstract class ParserRuleContextBuilder {
   public interface RuleChooser {
-    ParserRuleContext choose(CommandsParser parser) throws AppCheckedException;
+    ParserRuleContext choose(CommandsParser parser);
   }
 
   public static ParserRuleContext build(final String input, final RuleChooser chooser) {
@@ -36,12 +35,7 @@ public abstract class ParserRuleContextBuilder {
       }
     });
 
-    try {
-      ParserRuleContext context = chooser.choose(parser);
-      return context;
-    } catch (AppCheckedException e) {
-      throw new MalformedCommandException(e.getMessage());
-    }
-
+    ParserRuleContext context = chooser.choose(parser);
+    return context;
   }
 }
