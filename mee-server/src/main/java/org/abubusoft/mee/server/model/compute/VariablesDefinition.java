@@ -54,23 +54,25 @@ public class VariablesDefinition {
       String firstName = variables.get(0).getName();
 
       // check variable interval size
-      variables.forEach(variable -> {
-        int currentCount = variable.getSize();
-        String currentName = variable.getName();
-        AppAssert.assertTrue(firstCount == currentCount, InvalidVariableDefinitionException.class,
-                "Variables '%s' and '%s' have different size (%s, %s)",
-                firstName, currentName, firstCount, currentCount);
-      });
+      checkVariableRangeSize(firstCount, firstName);
 
       Stream<List<Double>> stream = IntStream.range(0, firstCount)
               .mapToObj(index -> variables.stream()
                       .map(item -> item.get(index))
                       .collect(Collectors.toList()));
 
-      return stream
-              .map(value -> MultiVariableValue.Builder.create()
-                      .addAll(variableNames, value).build());
+      return stream.map(value -> MultiVariableValue.Builder.create().addAll(variableNames, value).build());
     }
+  }
+
+  private void checkVariableRangeSize(int firstCount, String firstName) {
+    variables.forEach(variable -> {
+      int currentCount = variable.getSize();
+      String currentName = variable.getName();
+      AppAssert.assertTrue(firstCount == currentCount, InvalidVariableDefinitionException.class,
+              "Variables '%s' and '%s' have different size (%s, %s)",
+              firstName, currentName, firstCount, currentCount);
+    });
   }
 
   public VariableValuesRange get(String variableName) {

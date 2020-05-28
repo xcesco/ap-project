@@ -6,53 +6,40 @@ import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class VariableValuesRange {
-  public Stream<Double> getValuesStream() {
-    return IntStream.range(0, size).mapToDouble(index -> lowValue + index * stepValue).boxed();
+  private final String name;
+  private final List<Double> values;
+
+  public VariableValuesRange(String name, double lowValue, double stepValue, double highValue) {
+    this.name = name;
+    this.values = IntStream.iterate(0, index -> lowValue + stepValue * index <= highValue, index -> index + 1)
+            .mapToDouble(index -> lowValue + stepValue * index).boxed()
+            .collect(Collectors.toList());
   }
 
   public List<Double> getValues() {
-    return getValuesStream().collect(Collectors.toList());
+    return values;
   }
 
   public String getName() {
     return name;
   }
 
-  public Double get(long index) {
-    return lowValue + stepValue * index;
+  public Double get(int index) {
+    return values.get(index);
   }
 
   public Double getLowValue() {
-    return lowValue;
-  }
-
-  public Double getStepValue() {
-    return stepValue;
+    return values.get(0);
   }
 
   public Double getHighValue() {
-    return highValue;
+    return values.get(values.size()-1);
   }
-
-  public VariableValuesRange(String name, double lowValue, double stepValue, double highValue, int size) {
-    this.name = name;
-    this.lowValue = lowValue;
-    this.stepValue = stepValue;
-    this.highValue = highValue;
-    this.size = size;
-  }
-
-  private final String name;
-  private final double lowValue;
-  private final double stepValue;
-  private final double highValue;
-  private final int size;
 
   public int getSize() {
-    return size;
+    return values.size();
   }
 
   public static class Builder {
@@ -75,7 +62,7 @@ public class VariableValuesRange {
       this.stepValue = step;
       this.highValue = high;
 
-      // step 0
+      // step > 0
       AppAssert.assertTrue(
               stepValue > 0, InvalidVariableDefinitionException.class, "Variable definition '%s' has step <=0", name);
 
@@ -88,11 +75,7 @@ public class VariableValuesRange {
     }
 
     public VariableValuesRange build() {
-      double sizeToCheck = Math.floor(Math.abs(highValue - lowValue) / stepValue);
-      assert sizeToCheck <= Long.MAX_VALUE;
-      int size = (int) sizeToCheck + 1;
-
-      return new VariableValuesRange(name, lowValue, stepValue, highValue, size);
+      return new VariableValuesRange(name, lowValue, stepValue, highValue);
     }
   }
 

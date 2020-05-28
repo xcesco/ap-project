@@ -3,13 +3,6 @@ package cartesian;
 import org.abubusoft.mee.server.model.compute.VariableValuesRange;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VariableValuesRangeTest {
@@ -17,14 +10,14 @@ public class VariableValuesRangeTest {
   public void test() {
     VariableValuesRange interval = VariableValuesRange.Builder.create().setName("x0").setInterval(0, 0.1, 1).build();
     assertEquals(interval.getSize(), 11);
-    interval.getValuesStream().forEach(System.out::println);
+    interval.getValues().forEach(System.out::println);
   }
 
   @Test
   public void test1() {
     VariableValuesRange interval = VariableValuesRange.Builder.create().setName("x0").setInterval(0.1, 0.1, 1).build();
     assertEquals(interval.getSize(), 10);
-    interval.getValuesStream().forEach(System.out::println);
+    interval.getValues().forEach(System.out::println);
   }
 
 //  @Test

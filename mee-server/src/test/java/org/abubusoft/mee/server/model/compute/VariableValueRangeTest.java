@@ -2,8 +2,8 @@ package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -61,6 +61,25 @@ public class VariableValueRangeTest {
 
     assertEquals("x1", result.getName());
     assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.getValues()));
+  }
+
+  @Test
+  public void testVariableRange4() throws MalformedCommandException {
+    checkRange("x1:0:2:9", 0, 8, 5);
+    checkRange("x1:0:2:10", 0, 10, 6);
+    checkRange("x1:0:1:10", 0, 10, 11);
+    checkRange("x1:0:3:10", 0, 9, 4);
+    checkRange("x1:0:.1:1", 0, 1, 11);
+  }
+
+  private VariableValuesRange checkRange(String input, double low, double high, int size) {
+    VariableValuesRange result = parser.parseVariableDefinition("x1", input);
+    assertEquals("x1", result.getName());
+    assertEquals(low, result.getLowValue());
+    assertEquals(high, result.getHighValue());
+    assertEquals(size, result.getSize());
+
+    return result;
   }
 
   @Test
