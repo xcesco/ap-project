@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class MaxGridCommandTest extends BaseCommandTest {
   public MaxGridCommandTest() {
-    super(ComputationType.MAX, ValuesType.GRID);
+    super(ComputationType.MAX, ValueType.GRID);
   }
 
 

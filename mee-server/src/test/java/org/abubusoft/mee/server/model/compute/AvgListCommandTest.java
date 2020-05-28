@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class AvgListCommandTest extends BaseCommandTest {
 
   public AvgListCommandTest() {
-    super(ComputationType.AVG, ValuesType.LIST);
+    super(ComputationType.AVG, ValueType.LIST);
   }
 
   @Test

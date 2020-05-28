@@ -1,2 +1,19 @@
-MAX_GRID ; x0:-1:2:0 ;-1+2
-MAX_GRID;x0:-1:2:0;-1+2
+# Errori di sintassi
+
+
+# Errori di numeri in intervalli
+# Errori di valutazione
+# Test positivi
+
+#
+#STAT_REQS
+#STAT_AVG_TIME
+#STAT_MAX_TIME
+
+#MIN
+#MAX
+#AVG
+#COUNT
+
+#LIST
+#GRID

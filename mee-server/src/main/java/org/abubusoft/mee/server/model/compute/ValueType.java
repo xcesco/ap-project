@@ -1,6 +1,6 @@
 package org.abubusoft.mee.server.model.compute;
 
-public enum ValuesType {
+public enum ValueType {
   GRID,
   LIST;
 }

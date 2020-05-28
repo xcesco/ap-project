@@ -35,19 +35,19 @@ public class VariablesDefinition {
     return this;
   }
 
-  public List<VariablesValue> buildValues(ValuesType valuesType) {
-    return buildValuesAsStream(valuesType).collect(Collectors.toList());
+  public List<MultiVariableValue> buildValues(ValueType valueType) {
+    return buildValuesAsStream(valueType).collect(Collectors.toList());
   }
 
-  public Stream<VariablesValue> buildValuesAsStream(ValuesType valuesType) {
+  public Stream<MultiVariableValue> buildValuesAsStream(ValueType valueType) {
     final List<String> variableNames = getVariableNameList();
-    if (valuesType == ValuesType.GRID) {
+    if (valueType == ValueType.GRID) {
       List<List<Double>> values = variables.stream()
               .map(VariableTuple::getValues)
               .collect(Collectors.toList());
       return Lists.cartesianProduct(values)
               .stream()
-              .map(value -> VariablesValue.Builder.create()
+              .map(value -> MultiVariableValue.Builder.create()
                       .addAll(variableNames, value).build());
     } else {
       int firstCount = variables.get(0).getValues().size();
@@ -68,7 +68,7 @@ public class VariablesDefinition {
                       .collect(Collectors.toList()));
 
       return stream
-              .map(value -> VariablesValue.Builder.create()
+              .map(value -> MultiVariableValue.Builder.create()
                       .addAll(variableNames, value).build());
     }
   }

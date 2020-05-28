@@ -7,3 +7,11 @@ COUNT_LIST; x0:1:0.001:100 ; x0
 #ERR;(ComputationException) Unvalued variable log
 #STAT_MAX_TIME
 #OK;0.000;0.070000
+
+# Errori
+ciao
+RESP: ERR;(MalformedCommandException) Unespected char at pos 0
+
+ERR;(MalformedCommandException) No command specified.
+MAXGRID;x0:0:0:0;x1
+ERR;(MalformedCommandException) Unespected char at pos 3

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class CountGridCommandTest extends BaseCommandTest {
   public CountGridCommandTest() {
-    super(ComputationType.COUNT, ValuesType.GRID);
+    super(ComputationType.COUNT, ValueType.GRID);
   }
 
   @Test

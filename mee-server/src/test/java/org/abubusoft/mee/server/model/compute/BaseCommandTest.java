@@ -5,18 +5,18 @@ import org.abubusoft.mee.server.model.ComputeCommand;
 import org.abubusoft.mee.server.model.ResponseType;
 import org.abubusoft.mee.server.services.ClientRequestParser;
 import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.junit.jupiter.api.Assertions;
 
 public abstract class BaseCommandTest {
-  public BaseCommandTest(ComputationType operation, ValuesType valuesType) {
+  public BaseCommandTest(ComputationType operation, ValueType valueType) {
     this.operation = operation;
-    this.valueKind = valuesType;
+    this.valueKind = valueType;
   }
 
-  private final ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorServiceImpl());
+  private final ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorImpl());
   private final ComputationType operation;
-  private final ValuesType valueKind;
+  private final ValueType valueKind;
 
   public String prependType(String input) {
     return operation + "_" + valueKind + ";" + input;

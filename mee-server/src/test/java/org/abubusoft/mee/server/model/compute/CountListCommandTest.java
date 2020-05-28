@@ -1,13 +1,11 @@
 package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CountListCommandTest extends BaseCommandTest {
   public CountListCommandTest() {
-    super(ComputationType.COUNT, ValuesType.LIST);
+    super(ComputationType.COUNT, ValueType.LIST);
   }
 
   @Test

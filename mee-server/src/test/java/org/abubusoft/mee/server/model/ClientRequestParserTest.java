@@ -2,10 +2,10 @@ package org.abubusoft.mee.server.model;
 
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.model.compute.ComputationType;
-import org.abubusoft.mee.server.model.compute.ValuesType;
+import org.abubusoft.mee.server.model.compute.ValueType;
 import org.abubusoft.mee.server.services.ClientRequestParser;
 import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ClientRequestParserTest {
 
-  ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorServiceImpl());
+  ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorImpl());
 
   @Test
   public void testBye() {
@@ -84,7 +84,7 @@ public class ClientRequestParserTest {
     ComputeCommand command = parser.parse(input);
     assertEquals(command.getType(), CommandType.COMPUTE);
     assertEquals(command.getComputationType(), ComputationType.MIN);
-    assertEquals(command.getValuesType(), ValuesType.GRID);
+    assertEquals(command.getValueType(), ValueType.GRID);
     assertEquals(command.getExpressionsList().get(0), "((x0+(2.0^x1))/(1-x0))");
     assertEquals(command.getExpressionsList().get(1), "y1");
   }

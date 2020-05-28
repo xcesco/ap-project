@@ -48,7 +48,7 @@ class VariablesDefinitionTest {
                     .setName("x1").setInterval(11, 1, 20).build()
             );
 
-    List<VariablesValue> values = variablesDefinition.buildValues(ValuesType.GRID);
+    List<MultiVariableValue> values = variablesDefinition.buildValues(ValueType.GRID);
 
     assertEquals(values.size(), 100);
     assertEquals(values.get(0).get("x0"), 1);
@@ -67,7 +67,7 @@ class VariablesDefinitionTest {
                     .setName("x1").setInterval(11, 1, 20).build()
             );
 
-    List<VariablesValue> values = variablesDefinition.buildValues(ValuesType.LIST);
+    List<MultiVariableValue> values = variablesDefinition.buildValues(ValueType.LIST);
 
     assertEquals(values.size(), 10);
     assertEquals(values.get(0).get("x0"), 1);
@@ -86,11 +86,11 @@ class VariablesDefinitionTest {
                     .setName("x1").setInterval(1, 1, 20).build()
             );
     {
-      List<VariablesValue> values = variablesDefinition.buildValues(ValuesType.GRID);
+      List<MultiVariableValue> values = variablesDefinition.buildValues(ValueType.GRID);
       assertEquals(values.get(0).get("x1"), 1);
     }
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> {
-      variablesDefinition.buildValues(ValuesType.LIST);
+      variablesDefinition.buildValues(ValueType.LIST);
     });
 
   }

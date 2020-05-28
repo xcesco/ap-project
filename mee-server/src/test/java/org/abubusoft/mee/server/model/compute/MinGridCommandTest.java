@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class MinGridCommandTest extends BaseCommandTest {
   public MinGridCommandTest() {
-    super(ComputationType.MIN, ValuesType.GRID);
+    super(ComputationType.MIN, ValueType.GRID);
   }
 
   @Test

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class MaxListCommandTest extends BaseCommandTest {
   public MaxListCommandTest() {
-    super(ComputationType.MAX, ValuesType.LIST);
+    super(ComputationType.MAX, ValueType.LIST);
   }
 
   @Test

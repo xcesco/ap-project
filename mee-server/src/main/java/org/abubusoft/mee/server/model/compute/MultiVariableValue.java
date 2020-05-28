@@ -10,10 +10,10 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-public class VariablesValue {
+public class MultiVariableValue {
   private final Map<String, Double> values;
 
-  VariablesValue(Map<String, Double> values) {
+  MultiVariableValue(Map<String, Double> values) {
     this.values = values;
   }
 
@@ -53,8 +53,8 @@ public class VariablesValue {
       return this;
     }
 
-    public VariablesValue build() {
-      return new VariablesValue(values);
+    public MultiVariableValue build() {
+      return new MultiVariableValue(values);
     }
   }
 }

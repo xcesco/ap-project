@@ -25,7 +25,7 @@ stat_min_time_command   : K_STAT_MIN_TIME;
 
 computation_command: computation_kind UNDER values_kind SEMI_COLUMN variable_values_function SEMI_COLUMN expressions;
 computation_kind : K_MIN | K_MAX | K_AVG | K_COUNT;
-values_kind : K_GRID| K_LIST;
+values_kind : K_GRID | K_LIST;
 
 variable_values_function: variable_values (COMMA variable_values)*;
 variable_values         : variable COLUMN variable_lower_value COLUMN variable_step_value COLUMN variable_upper_value;
@@ -33,8 +33,12 @@ variable_lower_value    : java_number;
 variable_step_value     : java_number;
 variable_upper_value    : java_number;
 
-java_number : ('-')? (DIGITS '.' DIGITS? | '.' DIGITS) EXPONENT_PART?
-            | ('-')? DIGITS (EXPONENT_PART)?;
+java_number : java_number_sign? DIGIT+ ('.')? DIGIT* java_number_exponential?
+            | java_number_sign? (DIGIT+ '.')? DIGIT+ java_number_exponential?
+            | java_number_sign? DIGIT* '.' DIGIT+ java_number_exponential?
+            ;
+java_number_exponential : ('e' | 'E') java_number_sign? DIGIT+;
+java_number_sign        : ('-' | '+');
 
 expressions: expression (SEMI_COLUMN expression)*;
 evaluate: expression EOF;
@@ -42,12 +46,12 @@ expression : variable
            | number
            | PAR_OPEN expression operator expression PAR_CLOSE;
 operator   : OP_ADD | OP_MINUS | OP_MUL | OP_DIV | OP_POW;
-variable   : IDENTIFIER;
-number     : DIGITS ('.' DIGITS)?;
+variable   : LETTER (LETTER | DIGIT)*;
+number     : DIGIT+ ('.' DIGIT+)?;
 
 /**
-* Lexer rules
-*/
+ * Lexer rules
+ */
 K_BYE : B Y E;
 K_STAT_REQS : S T A T '_' R E Q S;
 K_STAT_AVG_TIME : S T A T '_' A V G '_' T I M E;
@@ -76,13 +80,8 @@ SEMI_COLUMN : ';';
 COLUMN      : ':';
 COMMA       : ',';
 
-IDENTIFIER  : [a-z] [a-z0-9]*;
-
-DIGITS: [0-9] ([0-9]* [0-9])?
-    ;
-EXPONENT_PART
-    : [eE] [+-]? DIGITS
-    ;
+DIGIT: [0-9];
+LETTER: [a-z];
 
 fragment A : [A];
 fragment B : [B];

@@ -1,7 +1,6 @@
 package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
-import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class AvgGridCommandTest extends BaseCommandTest {
 
   public AvgGridCommandTest() {
-    super(ComputationType.AVG, ValuesType.GRID);
+    super(ComputationType.AVG, ValueType.GRID);
   }
 
   @Test

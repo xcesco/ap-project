@@ -5,17 +5,17 @@ import org.abubusoft.mee.server.exceptions.EvaluationExpressionException;
 import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.abubusoft.mee.server.grammar.CommandsBaseVisitor;
 import org.abubusoft.mee.server.grammar.CommandsParser;
-import org.abubusoft.mee.server.model.compute.VariablesValue;
+import org.abubusoft.mee.server.model.compute.MultiVariableValue;
 
 import java.util.List;
 
 public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
-  private final VariablesValue variablesValue;
+  private final MultiVariableValue multiVariableValue;
   private final String expression;
 
-  public ExpressionVisitor(VariablesValue variablesValue, String expression) {
+  public ExpressionVisitor(MultiVariableValue multiVariableValue, String expression) {
     this.expression = expression;
-    this.variablesValue = variablesValue;
+    this.multiVariableValue = multiVariableValue;
   }
 
   @Override
@@ -47,7 +47,7 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
       } else if (operator.OP_MUL() != null) {
         result = operand1 * operand2;
       } else if (operator.OP_DIV() != null) {
-        AppAssert.assertTrue(operand2 != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s' with %s", expression, this.variablesValue.toString());
+        AppAssert.assertTrue(operand2 != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s' with %s", expression, this.multiVariableValue.toString());
         result = operand1 / operand2;
       } else if (operator.OP_POW() != null) {
         result = Math.pow(operand1, operand2);
@@ -62,9 +62,9 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
   public Double visitVariable(CommandsParser.VariableContext ctx) {
     String name = ctx.getText();
 
-    Double value = variablesValue.get(name);
+    Double value = multiVariableValue.get(name);
     if (value == null) {
-      AppAssert.fail(UndefinedVariableException.class, "Undefined variable '%s' used in '%s'", name, expression);
+      AppAssert.fail(UndefinedVariableException.class, "Undefined variable '%s' is used in expression '%s'", name, expression);
     }
     return value;
   }

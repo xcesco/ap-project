@@ -9,10 +9,10 @@ import org.abubusoft.mee.server.model.ComputeCommand;
 import org.abubusoft.mee.server.model.QuitCommand;
 import org.abubusoft.mee.server.model.StatCommand;
 import org.abubusoft.mee.server.model.compute.ComputationType;
-import org.abubusoft.mee.server.model.compute.ValuesType;
+import org.abubusoft.mee.server.model.compute.ValueType;
 import org.abubusoft.mee.server.model.compute.VariableTuple;
 import org.abubusoft.mee.server.model.stat.StatType;
-import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
+import org.abubusoft.mee.server.services.ExpressionEvaluator;
 import org.antlr.v4.runtime.RuleContext;
 
 import java.util.stream.Collectors;
@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 public class CommandVisitor extends CommandsBaseVisitor<Command> {
   private final ComputeCommand.Builder computeBuilder;
 
-  public CommandVisitor(ExpressionEvaluatorService expressionEvaluatorService) {
-    computeBuilder = ComputeCommand.Builder.create(expressionEvaluatorService);
+  public CommandVisitor(ExpressionEvaluator expressionEvaluator) {
+    computeBuilder = ComputeCommand.Builder.create(expressionEvaluator);
   }
 
   public ComputeCommand.Builder getComputeBuilder() {
@@ -66,8 +66,8 @@ public class CommandVisitor extends CommandsBaseVisitor<Command> {
 
   @Override
   public Command visitValues_kind(CommandsParser.Values_kindContext ctx) {
-    ValuesType value = ValuesType.valueOf(ctx.getText());
-    computeBuilder.setValuesType(value).build();
+    ValueType value = ValueType.valueOf(ctx.getText());
+    computeBuilder.setValueType(value).build();
     return null;
   }
 

@@ -1,7 +1,9 @@
 package org.abubusoft.mee.server.model;
 
+import org.abubusoft.mee.server.exceptions.AppAssert;
+import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.model.compute.*;
-import org.abubusoft.mee.server.services.ExpressionEvaluatorService;
+import org.abubusoft.mee.server.services.ExpressionEvaluator;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,26 +14,26 @@ public class ComputeCommand extends Command {
   private static final Logger logger = LoggerFactory
           .getLogger(ComputeCommand.class);
   private final ComputationType computationType;
-  private final ValuesType valuesType;
+  private final ValueType valueType;
   private final VariablesDefinition variablesDefinition;
   private final List<String> expressionsList;
-  private final ExpressionEvaluatorService expressionEvaluatorService;
+  private final ExpressionEvaluator expressionEvaluator;
 
-  public ComputeCommand(ComputationType computationType, ValuesType valuesType, VariablesDefinition variablesDefinition, List<String> expressionsList, ExpressionEvaluatorService expressionEvaluatorService) {
+  public ComputeCommand(ComputationType computationType, ValueType valueType, VariablesDefinition variablesDefinition, List<String> expressionsList, ExpressionEvaluator expressionEvaluator) {
     super(CommandType.COMPUTE);
     this.computationType = computationType;
-    this.valuesType = valuesType;
+    this.valueType = valueType;
     this.variablesDefinition = variablesDefinition;
     this.expressionsList = expressionsList;
-    this.expressionEvaluatorService = expressionEvaluatorService;
+    this.expressionEvaluator = expressionEvaluator;
   }
 
   public ComputationType getComputationType() {
     return computationType;
   }
 
-  public ValuesType getValuesType() {
-    return valuesType;
+  public ValueType getValueType() {
+    return valueType;
   }
 
   public List<String> getExpressionsList() {
@@ -40,42 +42,44 @@ public class ComputeCommand extends Command {
 
   @Override
   public CommandResponse execute() {
-    List<VariablesValue> values = buildVariableValues();
+    List<MultiVariableValue> values = buildVariableValues();
     CommandResponse.Builder responseBuilder = CommandResponse.Builder.ok();
 
-    double result = getInitialValue();
-    double actualValue;
+    double currentResult = getInitialValue();
 
-    if (getComputationType() == ComputationType.COUNT) {
-      return responseBuilder.setValue(values.size()).build();
-    }
-
-    for (String expression : expressionsList) {
-      // validate expression once, with first available var values
-      expressionEvaluatorService.checkVariablesInExpression(values.get(0), expression);
-
-      for (VariablesValue value : values) {
-        actualValue = expressionEvaluatorService.evaluate(value, expression);
-        result = mergeResults(result, actualValue);
-      }
-
-      result = finalizeResult(result, values.size());
-      logger.debug(String.format("%s_%s of '%s' (%s values) = %s",
-              getComputationType(),
-              getValuesType(),
-              expression,
-              values.size(),
-              CommandResponseUtils.formatValue(result)));
-
-      // AVG require only 1st expression evaluation
-      if (getComputationType() == ComputationType.AVG) {
+    switch (getComputationType()) {
+      case COUNT:
+        currentResult = values.size();
         break;
-      }
+      case AVG:
+        String firstExpression = expressionsList.get(0);
+        currentResult = evaluateSingleExpression(values, currentResult, firstExpression);
+        break;
+      case MAX:
+      case MIN:
+        for (String expression : expressionsList) {
+          currentResult = evaluateSingleExpression(values, currentResult, expression);
+        }
+        break;
+      default:
+        AppAssert.fail(AppRuntimeException.class, "Unsupported computation type '%s'", getComputationType());
+        break;
     }
-
-    responseBuilder.setValue(result);
+    responseBuilder.setValue(currentResult);
 
     return responseBuilder.build();
+  }
+
+  private double evaluateSingleExpression(List<MultiVariableValue> values, double result, String expression) {
+    double actualValue;
+    for (MultiVariableValue value : values) {
+      actualValue = expressionEvaluator.evaluate(value, expression);
+      result = mergeResults(result, actualValue);
+    }
+
+    result = finalizeResult(result, values.size());
+    logger.debug(String.format("%s_%s of '%s' (on %s values) = %s", getComputationType(), getValueType(), expression, values.size(), CommandResponseUtils.formatValue(result)));
+    return result;
   }
 
   private double finalizeResult(double result, int size) {
@@ -117,8 +121,8 @@ public class ComputeCommand extends Command {
     }
   }
 
-  private List<VariablesValue> buildVariableValues() {
-    return variablesDefinition.buildValues(valuesType);
+  private List<MultiVariableValue> buildVariableValues() {
+    return variablesDefinition.buildValues(valueType);
   }
 
   public VariableTuple getVariableDefinition(String variableName) {
@@ -132,17 +136,17 @@ public class ComputeCommand extends Command {
 
   public static class Builder {
     private ComputationType computationType;
-    private ValuesType valuesType;
-    private VariablesDefinition variablesDefinition = new VariablesDefinition();
+    private ValueType valueType;
+    private final VariablesDefinition variablesDefinition = new VariablesDefinition();
     private List<String> expressionsList;
-    private final ExpressionEvaluatorService expressionEvaluatorService;
+    private final ExpressionEvaluator expressionEvaluator;
 
-    public Builder(ExpressionEvaluatorService expressionEvaluatorService) {
-      this.expressionEvaluatorService = expressionEvaluatorService;
+    public Builder(ExpressionEvaluator expressionEvaluator) {
+      this.expressionEvaluator = expressionEvaluator;
     }
 
-    public static Builder create(ExpressionEvaluatorService expressionEvaluatorService) {
-      return new Builder(expressionEvaluatorService);
+    public static Builder create(ExpressionEvaluator expressionEvaluator) {
+      return new Builder(expressionEvaluator);
     }
 
     public Builder setComputationType(ComputationType computationType) {
@@ -150,13 +154,13 @@ public class ComputeCommand extends Command {
       return this;
     }
 
-    public Builder setValuesType(ValuesType valuesType) {
-      this.valuesType = valuesType;
+    public Builder setValueType(ValueType valueType) {
+      this.valueType = valueType;
       return this;
     }
 
     public ComputeCommand build() {
-      return new ComputeCommand(computationType, valuesType, variablesDefinition, expressionsList, expressionEvaluatorService);
+      return new ComputeCommand(computationType, valueType, variablesDefinition, expressionsList, expressionEvaluator);
     }
 
     public Builder addVariableDefinition(VariableTuple variableTuple) {

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class MinListCommandTest extends BaseCommandTest {
   public MinListCommandTest() {
-    super(ComputationType.MIN, ValuesType.LIST);
+    super(ComputationType.MIN, ValueType.LIST);
   }
 
   @Test

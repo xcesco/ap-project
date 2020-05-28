@@ -2,7 +2,7 @@ package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorServiceImpl;
+import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class VariablesValueTest {
-  ClientRequestParserImpl parser = new ClientRequestParserImpl(new ExpressionEvaluatorServiceImpl());
+public class MultiVariableValueTest {
+  ClientRequestParserImpl parser = new ClientRequestParserImpl(new ExpressionEvaluatorImpl());
 
   @Test
   public void testVariableRange1_10() throws MalformedCommandException {

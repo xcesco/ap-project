@@ -45,9 +45,9 @@ public class VariableTuple {
 
         // step and interval are incosistent
         AppAssert.assertTrue(
-                lowerValue < higherValue,
+                lowerValue <= higherValue,
                 InvalidVariableDefinitionException.class,
-                "Definition of variable '%s' is inconsistent", name);
+                "Inconsistent variable definition '%s'", name);
 
         values = new ArrayList<>();
         double currentValue = lowerValue;
