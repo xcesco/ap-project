@@ -20,17 +20,13 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
   private static final Logger logger = LoggerFactory
           .getLogger(MeeServerImpl.class);
   private final AtomicInteger clientConnectionCounter = new AtomicInteger(0);
-  private Executor executor;
-  private ObjectProvider<ClientHandler> clientHandlerProvider;
+  private final Executor executor;
+  private final ObjectProvider<ClientHandler> clientHandlerProvider;
 
   @Autowired
-  @Qualifier(ApplicationConfiguration.CONNECTION_EXECUTOR)
-  public void setExecutor(Executor executor) {
+  public MeeServerImpl(@Qualifier(ApplicationConfiguration.CONNECTION_EXECUTOR) Executor executor,
+                       ObjectProvider<ClientHandler> clientHandlerProvider) {
     this.executor = executor;
-  }
-
-  @Autowired
-  public void setClientHandlerProvider(ObjectProvider<ClientHandler> clientHandlerProvider) {
     this.clientHandlerProvider = clientHandlerProvider;
   }
 
@@ -44,12 +40,12 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
           try {
             ClientHandler clientHandler = clientHandlerProvider.getObject(serverSocket.accept(), this);
             executor.execute(clientHandler::start);
-          } catch (IOException e) {
+          } catch (Exception e) {
             logger.error(e.getMessage());
           }
         }
 
-      } catch (IOException e) {
+      } catch (IOException | SecurityException | IllegalArgumentException e) {
         logger.error("Could not open server on TCP port {}. Reason: {}", port, e.getMessage());
       }
     }).start();

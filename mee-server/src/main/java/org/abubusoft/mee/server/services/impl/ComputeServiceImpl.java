@@ -14,11 +14,10 @@ import java.util.concurrent.ExecutionException;
 
 @Service
 public class ComputeServiceImpl implements ComputeService {
-  private AsyncTaskExecutor executor;
+  private final AsyncTaskExecutor executor;
 
   @Autowired
-  @Qualifier(ApplicationConfiguration.COMPUTE_EXECUTOR)
-  public void setExecutor(AsyncTaskExecutor executor) {
+  public ComputeServiceImpl(@Qualifier(ApplicationConfiguration.COMPUTE_EXECUTOR) AsyncTaskExecutor executor) {
     this.executor = executor;
   }
 

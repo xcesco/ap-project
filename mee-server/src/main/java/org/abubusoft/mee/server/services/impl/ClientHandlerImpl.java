@@ -35,15 +35,13 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
   }
 
   @Autowired
-  public ClientHandlerImpl setStatisticsService(StatisticsService statisticsService) {
+  public void setStatisticsService(StatisticsService statisticsService) {
     this.statisticsService = statisticsService;
-    return this;
   }
 
   @Autowired
-  public ClientHandlerImpl setComputeService(ComputeService computeService) {
+  public void setComputeService(ComputeService computeService) {
     this.computeService = computeService;
-    return this;
   }
 
   @Override

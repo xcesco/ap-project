@@ -67,7 +67,6 @@ public class StatisticsServiceImpl implements StatisticsService {
 
   /**
    * <code>https://math.stackexchange.com/questions/22348/how-to-add-and-subtract-values-from-an-average</code>
-   *
    */
   @Override
   public void recordCommandExecutionTime(long executionTime) {

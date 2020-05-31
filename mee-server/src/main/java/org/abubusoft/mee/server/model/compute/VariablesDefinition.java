@@ -11,18 +11,18 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class VariablesDefinition {
-  private final List<VariableValuesRange> variables;
+  private final List<VariableValuesRange> variableValuesRanges;
 
   public VariablesDefinition() {
-    this.variables = new ArrayList<>();
+    this.variableValuesRanges = new ArrayList<>();
   }
 
   public List<String> getVariableNameList() {
-    return variables.stream().map(VariableValuesRange::getName).collect(Collectors.toList());
+    return variableValuesRanges.stream().map(VariableValuesRange::getName).collect(Collectors.toList());
   }
 
   private boolean isAlreadyDefined(String name) {
-    return variables.stream()
+    return variableValuesRanges.stream()
             .anyMatch(item -> item.getName().equals(name));
   }
 
@@ -31,7 +31,7 @@ public class VariablesDefinition {
       String message = String.format("Variable '%s' is defined twice", variableValuesList.getName());
       AppAssert.fail(InvalidVariableDefinitionException.class, message);
     }
-    variables.add(variableValuesList);
+    variableValuesRanges.add(variableValuesList);
     return this;
   }
 
@@ -42,7 +42,7 @@ public class VariablesDefinition {
   public Stream<MultiVariableValue> buildValuesAsStream(ValueType valueType) {
     final List<String> variableNames = getVariableNameList();
     if (valueType == ValueType.GRID) {
-      List<List<Double>> values = variables.stream()
+      List<List<Double>> values = variableValuesRanges.stream()
               .map(VariableValuesRange::getValues)
               .collect(Collectors.toList());
       return Lists.cartesianProduct(values)
@@ -50,14 +50,14 @@ public class VariablesDefinition {
               .map(value -> MultiVariableValue.Builder.create()
                       .addAll(variableNames, value).build());
     } else {
-      int firstCount = variables.get(0).getSize();
-      String firstName = variables.get(0).getName();
+      int firstCount = variableValuesRanges.get(0).getSize();
+      String firstName = variableValuesRanges.get(0).getName();
 
       // check variable interval size
       checkVariableRangeSize(firstCount, firstName);
 
       Stream<List<Double>> stream = IntStream.range(0, firstCount)
-              .mapToObj(index -> variables.stream()
+              .mapToObj(index -> variableValuesRanges.stream()
                       .map(item -> item.get(index))
                       .collect(Collectors.toList()));
 
@@ -66,7 +66,7 @@ public class VariablesDefinition {
   }
 
   private void checkVariableRangeSize(int firstCount, String firstName) {
-    variables.forEach(variable -> {
+    variableValuesRanges.forEach(variable -> {
       int currentCount = variable.getSize();
       String currentName = variable.getName();
       AppAssert.assertTrue(firstCount == currentCount, InvalidVariableDefinitionException.class,
@@ -76,6 +76,6 @@ public class VariablesDefinition {
   }
 
   public VariableValuesRange get(String variableName) {
-    return this.variables.stream().filter(item -> item.getName().equals(variableName)).findFirst().orElse(null);
+    return this.variableValuesRanges.stream().filter(item -> item.getName().equals(variableName)).findFirst().orElse(null);
   }
 }

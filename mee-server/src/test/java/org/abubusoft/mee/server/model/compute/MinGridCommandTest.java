@@ -13,5 +13,7 @@ public class MinGridCommandTest extends BaseCommandTest {
     verify("x0:1:1:10;(0-x0)", -10.0);
     verify("x0:1:1:10,y0:1:1:10;(0-x0);(0-(y0+x0))", -20.0);
     verify("x0:1:1:10,y0:1:1:10;(0-(y0+x0));(0-x0)", -20.0);
+    verify("x0:.1:1:.10,y0:.0:1:1.0e2;(0-(y0+x0));(0-x0)", -100.1);
+    verify("x0:.1:1:.10,y0:.0:1:1.0e2;x0", .1);
   }
 }
