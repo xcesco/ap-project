@@ -11,10 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {"org.abubusoft.mee.server"})
 public class Application implements CommandLineRunner {
-  private static Logger logger = LoggerFactory
-          .getLogger(Application.class);
+  private static Logger logger = LoggerFactory.getLogger(Application.class);
+
   @Value("${mee-server.port}")
-  String serverPort;
+  int serverPort;
 
   @Value("${mee-server.connections-in-queue}")
   int connectionsInQueue;
@@ -51,7 +51,7 @@ public class Application implements CommandLineRunner {
       port = Integer.parseInt(args[0]);
       logger.info(String.format("Listening port %s is specified via command line args", port));
     } else {
-      port = Integer.parseInt(serverPort);
+      port = serverPort;
       logger.info(String.format("Listening port %s is specified via application config", port));
     }
 

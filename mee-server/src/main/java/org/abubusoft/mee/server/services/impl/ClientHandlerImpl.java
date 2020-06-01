@@ -16,8 +16,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
-  private static final Logger logger = LoggerFactory
-          .getLogger(ClientHandlerImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(ClientHandlerImpl.class);
   private final Socket socket;
   private final Listener listener;
   private ClientRequestParser clientRequestParser;

@@ -15,7 +15,7 @@ import org.antlr.v4.runtime.misc.Pair;
 
 /**
  * This is a copy without System.err of {@link org.antlr.v4.runtime.DefaultErrorStrategy}.
- *
+ * <p>
  * It is done to avoid some useless System.out in default implementation.
  */
 public class AppErrorStrategy implements ANTLRErrorStrategy {

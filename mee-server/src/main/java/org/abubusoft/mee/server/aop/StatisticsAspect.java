@@ -17,8 +17,8 @@ import java.util.Arrays;
 @Aspect
 @Component
 public class StatisticsAspect {
-  private static final Logger logger = LoggerFactory
-          .getLogger(StatisticsAspect.class);
+  private static final Logger logger = LoggerFactory.getLogger(StatisticsAspect.class);
+
   private StatisticsService statisticsService;
 
   @Autowired

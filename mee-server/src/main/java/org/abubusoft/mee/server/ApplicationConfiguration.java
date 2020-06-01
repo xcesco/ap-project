@@ -16,12 +16,11 @@ import java.util.concurrent.Executor;
 
 @Configuration
 public class ApplicationConfiguration {
-  private static final Logger logger = LoggerFactory
-          .getLogger(ApplicationConfiguration.class);
   public static final String CONNECTION_EXECUTOR = "connectionExecutor";
   public static final String COMPUTE_EXECUTOR = "computeExecutor";
   public static final String COMPUTE_THREAD_PREFIX = "Compute-";
   public static final String CONNECTION_THREAD_PREFIX = "Connection-";
+  private static final Logger logger = LoggerFactory.getLogger(ApplicationConfiguration.class);
 
   @Bean
   @Scope(BeanDefinition.SCOPE_PROTOTYPE)
