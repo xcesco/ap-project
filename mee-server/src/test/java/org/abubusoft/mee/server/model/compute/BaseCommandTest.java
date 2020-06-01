@@ -5,7 +5,6 @@ import org.abubusoft.mee.server.model.ComputeCommand;
 import org.abubusoft.mee.server.model.ResponseType;
 import org.abubusoft.mee.server.services.ClientRequestParser;
 import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.junit.jupiter.api.Assertions;
 
 public abstract class BaseCommandTest {
@@ -14,7 +13,7 @@ public abstract class BaseCommandTest {
     this.valueKind = valueType;
   }
 
-  private final ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorImpl());
+  private final ClientRequestParser parser = new ClientRequestParserImpl();
   private final ComputationType operation;
   private final ValueType valueKind;
 

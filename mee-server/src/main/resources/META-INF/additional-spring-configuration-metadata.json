@@ -4,6 +4,11 @@
       "name": "mee-server.port",
       "type": "java.lang.String",
       "description": "TCP Port used for commands execution."
+    },
+    {
+      "name": "mee-server.connections-in-queue",
+      "type": "java.lang.String",
+      "description": "Description for mee-server.connections-in-queue."
     }
   ]
 }

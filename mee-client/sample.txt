@@ -1,7 +1,7 @@
 #MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));(x1*x0)
 #OK;0.040;52168.009950
 #COUNT_LIST; x0:1:0.001:100 , x0:1:0.001:100 ; x0
-COUNT_LIST; x0:1:0.001:100 ; x0
+COUNT_LIST;x0:1:0.001:100;x0
 #OK;0.070;99000.000000
 #MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
 #ERR;(ComputationException) Unvalued variable log
@@ -10,8 +10,8 @@ COUNT_LIST; x0:1:0.001:100 ; x0
 
 # Errori
 ciao
-RESP: ERR;(MalformedCommandException) Unespected char at pos 0
+#RESP: ERR;(MalformedCommandException) Unespected char at pos 0
 
-ERR;(MalformedCommandException) No command specified.
+#ERR;(MalformedCommandException) No command specified.
 MAXGRID;x0:0:0:0;x1
-ERR;(MalformedCommandException) Unespected char at pos 3
+#ERR;(MalformedCommandException) Unespected char at pos 3

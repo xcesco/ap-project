@@ -17,8 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
-  private static final Logger logger = LoggerFactory
-          .getLogger(MeeServerImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(MeeServerImpl.class);
   private final AtomicInteger clientConnectionCounter = new AtomicInteger(0);
   private final Executor executor;
   private final ObjectProvider<ClientHandler> clientHandlerProvider;
@@ -31,9 +30,9 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
   }
 
   @Override
-  public void start(int port) {
+  public void start(int port, int connectionsInQueue) {
     new Thread(() -> {
-      try (ServerSocket serverSocket = new ServerSocket(port)) {
+      try (ServerSocket serverSocket = new ServerSocket(port, connectionsInQueue)) {
         logger.info("Server starts listening on TCP port {}", port);
 
         while (true) {
@@ -56,12 +55,12 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
     if (error) {
       logger.error(request);
     }
-    logger.trace("Sent response '{}'", request);
+    logger.debug("Sent response '{}'", request);
   }
 
   @Override
   public void messageReceived(ClientHandler clientHandler, String message) {
-    logger.trace("Received message '{}'", message);
+    logger.debug("Received message '{}'", message);
   }
 
   @Override

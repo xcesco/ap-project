@@ -5,7 +5,6 @@ import org.abubusoft.mee.server.model.compute.ComputationType;
 import org.abubusoft.mee.server.model.compute.ValueType;
 import org.abubusoft.mee.server.services.ClientRequestParser;
 import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ClientRequestParserTest {
 
-  ClientRequestParser parser = new ClientRequestParserImpl(new ExpressionEvaluatorImpl());
+  ClientRequestParser parser = new ClientRequestParserImpl();
 
   @Test
   public void testBye() {

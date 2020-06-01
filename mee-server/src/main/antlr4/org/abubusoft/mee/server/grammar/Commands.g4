@@ -41,6 +41,7 @@ java_number_exponential : ('e' | 'E') java_number_sign? DIGIT+;
 java_number_sign        : ('-' | '+');
 
 expressions: expression (SEMI_COLUMN expression)*;
+// used for expressions build
 evaluate: expression EOF;
 expression : variable
            | number

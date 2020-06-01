@@ -2,9 +2,13 @@ package org.abubusoft.mee.server.model;
 
 import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
+import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.compute.*;
-import org.abubusoft.mee.server.services.ExpressionEvaluator;
+import org.abubusoft.mee.server.model.compute.expression.ExpressionNode;
 import org.abubusoft.mee.server.support.CommandResponseUtils;
+import org.abubusoft.mee.server.support.ExpressionBuilderVisitor;
+import org.abubusoft.mee.server.support.ParserRuleContextBuilder;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,15 +21,26 @@ public class ComputeCommand extends Command {
   private final ValueType valueType;
   private final VariablesDefinition variablesDefinition;
   private final List<String> expressionsList;
-  private final ExpressionEvaluator expressionEvaluator;
 
-  public ComputeCommand(ComputationType computationType, ValueType valueType, VariablesDefinition variablesDefinition, List<String> expressionsList, ExpressionEvaluator expressionEvaluator) {
+  public ComputeCommand(ComputationType computationType, ValueType valueType, VariablesDefinition variablesDefinition, List<String> expressionsList) {
     super(CommandType.COMPUTE);
     this.computationType = computationType;
     this.valueType = valueType;
     this.variablesDefinition = variablesDefinition;
     this.expressionsList = expressionsList;
-    this.expressionEvaluator = expressionEvaluator;
+  }
+
+  static Expression buildExpression(MultiVariableValue values, String expressionString) {
+    try {
+      ParserRuleContext parser = ParserRuleContextBuilder.build(expressionString, CommandsParser::evaluate);
+      ExpressionBuilderVisitor visitor = new ExpressionBuilderVisitor(values, expressionString);
+      ExpressionNode treeNodeRoot = visitor.visit(parser);
+      return new Expression(expressionString, treeNodeRoot);
+    } catch (AppRuntimeException e) {
+      throw e;
+    } catch (Exception e) {
+      throw new AppRuntimeException(e.getMessage());
+    }
   }
 
   public ComputationType getComputationType() {
@@ -53,12 +68,12 @@ public class ComputeCommand extends Command {
         break;
       case AVG:
         String firstExpression = expressionsList.get(0);
-        currentResult = evaluateSingleExpression(values, currentResult, firstExpression);
+        currentResult = evaluateExpression(values, currentResult, firstExpression);
         break;
       case MAX:
       case MIN:
         for (String expression : expressionsList) {
-          currentResult = evaluateSingleExpression(values, currentResult, expression);
+          currentResult = evaluateExpression(values, currentResult, expression);
         }
         break;
       default:
@@ -70,15 +85,22 @@ public class ComputeCommand extends Command {
     return responseBuilder.build();
   }
 
-  private double evaluateSingleExpression(List<MultiVariableValue> values, double result, String expression) {
+  private double evaluateExpression(List<MultiVariableValue> values, double result, String expressionString) {
     double actualValue;
+    boolean trace = logger.isTraceEnabled();
+    Expression expression = buildExpression(values.get(0), expressionString);
     for (MultiVariableValue value : values) {
-      actualValue = expressionEvaluator.evaluate(value, expression);
+      actualValue = expression.evaluate(value);
+      if (trace) {
+        logger.trace(String.format("'%s' with %s = %s", expression, value, CommandResponseUtils.formatValue(actualValue)));
+      }
       result = mergeResults(result, actualValue);
     }
 
     result = finalizeResult(result, values.size());
-    logger.debug(String.format("%s_%s of '%s' (on %s values) = %s", getComputationType(), getValueType(), expression, values.size(), CommandResponseUtils.formatValue(result)));
+    if (logger.isDebugEnabled()) {
+      logger.debug(String.format("%s_%s of '%s' (on %s values) = %s", getComputationType(), getValueType(), expressionString, values.size(), CommandResponseUtils.formatValue(result)));
+    }
     return result;
   }
 
@@ -135,18 +157,17 @@ public class ComputeCommand extends Command {
   }
 
   public static class Builder {
+    private final VariablesDefinition variablesDefinition = new VariablesDefinition();
     private ComputationType computationType;
     private ValueType valueType;
-    private final VariablesDefinition variablesDefinition = new VariablesDefinition();
     private List<String> expressionsList;
-    private final ExpressionEvaluator expressionEvaluator;
 
-    public Builder(ExpressionEvaluator expressionEvaluator) {
-      this.expressionEvaluator = expressionEvaluator;
+    private Builder() {
+
     }
 
-    public static Builder create(ExpressionEvaluator expressionEvaluator) {
-      return new Builder(expressionEvaluator);
+    public static Builder create() {
+      return new Builder();
     }
 
     public Builder setComputationType(ComputationType computationType) {
@@ -160,7 +181,7 @@ public class ComputeCommand extends Command {
     }
 
     public ComputeCommand build() {
-      return new ComputeCommand(computationType, valueType, variablesDefinition, expressionsList, expressionEvaluator);
+      return new ComputeCommand(computationType, valueType, variablesDefinition, expressionsList);
     }
 
     public Builder addVariableDefinition(VariableValuesRange variableValuesRange) {

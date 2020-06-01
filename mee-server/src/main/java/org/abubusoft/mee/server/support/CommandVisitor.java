@@ -12,7 +12,6 @@ import org.abubusoft.mee.server.model.compute.ComputationType;
 import org.abubusoft.mee.server.model.compute.ValueType;
 import org.abubusoft.mee.server.model.compute.VariableValuesRange;
 import org.abubusoft.mee.server.model.stat.StatType;
-import org.abubusoft.mee.server.services.ExpressionEvaluator;
 import org.antlr.v4.runtime.RuleContext;
 
 import java.util.stream.Collectors;
@@ -20,8 +19,8 @@ import java.util.stream.Collectors;
 public class CommandVisitor extends CommandsBaseVisitor<Command> {
   private final ComputeCommand.Builder computeBuilder;
 
-  public CommandVisitor(ExpressionEvaluator expressionEvaluator) {
-    computeBuilder = ComputeCommand.Builder.create(expressionEvaluator);
+  public CommandVisitor() {
+    computeBuilder = ComputeCommand.Builder.create();
   }
 
   public ComputeCommand.Builder getComputeBuilder() {

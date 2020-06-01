@@ -1,17 +1,19 @@
-package org.abubusoft.mee.server.model.compute;
+package org.abubusoft.mee.server.model;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
+import org.abubusoft.mee.server.model.ComputeCommand;
+import org.abubusoft.mee.server.model.compute.Expression;
+import org.abubusoft.mee.server.model.compute.MultiVariableValue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionEvaluatorImplWithVariablesTest {
-  ExpressionEvaluatorImpl evaluator = new ExpressionEvaluatorImpl();
-
+public class ExpressionWithVariablesTest {
   @Test
   public void testNumbersEvaluation() throws MalformedCommandException {
     Assertions.assertThrows(AppRuntimeException.class, () -> evaluateExpression("x5", 1.0, 0, 1.0));
@@ -55,7 +57,7 @@ public class ExpressionEvaluatorImplWithVariablesTest {
 
   @Test
   public void testVariableUndefined() throws MalformedCommandException {
-    Assertions.assertThrows(UndefinedVariableException.class, ()->evaluateExpression("(x^y2)", 2, 1, 2.0));
+    Assertions.assertThrows(UndefinedVariableException.class, () -> evaluateExpression("(x^y2)", 2, 1, 2.0));
   }
 
   @Test
@@ -65,10 +67,12 @@ public class ExpressionEvaluatorImplWithVariablesTest {
   }
 
   private void evaluateExpression(String input, double variableValueX, double variableValueY1, double aspectedValue) throws MalformedCommandException {
-    double evaluationResult = evaluator.evaluate(MultiVariableValue.Builder.create()
+    MultiVariableValue values = MultiVariableValue.Builder.create()
             .add("x", variableValueX)
             .add("y1", variableValueY1)
-            .build(), input);
+            .build();
+    Expression expression = ComputeCommand.buildExpression(values, input);
+    double evaluationResult = expression.evaluate(values);
     assertEquals(aspectedValue, evaluationResult, input + "=" + aspectedValue);
   }
 

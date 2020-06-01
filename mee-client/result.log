@@ -1,0 +1,1202 @@
+Read file /Users/xcesco/git/ap-project/mee-client/examples.txt
+Start thread pool 1000
+Start job 58 on pool-1-thread-59
+Start job 15 on pool-1-thread-16
+Start job 52 on pool-1-thread-53
+Start job 12 on pool-1-thread-13
+Start job 11 on pool-1-thread-12
+Start job 26 on pool-1-thread-27
+Start job 45 on pool-1-thread-46
+Start job 4 on pool-1-thread-5
+Start job 59 on pool-1-thread-60
+Start job 19 on pool-1-thread-20
+Start job 46 on pool-1-thread-47
+Start job 56 on pool-1-thread-57
+Start job 7 on pool-1-thread-8
+Start job 25 on pool-1-thread-26
+Start job 47 on pool-1-thread-48
+Start job 8 on pool-1-thread-9
+Start job 6 on pool-1-thread-7
+Start job 66 on pool-1-thread-67
+Start job 79 on pool-1-thread-80
+Start job 51 on pool-1-thread-52
+Start job 80 on pool-1-thread-81
+Start job 78 on pool-1-thread-79
+Start job 77 on pool-1-thread-78
+Start job 82 on pool-1-thread-83
+Start job 76 on pool-1-thread-77
+Start job 75 on pool-1-thread-76
+Start job 74 on pool-1-thread-75
+Start job 44 on pool-1-thread-45
+Start job 16 on pool-1-thread-17
+Start job 61 on pool-1-thread-62
+Start job 87 on pool-1-thread-88
+Start job 73 on pool-1-thread-74
+Start job 88 on pool-1-thread-89
+Start job 72 on pool-1-thread-73
+Start job 57 on pool-1-thread-58
+Start job 65 on pool-1-thread-66
+Start job 10 on pool-1-thread-11
+Start job 32 on pool-1-thread-33
+Start job 24 on pool-1-thread-25
+Start job 93 on pool-1-thread-94
+Start job 20 on pool-1-thread-21
+Start job 50 on pool-1-thread-51
+Start job 35 on pool-1-thread-36
+Start job 41 on pool-1-thread-42
+Start job 96 on pool-1-thread-97
+Start job 28 on pool-1-thread-29
+Start job 38 on pool-1-thread-39
+Start job 71 on pool-1-thread-72
+Start job 17 on pool-1-thread-18
+Start job 99 on pool-1-thread-100
+Start job 64 on pool-1-thread-65
+Start job 48 on pool-1-thread-49
+Start job 21 on pool-1-thread-22
+Start job 63 on pool-1-thread-64
+Start job 39 on pool-1-thread-40
+Start job 36 on pool-1-thread-37
+Start job 34 on pool-1-thread-35
+Start job 70 on pool-1-thread-71
+Start job 53 on pool-1-thread-54
+Start job 37 on pool-1-thread-38
+Start job 31 on pool-1-thread-32
+Start job 29 on pool-1-thread-30
+Start job 14 on pool-1-thread-15
+Start job 69 on pool-1-thread-70
+Start job 0 on pool-1-thread-1
+Start job 5 on pool-1-thread-6
+Start job 22 on pool-1-thread-23
+Start job 62 on pool-1-thread-63
+Start job 49 on pool-1-thread-50
+Start job 9 on pool-1-thread-10
+Start job 30 on pool-1-thread-31
+Start job 3 on pool-1-thread-4
+Start job 54 on pool-1-thread-55
+Start job 13 on pool-1-thread-14
+Start job 23 on pool-1-thread-24
+Start job 1 on pool-1-thread-2
+Start job 68 on pool-1-thread-69
+Start job 43 on pool-1-thread-44
+Start job 40 on pool-1-thread-41
+Start job 27 on pool-1-thread-28
+Start job 18 on pool-1-thread-19
+Start job 55 on pool-1-thread-56
+Start job 33 on pool-1-thread-34
+Start job 67 on pool-1-thread-68
+Start job 42 on pool-1-thread-43
+Start job 2 on pool-1-thread-3
+Start job 60 on pool-1-thread-61
+Start job 98 on pool-1-thread-99
+Start job 97 on pool-1-thread-98
+Start job 95 on pool-1-thread-96
+Start job 94 on pool-1-thread-95
+Start job 92 on pool-1-thread-93
+Start job 91 on pool-1-thread-92
+Start job 90 on pool-1-thread-91
+Start job 89 on pool-1-thread-90
+Start job 86 on pool-1-thread-87
+Start job 85 on pool-1-thread-86
+Start job 84 on pool-1-thread-85
+Start job 83 on pool-1-thread-84
+Start job 81 on pool-1-thread-82
+connect /127.0.0.1:51176 to localhost:10000
+connect /127.0.0.1:51191 to localhost:10000
+connect /127.0.0.1:51206 to localhost:10000
+connect /127.0.0.1:51183 to localhost:10000
+connect /127.0.0.1:51188 to localhost:10000
+connect /127.0.0.1:51120 to localhost:10000
+connect /127.0.0.1:51151 to localhost:10000
+connect /127.0.0.1:51189 to localhost:10000
+connect /127.0.0.1:51165 to localhost:10000
+connect /127.0.0.1:51133 to localhost:10000
+connect /127.0.0.1:51157 to localhost:10000
+connect /127.0.0.1:51173 to localhost:10000
+connect /127.0.0.1:51199 to localhost:10000
+connect /127.0.0.1:51194 to localhost:10000
+connect /127.0.0.1:51119 to localhost:10000
+connect /127.0.0.1:51182 to localhost:10000
+connect /127.0.0.1:51208 to localhost:10000
+connect /127.0.0.1:51202 to localhost:10000
+connect /127.0.0.1:51137 to localhost:10000
+connect /127.0.0.1:51204 to localhost:10000
+connect /127.0.0.1:51195 to localhost:10000
+connect /127.0.0.1:51143 to localhost:10000
+connect /127.0.0.1:51154 to localhost:10000
+connect /127.0.0.1:51161 to localhost:10000
+connect /127.0.0.1:51186 to localhost:10000
+connect /127.0.0.1:51162 to localhost:10000
+connect /127.0.0.1:51155 to localhost:10000
+connect /127.0.0.1:51190 to localhost:10000
+connect /127.0.0.1:51145 to localhost:10000
+connect /127.0.0.1:51203 to localhost:10000
+connect /127.0.0.1:51114 to localhost:10000
+connect /127.0.0.1:51179 to localhost:10000
+connect /127.0.0.1:51163 to localhost:10000
+connect /127.0.0.1:51142 to localhost:10000
+connect /127.0.0.1:51170 to localhost:10000
+connect /127.0.0.1:51144 to localhost:10000
+connect /127.0.0.1:51185 to localhost:10000
+connect /127.0.0.1:51147 to localhost:10000
+connect /127.0.0.1:51138 to localhost:10000
+connect /127.0.0.1:51184 to localhost:10000
+connect /127.0.0.1:51166 to localhost:10000
+connect /127.0.0.1:51167 to localhost:10000
+connect /127.0.0.1:51192 to localhost:10000
+connect /127.0.0.1:51175 to localhost:10000
+connect /127.0.0.1:51135 to localhost:10000
+connect /127.0.0.1:51136 to localhost:10000
+connect /127.0.0.1:51178 to localhost:10000
+connect /127.0.0.1:51196 to localhost:10000
+connect /127.0.0.1:51126 to localhost:10000
+connect /127.0.0.1:51132 to localhost:10000
+connect /127.0.0.1:51140 to localhost:10000
+connect /127.0.0.1:51118 to localhost:10000
+connect /127.0.0.1:51152 to localhost:10000
+connect /127.0.0.1:51110 to localhost:10000
+connect /127.0.0.1:51117 to localhost:10000
+connect /127.0.0.1:51121 to localhost:10000
+connect /127.0.0.1:51123 to localhost:10000
+connect /127.0.0.1:51169 to localhost:10000
+connect /127.0.0.1:51141 to localhost:10000
+connect /127.0.0.1:51111 to localhost:10000
+connect /127.0.0.1:51177 to localhost:10000
+connect /127.0.0.1:51116 to localhost:10000
+connect /127.0.0.1:51109 to localhost:10000
+connect /127.0.0.1:51171 to localhost:10000
+connect /127.0.0.1:51200 to localhost:10000
+connect /127.0.0.1:51168 to localhost:10000
+connect /127.0.0.1:51181 to localhost:10000
+connect /127.0.0.1:51130 to localhost:10000
+connect /127.0.0.1:51158 to localhost:10000
+connect /127.0.0.1:51205 to localhost:10000
+connect /127.0.0.1:51115 to localhost:10000
+connect /127.0.0.1:51160 to localhost:10000
+connect /127.0.0.1:51201 to localhost:10000
+connect /127.0.0.1:51128 to localhost:10000
+connect /127.0.0.1:51164 to localhost:10000
+connect /127.0.0.1:51198 to localhost:10000
+connect /127.0.0.1:51180 to localhost:10000
+connect /127.0.0.1:51125 to localhost:10000
+connect /127.0.0.1:51139 to localhost:10000
+connect /127.0.0.1:51129 to localhost:10000
+connect /127.0.0.1:51131 to localhost:10000
+connect /127.0.0.1:51159 to localhost:10000
+connect /127.0.0.1:51153 to localhost:10000
+connect /127.0.0.1:51134 to localhost:10000
+connect /127.0.0.1:51146 to localhost:10000
+connect /127.0.0.1:51148 to localhost:10000
+connect /127.0.0.1:51172 to localhost:10000
+connect /127.0.0.1:51156 to localhost:10000
+connect /127.0.0.1:51174 to localhost:10000
+connect /127.0.0.1:51122 to localhost:10000
+connect /127.0.0.1:51150 to localhost:10000
+connect /127.0.0.1:51207 to localhost:10000
+connect /127.0.0.1:51193 to localhost:10000
+connect /127.0.0.1:51187 to localhost:10000
+connect /127.0.0.1:51112 to localhost:10000
+connect /127.0.0.1:51124 to localhost:10000
+connect /127.0.0.1:51113 to localhost:10000
+connect /127.0.0.1:51149 to localhost:10000
+connect /127.0.0.1:51197 to localhost:10000
+connect /127.0.0.1:51127 to localhost:10000
+  34 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  82 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  53 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  94 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  75 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   5 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  55 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  12 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  66 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  20 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  76 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  32 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  68 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  52 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  17 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  95 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  38 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  48 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  88 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   0 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  47 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  27 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  58 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  54 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  77 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   1 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  15 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  97 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  26 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  99 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   2 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  81 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  84 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  56 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  42 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  41 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  62 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  87 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  46 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  44 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  93 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  14 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  80 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  40 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  11 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  18 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  31 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  29 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  61 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  65 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  91 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   7 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   8 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  89 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   4 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  64 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  23 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  13 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  21 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  98 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  57 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   3 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  33 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  70 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  86 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  19 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  83 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  79 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  72 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   9 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  67 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  60 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  25 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  16 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  59 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  50 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+   6 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  69 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  90 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  39 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  73 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  49 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  24 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  78 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  35 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  28 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  30 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  71 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  92 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  36 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  51 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  37 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  63 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  74 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  22 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  96 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  10 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  45 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  43 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  85 --> SEND: MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(21.1-x0));((x1*x0)+2)
+  10 <-- RESP: OK;0.076;52168.009950
+  10 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  28 <-- RESP: OK;0.092;52168.009950
+  28 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  19 <-- RESP: OK;0.076;52168.009950
+  19 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  63 <-- RESP: OK;0.063;52168.009950
+  59 <-- RESP: OK;0.086;52168.009950
+  63 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  59 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  60 <-- RESP: OK;0.034;52168.009950
+  60 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  73 <-- RESP: OK;0.041;52168.009950
+  73 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   0 <-- RESP: OK;0.048;52168.009950
+   0 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  52 <-- RESP: OK;0.056;52168.009950
+  52 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  29 <-- RESP: OK;0.057;52168.009950
+  29 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  64 <-- RESP: OK;0.062;52168.009950
+  64 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  17 <-- RESP: OK;0.067;52168.009950
+  17 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  89 <-- RESP: OK;0.070;52168.009950
+  89 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  71 <-- RESP: OK;0.033;52168.009950
+  71 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  18 <-- RESP: OK;0.064;52168.009950
+  18 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  66 <-- RESP: OK;0.074;52168.009950
+  66 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  83 <-- RESP: OK;0.054;52168.009950
+  83 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  24 <-- RESP: OK;0.050;52168.009950
+  24 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  57 <-- RESP: OK;0.050;52168.009950
+  35 <-- RESP: OK;0.056;52168.009950
+  57 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  35 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  53 <-- RESP: OK;0.066;52168.009950
+  53 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  21 <-- RESP: OK;0.073;52168.009950
+  21 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  99 <-- RESP: OK;0.040;52168.009950
+  99 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  44 <-- RESP: OK;0.088;52168.009950
+  44 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  65 <-- RESP: OK;0.033;52168.009950
+  65 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  97 <-- RESP: OK;0.046;52168.009950
+  97 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  74 <-- RESP: OK;0.056;52168.009950
+  74 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  75 <-- RESP: OK;0.067;52168.009950
+  75 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  41 <-- RESP: OK;0.050;52168.009950
+  41 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  94 <-- RESP: OK;0.033;52168.009950
+  94 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  81 <-- RESP: OK;0.046;52168.009950
+  81 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  86 <-- RESP: OK;0.033;52168.009950
+  86 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  96 <-- RESP: OK;0.058;52168.009950
+  96 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  42 <-- RESP: OK;0.071;52168.009950
+  42 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  98 <-- RESP: OK;0.046;52168.009950
+  98 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  33 <-- RESP: OK;0.084;52168.009950
+  33 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  32 <-- RESP: OK;0.087;52168.009950
+  32 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   3 <-- RESP: OK;0.042;52168.009950
+   3 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  34 <-- RESP: OK;0.048;52168.009950
+  34 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  78 <-- RESP: OK;0.056;52168.009950
+  78 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  25 <-- RESP: OK;0.065;52168.009950
+  25 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  88 <-- RESP: OK;0.056;52168.009950
+  88 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  13 <-- RESP: OK;0.084;52168.009950
+  13 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  12 <-- RESP: OK;0.087;52168.009950
+  12 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   1 <-- RESP: OK;0.092;52168.009950
+   1 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  92 <-- RESP: OK;0.057;52168.009950
+  92 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  56 <-- RESP: OK;0.046;52168.009950
+  56 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  55 <-- RESP: OK;0.033;52168.009950
+  55 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   9 <-- RESP: OK;0.086;52168.009950
+   9 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  45 <-- RESP: OK;0.055;52168.009950
+  45 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  69 <-- RESP: OK;0.056;52168.009950
+  69 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  30 <-- RESP: OK;0.073;52168.009950
+  30 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  38 <-- RESP: OK;0.033;52168.009950
+  38 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  16 <-- RESP: OK;0.050;52168.009950
+  16 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  77 <-- RESP: OK;0.063;52168.009950
+  77 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  49 <-- RESP: OK;0.048;52168.009950
+  49 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  23 <-- RESP: OK;0.041;52168.009950
+  23 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  14 <-- RESP: OK;0.052;52168.009950
+  14 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  20 <-- RESP: OK;0.056;52168.009950
+  20 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  61 <-- RESP: OK;0.063;52168.009950
+  61 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  37 <-- RESP: OK;0.049;52168.009950
+  37 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  72 <-- RESP: OK;0.033;52168.009950
+  72 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   7 <-- RESP: OK;0.033;52168.009950
+   7 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  47 <-- RESP: OK;0.067;52168.009950
+  47 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  15 <-- RESP: OK;0.040;52168.009950
+  15 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  91 <-- RESP: OK;0.033;52168.009950
+  91 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  48 <-- RESP: OK;0.041;52168.009950
+  48 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  43 <-- RESP: OK;0.033;52168.009950
+  11 <-- RESP: OK;0.083;52168.009950
+  62 <-- RESP: OK;0.040;52168.009950
+   8 <-- RESP: OK;0.082;52168.009950
+  11 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  62 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  87 <-- RESP: OK;0.087;52168.009950
+  68 <-- RESP: OK;0.084;52168.009950
+   8 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  85 <-- RESP: OK;0.049;52168.009950
+  43 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  27 <-- RESP: OK;0.033;52168.009950
+   5 <-- RESP: OK;0.076;52168.009950
+  87 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  27 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  68 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   5 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  39 <-- RESP: OK;0.066;52168.009950
+   6 <-- RESP: OK;0.040;52168.009950
+  84 <-- RESP: OK;0.078;52168.009950
+  85 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  39 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  84 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   6 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  76 <-- RESP: OK;0.094;52168.009950
+  76 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  46 <-- RESP: OK;0.095;52168.009950
+  46 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   2 <-- RESP: OK;0.096;52168.009950
+   2 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  80 <-- RESP: OK;0.096;52168.009950
+  80 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  36 <-- RESP: OK;0.098;52168.009950
+  36 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  82 <-- RESP: OK;0.099;52168.009950
+  82 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  50 <-- RESP: OK;0.103;52168.009950
+  50 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  31 <-- RESP: OK;0.179;52168.009950
+  31 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  26 <-- RESP: OK;0.181;52168.009950
+  26 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  70 <-- RESP: OK;0.183;52168.009950
+  70 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  51 <-- RESP: OK;0.188;52168.009950
+  51 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  58 <-- RESP: OK;0.194;52168.009950
+  58 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  67 <-- RESP: OK;0.196;52168.009950
+  67 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   4 <-- RESP: OK;0.216;52168.009950
+   4 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  54 <-- RESP: OK;0.219;52168.009950
+  54 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  93 <-- RESP: OK;0.221;52168.009950
+  93 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  40 <-- RESP: OK;0.221;52168.009950
+  40 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  90 <-- RESP: OK;0.098;52168.009950
+  90 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  95 <-- RESP: OK;0.221;52168.009950
+  95 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  22 <-- RESP: OK;0.257;52168.009950
+  22 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+  79 <-- RESP: OK;0.529;52168.009950
+  79 --> SEND: COUNT_LIST;x0:1:0.001:100;x1
+   8 <-- RESP: OK;0.978;99001.000000
+   8 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  60 <-- RESP: OK;0.993;99001.000000
+  60 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  60 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  60 --> SEND: STAT_MAX_TIME
+  60 <-- RESP: OK;0.001;0.993000
+  60 --> SEND: BYE
+closing /127.0.0.1:51128 to localhost:10000
+  73 <-- RESP: OK;1.011;99001.000000
+   8 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  73 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   8 --> SEND: STAT_MAX_TIME
+   8 <-- RESP: OK;0.000;1.011000
+   8 --> SEND: BYE
+closing /127.0.0.1:51113 to localhost:10000
+  73 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  19 <-- RESP: OK;1.023;99001.000000
+  73 --> SEND: STAT_MAX_TIME
+  19 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  73 <-- RESP: OK;0.000;1.023000
+  73 --> SEND: BYE
+closing /127.0.0.1:51119 to localhost:10000
+  19 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  19 --> SEND: STAT_MAX_TIME
+  19 <-- RESP: OK;0.000;1.023000
+  19 --> SEND: BYE
+closing /127.0.0.1:51197 to localhost:10000
+  64 <-- RESP: OK;1.007;99001.000000
+  64 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  64 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  64 --> SEND: STAT_MAX_TIME
+  64 <-- RESP: OK;0.000;1.023000
+  64 --> SEND: BYE
+closing /127.0.0.1:51156 to localhost:10000
+   0 <-- RESP: OK;1.024;99001.000000
+   0 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  13 <-- RESP: OK;1.007;99001.000000
+  13 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   0 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   0 --> SEND: STAT_MAX_TIME
+  13 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  13 --> SEND: STAT_MAX_TIME
+   0 <-- RESP: OK;0.000;1.024000
+   0 --> SEND: BYE
+closing /127.0.0.1:51155 to localhost:10000
+  13 <-- RESP: OK;0.000;1.024000
+  13 --> SEND: BYE
+closing /127.0.0.1:51140 to localhost:10000
+  12 <-- RESP: OK;1.029;99001.000000
+  12 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  12 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  12 --> SEND: STAT_MAX_TIME
+  12 <-- RESP: OK;0.000;1.029000
+  12 --> SEND: BYE
+closing /127.0.0.1:51160 to localhost:10000
+   5 <-- RESP: OK;1.017;99001.000000
+   5 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   5 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   5 --> SEND: STAT_MAX_TIME
+   5 <-- RESP: OK;0.000;1.029000
+   5 --> SEND: BYE
+closing /127.0.0.1:51162 to localhost:10000
+  62 <-- RESP: OK;1.057;99001.000000
+  62 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  62 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  62 --> SEND: STAT_MAX_TIME
+  62 <-- RESP: OK;0.000;1.057000
+  62 --> SEND: BYE
+closing /127.0.0.1:51171 to localhost:10000
+  29 <-- RESP: OK;1.092;99001.000000
+  29 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  29 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  29 --> SEND: STAT_MAX_TIME
+  29 <-- RESP: OK;0.000;1.092000
+  29 --> SEND: BYE
+closing /127.0.0.1:51124 to localhost:10000
+  28 <-- RESP: OK;1.065;99001.000000
+  28 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  28 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  28 --> SEND: STAT_MAX_TIME
+  28 <-- RESP: OK;0.000;1.092000
+  28 --> SEND: BYE
+closing /127.0.0.1:51109 to localhost:10000
+  21 <-- RESP: OK;1.325;99001.000000
+  21 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  21 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  21 --> SEND: STAT_MAX_TIME
+  21 <-- RESP: OK;0.000;1.325000
+  21 --> SEND: BYE
+closing /127.0.0.1:51178 to localhost:10000
+  53 <-- RESP: OK;1.311;99001.000000
+  53 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  72 <-- RESP: OK;1.340;99001.000000
+  72 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  53 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  53 --> SEND: STAT_MAX_TIME
+  72 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  72 --> SEND: STAT_MAX_TIME
+  53 <-- RESP: OK;0.000;1.340000
+  53 --> SEND: BYE
+closing /127.0.0.1:51201 to localhost:10000
+  72 <-- RESP: OK;0.000;1.340000
+  72 --> SEND: BYE
+closing /127.0.0.1:51202 to localhost:10000
+  63 <-- RESP: OK;1.338;99001.000000
+  63 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  63 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  63 --> SEND: STAT_MAX_TIME
+  71 <-- RESP: OK;1.318;99001.000000
+  71 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  63 <-- RESP: OK;0.000;1.340000
+  63 --> SEND: BYE
+closing /127.0.0.1:51138 to localhost:10000
+  71 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  71 --> SEND: STAT_MAX_TIME
+  71 <-- RESP: OK;0.000;1.340000
+  71 --> SEND: BYE
+closing /127.0.0.1:51196 to localhost:10000
+   6 <-- RESP: OK;1.346;99001.000000
+   6 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   6 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   6 --> SEND: STAT_MAX_TIME
+   6 <-- RESP: OK;0.000;1.346000
+   6 --> SEND: BYE
+closing /127.0.0.1:51121 to localhost:10000
+  52 <-- RESP: OK;1.322;99001.000000
+  52 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  37 <-- RESP: OK;1.353;99001.000000
+  37 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  52 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  52 --> SEND: STAT_MAX_TIME
+  37 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  37 --> SEND: STAT_MAX_TIME
+  52 <-- RESP: OK;0.000;1.353000
+  52 --> SEND: BYE
+closing /127.0.0.1:51130 to localhost:10000
+  37 <-- RESP: OK;0.000;1.353000
+  37 --> SEND: BYE
+  10 <-- RESP: OK;1.163;99001.000000
+closing /127.0.0.1:51166 to localhost:10000
+  10 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  10 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  10 --> SEND: STAT_MAX_TIME
+  10 <-- RESP: OK;0.000;1.353000
+  10 --> SEND: BYE
+closing /127.0.0.1:51206 to localhost:10000
+  35 <-- RESP: OK;1.164;99001.000000
+  35 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  35 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  35 --> SEND: STAT_MAX_TIME
+  35 <-- RESP: OK;0.000;1.353000
+  35 --> SEND: BYE
+closing /127.0.0.1:51198 to localhost:10000
+  39 <-- RESP: OK;1.349;99001.000000
+  39 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  39 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  39 --> SEND: STAT_MAX_TIME
+  39 <-- RESP: OK;0.000;1.353000
+  39 --> SEND: BYE
+closing /127.0.0.1:51120 to localhost:10000
+   7 <-- RESP: OK;1.365;99001.000000
+   7 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   7 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   7 --> SEND: STAT_MAX_TIME
+   7 <-- RESP: OK;0.000;1.365000
+   7 --> SEND: BYE
+closing /127.0.0.1:51159 to localhost:10000
+  32 <-- RESP: OK;1.453;99001.000000
+  32 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  32 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  32 --> SEND: STAT_MAX_TIME
+  32 <-- RESP: OK;0.000;1.453000
+  32 --> SEND: BYE
+closing /127.0.0.1:51194 to localhost:10000
+  65 <-- RESP: OK;1.455;99001.000000
+  65 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  81 <-- RESP: OK;1.447;99001.000000
+  65 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  81 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  65 --> SEND: STAT_MAX_TIME
+  65 <-- RESP: OK;0.000;1.455000
+  65 --> SEND: BYE
+closing /127.0.0.1:51136 to localhost:10000
+  81 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  81 --> SEND: STAT_MAX_TIME
+  66 <-- RESP: OK;1.437;99001.000000
+  66 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  81 <-- RESP: OK;0.000;1.455000
+  81 --> SEND: BYE
+closing /127.0.0.1:51185 to localhost:10000
+  66 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  66 --> SEND: STAT_MAX_TIME
+  66 <-- RESP: OK;0.000;1.455000
+  66 --> SEND: BYE
+closing /127.0.0.1:51110 to localhost:10000
+  94 <-- RESP: OK;1.449;99001.000000
+  94 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  94 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  94 --> SEND: STAT_MAX_TIME
+  94 <-- RESP: OK;0.000;1.455000
+  94 --> SEND: BYE
+closing /127.0.0.1:51114 to localhost:10000
+  84 <-- RESP: OK;1.421;99001.000000
+  84 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  74 <-- RESP: OK;1.417;99001.000000
+  74 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  74 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  84 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  74 --> SEND: STAT_MAX_TIME
+  84 --> SEND: STAT_MAX_TIME
+  74 <-- RESP: OK;0.000;1.455000
+  74 --> SEND: BYE
+  84 <-- RESP: OK;0.000;1.455000
+closing /127.0.0.1:51184 to localhost:10000
+  84 --> SEND: BYE
+closing /127.0.0.1:51134 to localhost:10000
+  25 <-- RESP: OK;1.446;99001.000000
+  25 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  25 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  25 --> SEND: STAT_MAX_TIME
+  25 <-- RESP: OK;0.000;1.455000
+  25 --> SEND: BYE
+closing /127.0.0.1:51193 to localhost:10000
+  86 <-- RESP: OK;1.490;99001.000000
+  33 <-- RESP: OK;1.448;99001.000000
+  86 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  33 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  33 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  86 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  33 --> SEND: STAT_MAX_TIME
+  86 --> SEND: STAT_MAX_TIME
+  33 <-- RESP: OK;0.000;1.490000
+  33 --> SEND: BYE
+  86 <-- RESP: OK;0.000;1.490000
+closing /127.0.0.1:51157 to localhost:10000
+  86 --> SEND: BYE
+closing /127.0.0.1:51204 to localhost:10000
+  89 <-- RESP: OK;1.457;99001.000000
+  89 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  89 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  89 --> SEND: STAT_MAX_TIME
+  89 <-- RESP: OK;0.000;1.490000
+  89 --> SEND: BYE
+closing /127.0.0.1:51143 to localhost:10000
+  57 <-- RESP: OK;1.463;99001.000000
+  57 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  57 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  57 --> SEND: STAT_MAX_TIME
+  57 <-- RESP: OK;0.000;1.490000
+  57 --> SEND: BYE
+closing /127.0.0.1:51180 to localhost:10000
+  97 <-- RESP: OK;1.866;99001.000000
+  97 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  97 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  97 --> SEND: STAT_MAX_TIME
+  97 <-- RESP: OK;0.000;1.866000
+  97 --> SEND: BYE
+closing /127.0.0.1:51205 to localhost:10000
+  14 <-- RESP: OK;1.873;99001.000000
+  14 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  14 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  14 --> SEND: STAT_MAX_TIME
+  14 <-- RESP: OK;0.000;1.873000
+  14 --> SEND: BYE
+closing /127.0.0.1:51200 to localhost:10000
+  34 <-- RESP: OK;1.866;99001.000000
+  34 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  34 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  34 --> SEND: STAT_MAX_TIME
+  34 <-- RESP: OK;0.000;1.873000
+  34 --> SEND: BYE
+closing /127.0.0.1:51161 to localhost:10000
+  98 <-- RESP: OK;1.887;99001.000000
+  98 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  42 <-- RESP: OK;1.884;99001.000000
+  42 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  98 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  98 --> SEND: STAT_MAX_TIME
+  98 <-- RESP: OK;0.000;1.887000
+  42 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  98 --> SEND: BYE
+  42 --> SEND: STAT_MAX_TIME
+closing /127.0.0.1:51125 to localhost:10000
+  42 <-- RESP: OK;0.000;1.887000
+  42 --> SEND: BYE
+closing /127.0.0.1:51177 to localhost:10000
+  44 <-- RESP: OK;1.893;99001.000000
+  44 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  44 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  44 --> SEND: STAT_MAX_TIME
+  44 <-- RESP: OK;0.000;1.893000
+  44 --> SEND: BYE
+closing /127.0.0.1:51181 to localhost:10000
+  61 <-- RESP: OK;1.954;99001.000000
+  61 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  61 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  61 --> SEND: STAT_MAX_TIME
+  61 <-- RESP: OK;0.000;1.954000
+  61 --> SEND: BYE
+closing /127.0.0.1:51207 to localhost:10000
+  75 <-- RESP: OK;1.962;99001.000000
+  75 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  75 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  75 --> SEND: STAT_MAX_TIME
+  75 <-- RESP: OK;0.000;1.962000
+  75 --> SEND: BYE
+closing /127.0.0.1:51115 to localhost:10000
+  24 <-- RESP: OK;2.029;99001.000000
+  24 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  24 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  24 --> SEND: STAT_MAX_TIME
+  24 <-- RESP: OK;0.000;2.029000
+  24 --> SEND: BYE
+closing /127.0.0.1:51195 to localhost:10000
+  88 <-- RESP: OK;2.018;99001.000000
+  88 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  88 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  88 --> SEND: STAT_MAX_TIME
+  88 <-- RESP: OK;0.000;2.029000
+  88 --> SEND: BYE
+closing /127.0.0.1:51135 to localhost:10000
+  48 <-- RESP: OK;2.024;99001.000000
+  48 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  48 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  48 --> SEND: STAT_MAX_TIME
+  48 <-- RESP: OK;0.000;2.029000
+  48 --> SEND: BYE
+closing /127.0.0.1:51152 to localhost:10000
+  18 <-- RESP: OK;2.077;99001.000000
+  18 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  18 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  18 --> SEND: STAT_MAX_TIME
+  18 <-- RESP: OK;0.000;2.077000
+  18 --> SEND: BYE
+closing /127.0.0.1:51174 to localhost:10000
+   9 <-- RESP: OK;2.390;99001.000000
+   9 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   9 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   9 --> SEND: STAT_MAX_TIME
+   9 <-- RESP: OK;0.000;2.390000
+   9 --> SEND: BYE
+closing /127.0.0.1:51189 to localhost:10000
+  92 <-- RESP: OK;2.408;99001.000000
+  92 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  92 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  92 --> SEND: STAT_MAX_TIME
+  92 <-- RESP: OK;0.000;2.408000
+  92 --> SEND: BYE
+closing /127.0.0.1:51142 to localhost:10000
+  47 <-- RESP: OK;2.479;99001.000000
+  47 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  47 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  47 --> SEND: STAT_MAX_TIME
+  47 <-- RESP: OK;0.000;2.479000
+  47 --> SEND: BYE
+closing /127.0.0.1:51147 to localhost:10000
+  83 <-- RESP: OK;2.579;99001.000000
+  83 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  83 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  83 --> SEND: STAT_MAX_TIME
+  59 <-- RESP: OK;2.577;99001.000000
+  59 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  83 <-- RESP: OK;0.000;2.579000
+  83 --> SEND: BYE
+closing /127.0.0.1:51167 to localhost:10000
+  59 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  59 --> SEND: STAT_MAX_TIME
+  59 <-- RESP: OK;0.000;2.579000
+  59 --> SEND: BYE
+closing /127.0.0.1:51127 to localhost:10000
+  78 <-- RESP: OK;2.677;99001.000000
+  78 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  78 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  78 --> SEND: STAT_MAX_TIME
+  78 <-- RESP: OK;0.000;2.677000
+  78 --> SEND: BYE
+closing /127.0.0.1:51150 to localhost:10000
+  68 <-- RESP: OK;2.684;99001.000000
+  68 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  68 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  68 --> SEND: STAT_MAX_TIME
+  68 <-- RESP: OK;0.000;2.684000
+  68 --> SEND: BYE
+closing /127.0.0.1:51154 to localhost:10000
+  41 <-- RESP: OK;2.695;99001.000000
+  41 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  41 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  41 --> SEND: STAT_MAX_TIME
+  17 <-- RESP: OK;2.694;99001.000000
+  17 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  41 <-- RESP: OK;0.000;2.695000
+  41 --> SEND: BYE
+closing /127.0.0.1:51139 to localhost:10000
+  17 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  17 --> SEND: STAT_MAX_TIME
+  17 <-- RESP: OK;0.000;2.695000
+  17 --> SEND: BYE
+closing /127.0.0.1:51169 to localhost:10000
+  96 <-- RESP: OK;2.612;99001.000000
+  96 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  96 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  96 --> SEND: STAT_MAX_TIME
+  96 <-- RESP: OK;0.001;2.695000
+  96 --> SEND: BYE
+closing /127.0.0.1:51122 to localhost:10000
+  99 <-- RESP: OK;2.669;99001.000000
+  99 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  99 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  99 --> SEND: STAT_MAX_TIME
+  99 <-- RESP: OK;0.000;2.695000
+  99 --> SEND: BYE
+closing /127.0.0.1:51203 to localhost:10000
+   1 <-- RESP: OK;2.671;99001.000000
+   1 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   1 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   1 --> SEND: STAT_MAX_TIME
+   1 <-- RESP: OK;0.000;2.695000
+   1 --> SEND: BYE
+closing /127.0.0.1:51186 to localhost:10000
+  27 <-- RESP: OK;2.820;99001.000000
+  27 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  27 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  27 --> SEND: STAT_MAX_TIME
+  27 <-- RESP: OK;0.000;2.820000
+  27 --> SEND: BYE
+closing /127.0.0.1:51141 to localhost:10000
+  91 <-- RESP: OK;2.856;99001.000000
+  91 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  91 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  91 --> SEND: STAT_MAX_TIME
+  91 <-- RESP: OK;0.000;2.856000
+  91 --> SEND: BYE
+closing /127.0.0.1:51131 to localhost:10000
+  43 <-- RESP: OK;2.776;99001.000000
+  43 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  43 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  43 --> SEND: STAT_MAX_TIME
+  43 <-- RESP: OK;0.000;2.856000
+  43 --> SEND: BYE
+closing /127.0.0.1:51129 to localhost:10000
+  23 <-- RESP: OK;2.789;99001.000000
+  23 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  23 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  23 --> SEND: STAT_MAX_TIME
+  23 <-- RESP: OK;0.000;2.856000
+  23 --> SEND: BYE
+closing /127.0.0.1:51111 to localhost:10000
+  20 <-- RESP: OK;2.804;99001.000000
+  20 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  20 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  20 --> SEND: STAT_MAX_TIME
+  20 <-- RESP: OK;0.000;2.856000
+  20 --> SEND: BYE
+closing /127.0.0.1:51192 to localhost:10000
+  49 <-- RESP: OK;2.797;99001.000000
+  49 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  49 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  49 --> SEND: STAT_MAX_TIME
+  49 <-- RESP: OK;0.000;2.856000
+  49 --> SEND: BYE
+closing /127.0.0.1:51133 to localhost:10000
+  69 <-- RESP: OK;2.798;99001.000000
+  69 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  69 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  69 --> SEND: STAT_MAX_TIME
+  69 <-- RESP: OK;0.000;2.856000
+  69 --> SEND: BYE
+closing /127.0.0.1:51123 to localhost:10000
+  77 <-- RESP: OK;2.817;99001.000000
+  77 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  77 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  77 --> SEND: STAT_MAX_TIME
+  77 <-- RESP: OK;0.000;2.856000
+  77 --> SEND: BYE
+closing /127.0.0.1:51172 to localhost:10000
+  55 <-- RESP: OK;2.824;99001.000000
+  55 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  55 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  55 --> SEND: STAT_MAX_TIME
+  11 <-- RESP: OK;2.823;99001.000000
+  11 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  55 <-- RESP: OK;0.000;2.856000
+  55 --> SEND: BYE
+closing /127.0.0.1:51188 to localhost:10000
+  11 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  11 --> SEND: STAT_MAX_TIME
+  11 <-- RESP: OK;0.000;2.856000
+  11 --> SEND: BYE
+closing /127.0.0.1:51170 to localhost:10000
+  67 <-- RESP: OK;2.833;99001.000000
+  67 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  67 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  67 --> SEND: STAT_MAX_TIME
+  67 <-- RESP: OK;0.000;2.856000
+  67 --> SEND: BYE
+closing /127.0.0.1:51164 to localhost:10000
+   4 <-- RESP: OK;2.840;99001.000000
+   4 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   4 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   4 --> SEND: STAT_MAX_TIME
+   4 <-- RESP: OK;0.000;2.856000
+   4 --> SEND: BYE
+closing /127.0.0.1:51199 to localhost:10000
+  45 <-- RESP: OK;3.257;99001.000000
+  45 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  45 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  45 --> SEND: STAT_MAX_TIME
+  45 <-- RESP: OK;0.000;3.257000
+  45 --> SEND: BYE
+closing /127.0.0.1:51137 to localhost:10000
+  46 <-- RESP: OK;3.242;99001.000000
+  46 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  46 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  46 --> SEND: STAT_MAX_TIME
+  46 <-- RESP: OK;0.000;3.257000
+  46 --> SEND: BYE
+closing /127.0.0.1:51126 to localhost:10000
+  31 <-- RESP: OK;3.264;99001.000000
+  85 <-- RESP: OK;3.264;99001.000000
+  31 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  85 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  38 <-- RESP: OK;3.262;99001.000000
+  38 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  85 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  31 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  85 --> SEND: STAT_MAX_TIME
+  31 --> SEND: STAT_MAX_TIME
+  38 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  38 --> SEND: STAT_MAX_TIME
+  31 <-- RESP: OK;0.000;3.264000
+  31 --> SEND: BYE
+closing /127.0.0.1:51153 to localhost:10000
+  38 <-- RESP: OK;0.000;3.264000
+  38 --> SEND: BYE
+closing /127.0.0.1:51158 to localhost:10000
+  85 <-- RESP: OK;0.000;3.264000
+  85 --> SEND: BYE
+closing /127.0.0.1:51151 to localhost:10000
+  36 <-- RESP: OK;3.262;99001.000000
+  36 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  36 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  36 --> SEND: STAT_MAX_TIME
+  36 <-- RESP: OK;0.000;3.264000
+  36 --> SEND: BYE
+closing /127.0.0.1:51165 to localhost:10000
+   3 <-- RESP: OK;3.260;99001.000000
+   3 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   3 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   3 --> SEND: STAT_MAX_TIME
+   3 <-- RESP: OK;0.000;3.264000
+   3 --> SEND: BYE
+closing /127.0.0.1:51183 to localhost:10000
+  80 <-- RESP: OK;3.266;99001.000000
+  80 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  80 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  80 --> SEND: STAT_MAX_TIME
+  80 <-- RESP: OK;0.000;3.266000
+  80 --> SEND: BYE
+closing /127.0.0.1:51118 to localhost:10000
+  76 <-- RESP: OK;3.472;99001.000000
+  76 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+   2 <-- RESP: OK;3.478;99001.000000
+   2 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  87 <-- RESP: OK;3.464;99001.000000
+  87 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  76 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  76 --> SEND: STAT_MAX_TIME
+  76 <-- RESP: OK;0.000;3.478000
+  87 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+   2 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  76 --> SEND: BYE
+   2 --> SEND: STAT_MAX_TIME
+  87 --> SEND: STAT_MAX_TIME
+closing /127.0.0.1:51176 to localhost:10000
+   2 <-- RESP: OK;0.000;3.478000
+  87 <-- RESP: OK;0.000;3.478000
+   2 --> SEND: BYE
+  87 --> SEND: BYE
+closing /127.0.0.1:51146 to localhost:10000
+closing /127.0.0.1:51190 to localhost:10000
+  22 <-- RESP: OK;3.496;99001.000000
+  22 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  22 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  22 --> SEND: STAT_MAX_TIME
+  22 <-- RESP: OK;0.000;3.496000
+  22 --> SEND: BYE
+closing /127.0.0.1:51179 to localhost:10000
+  15 <-- RESP: OK;3.494;99001.000000
+  79 <-- RESP: OK;3.496;99001.000000
+  15 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  79 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  15 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  79 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  15 --> SEND: STAT_MAX_TIME
+  79 --> SEND: STAT_MAX_TIME
+  79 <-- RESP: OK;0.000;3.496000
+  15 <-- RESP: OK;0.000;3.496000
+  79 --> SEND: BYE
+  15 --> SEND: BYE
+closing /127.0.0.1:51173 to localhost:10000
+closing /127.0.0.1:51163 to localhost:10000
+  40 <-- RESP: OK;3.503;99001.000000
+  40 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  40 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  40 --> SEND: STAT_MAX_TIME
+  40 <-- RESP: OK;0.000;3.503000
+  40 --> SEND: BYE
+closing /127.0.0.1:51144 to localhost:10000
+  70 <-- RESP: OK;3.534;99001.000000
+  70 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  70 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  70 --> SEND: STAT_MAX_TIME
+  70 <-- RESP: OK;0.000;3.534000
+  70 --> SEND: BYE
+closing /127.0.0.1:51187 to localhost:10000
+  56 <-- RESP: OK;3.543;99001.000000
+  56 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  56 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  56 --> SEND: STAT_MAX_TIME
+  56 <-- RESP: OK;0.000;3.543000
+  56 --> SEND: BYE
+closing /127.0.0.1:51112 to localhost:10000
+  93 <-- RESP: OK;3.553;99001.000000
+  93 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  93 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  93 --> SEND: STAT_MAX_TIME
+  93 <-- RESP: OK;0.000;3.553000
+  93 --> SEND: BYE
+closing /127.0.0.1:51145 to localhost:10000
+  54 <-- RESP: OK;3.553;99001.000000
+  54 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  54 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  54 --> SEND: STAT_MAX_TIME
+  54 <-- RESP: OK;0.000;3.553000
+  54 --> SEND: BYE
+closing /127.0.0.1:51116 to localhost:10000
+  30 <-- RESP: OK;3.577;99001.000000
+  95 <-- RESP: OK;3.569;99001.000000
+  30 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  95 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  30 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  95 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  30 --> SEND: STAT_MAX_TIME
+  95 --> SEND: STAT_MAX_TIME
+  30 <-- RESP: OK;0.000;3.577000
+  30 --> SEND: BYE
+  95 <-- RESP: OK;0.000;3.577000
+closing /127.0.0.1:51132 to localhost:10000
+  95 --> SEND: BYE
+closing /127.0.0.1:51175 to localhost:10000
+  50 <-- RESP: OK;3.666;99001.000000
+  50 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  50 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  50 --> SEND: STAT_MAX_TIME
+  50 <-- RESP: OK;0.000;3.666000
+  82 <-- RESP: OK;3.702;99001.000000
+  50 --> SEND: BYE
+  82 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+closing /127.0.0.1:51149 to localhost:10000
+  82 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  82 --> SEND: STAT_MAX_TIME
+  82 <-- RESP: OK;0.000;3.702000
+  82 --> SEND: BYE
+closing /127.0.0.1:51148 to localhost:10000
+  58 <-- RESP: OK;3.675;99001.000000
+  58 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  58 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  58 --> SEND: STAT_MAX_TIME
+  16 <-- RESP: OK;3.709;99001.000000
+  16 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  58 <-- RESP: OK;0.000;3.709000
+  58 --> SEND: BYE
+closing /127.0.0.1:51168 to localhost:10000
+  51 <-- RESP: OK;3.675;99001.000000
+  51 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  26 <-- RESP: OK;3.677;99001.000000
+  26 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  16 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  16 --> SEND: STAT_MAX_TIME
+  16 <-- RESP: OK;0.000;3.709000
+  16 --> SEND: BYE
+  51 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+closing /127.0.0.1:51191 to localhost:10000
+  51 --> SEND: STAT_MAX_TIME
+  26 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  26 --> SEND: STAT_MAX_TIME
+  51 <-- RESP: OK;0.000;3.709000
+  51 --> SEND: BYE
+closing /127.0.0.1:51182 to localhost:10000
+  26 <-- RESP: OK;0.000;3.709000
+  26 --> SEND: BYE
+closing /127.0.0.1:51117 to localhost:10000
+  90 <-- RESP: OK;3.683;99001.000000
+  90 --> SEND: MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));log(x1*x0)
+  90 <-- RESP: ERR;(MalformedCommandException) Unespected char at pos 59
+  90 --> SEND: STAT_MAX_TIME
+  90 <-- RESP: OK;0.000;3.709000
+  90 --> SEND: BYE
+closing /127.0.0.1:51208 to localhost:10000

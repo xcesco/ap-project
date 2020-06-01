@@ -1,15 +1,15 @@
-package org.abubusoft.mee.server.model.compute;
+package org.abubusoft.mee.server.model;
 
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.services.impl.ExpressionEvaluatorImpl;
+import org.abubusoft.mee.server.model.compute.Expression;
+import org.abubusoft.mee.server.model.compute.MultiVariableValue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionEvaluatorImplNoVariablesTest {
-  ExpressionEvaluatorImpl evaluator = new ExpressionEvaluatorImpl();
+public class ExpressionNoVariablesTest {
 
   @Test
   public void testNumbersEvaluation() throws MalformedCommandException {
@@ -69,7 +69,9 @@ public class ExpressionEvaluatorImplNoVariablesTest {
   }
 
   private void evaluateExpression(String input, double aspectedValue) {
-    double evaluationResult = evaluator.evaluate(MultiVariableValue.Builder.create().build(), input);
+    MultiVariableValue noValues = MultiVariableValue.Builder.create().build();
+    Expression expression = ComputeCommand.buildExpression(noValues, input);
+    double evaluationResult = expression.evaluate(noValues);
     assertEquals(aspectedValue, evaluationResult, input + "=" + aspectedValue);
   }
 

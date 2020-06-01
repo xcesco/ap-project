@@ -77,7 +77,7 @@ public class StatisticsServiceImpl implements StatisticsService {
       commandCounter++;
       // AvgNew=AvgOld+(ValueNew-AvgOld)/SizeNew
       averageExecuteTime = averageExecuteTime + (executionTime - averageExecuteTime) / commandCounter;
-      logger.debug("Updated stats: average = {} s,  min = {} s, max = {} s, counter = {}",
+      logger.debug("Updated stats: average = {} s, min = {} s, max = {} s, counter = {}",
               formatValue(averageExecuteTime / 1_000.0),
               formatValue(minExecuteTime / 1_000.0),
               formatValue(maxExecutionTime / 1_000.0),

@@ -6,5 +6,4 @@ public interface CommandVisitor {
   CommandResponse visit(ComputeCommand command);
 
   CommandResponse visit(StatCommand command);
-
 }

@@ -16,6 +16,9 @@ public class Application implements CommandLineRunner {
   @Value("${mee-server.port}")
   String serverPort;
 
+  @Value("${mee-server.connections-in-queue}")
+  int connectionsInQueue;
+
   private MeeServer meeServer;
 
   public static boolean isInteger(String string) {
@@ -52,7 +55,7 @@ public class Application implements CommandLineRunner {
       logger.info(String.format("Listening port %s is specified via application config", port));
     }
 
-    meeServer.start(port);
+    meeServer.start(port, connectionsInQueue);
   }
 
 }
