@@ -74,12 +74,7 @@ public class CommandResponseTest {
 
   @Test
   public void testDivisionBy0() {
-    checkErrorCommand("MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;x1;(1/(x0+(2.0^x1)))", "(EvaluationExpressionException) Division by 0 in '(1/(x0+(2.0^x1)))' with (x0=-1.000000, x1=0.000000)");
-  }
-
-  @Test
-  public void test() {
-    checkErrorCommand("MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;x1;(1/(x0+(2.0^x1)))", "(EvaluationExpressionException) Division by 0 in '(1/(x0+(2.0^x1)))' with (x0=-1.000000, x1=0.000000)");
+    checkCommand("MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;x1;(1/(x0+(2.0^x1)))", "Infinity");
   }
 
   private void checkErrorCommand(String inputLine, String result) {

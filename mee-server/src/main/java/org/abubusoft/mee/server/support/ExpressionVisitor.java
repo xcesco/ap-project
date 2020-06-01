@@ -47,7 +47,6 @@ public class ExpressionVisitor extends CommandsBaseVisitor<Double> {
       } else if (operator.OP_MUL() != null) {
         result = operand1 * operand2;
       } else if (operator.OP_DIV() != null) {
-        AppAssert.assertTrue(operand2 != 0.0, EvaluationExpressionException.class, "Division by 0 in '%s' with %s", expression, this.multiVariableValue.toString());
         result = operand1 / operand2;
       } else if (operator.OP_POW() != null) {
         result = Math.pow(operand1, operand2);

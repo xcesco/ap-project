@@ -19,13 +19,12 @@ import java.util.Arrays;
 public class StatisticsAspect {
   private static final Logger logger = LoggerFactory
           .getLogger(StatisticsAspect.class);
+  private StatisticsService statisticsService;
 
   @Autowired
   public void setStatisticsService(StatisticsService statisticsService) {
     this.statisticsService = statisticsService;
   }
-
-  private StatisticsService statisticsService;
 
   @Around("@annotation(org.abubusoft.mee.server.aop.LogExecutionTime)")
   public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {

@@ -35,7 +35,7 @@ public class ExpressionEvaluatorImplWithVariablesTest {
     evaluateExpression("(x/1)", 2, 0, 2.0);
     evaluateExpression("((8/x)/2)", 2, 0, 2.0);
 
-    Assertions.assertThrows(AppRuntimeException.class, () -> evaluateExpression("(2/x)", 0, 0, 2.0));
+    evaluateExpression("(2/x)", 0, 0, Double.POSITIVE_INFINITY);
   }
 
   @Test

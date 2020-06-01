@@ -11,7 +11,6 @@ public abstract class AppAssert {
       try {
         exception = exceptionClazz.getConstructor(String.class).newInstance(String.format(message, params));
       } catch (Exception e) {
-        e.printStackTrace();
         exception = new AppRuntimeException(String.format("Can not instantiate %s for: %s", exceptionClazz.getSimpleName(), String.format(message, params)));
       }
       throw exception;

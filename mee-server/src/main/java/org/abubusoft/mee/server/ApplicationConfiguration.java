@@ -33,8 +33,8 @@ public class ApplicationConfiguration {
   public Executor connectionExecutor() {
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
     executor.setCorePoolSize(2);
-    executor.setMaxPoolSize(256);
     executor.setQueueCapacity(0);
+    // no max limit for used thread
     executor.setThreadNamePrefix(CONNECTION_THREAD_PREFIX);
     executor.initialize();
     return executor;
@@ -48,6 +48,7 @@ public class ApplicationConfiguration {
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
     executor.setCorePoolSize(numberOfProcessors);
     executor.setMaxPoolSize(numberOfProcessors);
+    // unlimited of execution in queue
     executor.setThreadNamePrefix(COMPUTE_THREAD_PREFIX);
     executor.initialize();
     return executor;
