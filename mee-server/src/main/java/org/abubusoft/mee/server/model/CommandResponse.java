@@ -43,11 +43,9 @@ public class CommandResponse {
   }
 
   public static class Builder {
-    private final ResponseType responseType;
     private double value = 0;
 
     Builder() {
-      this.responseType = ResponseType.OK;
     }
 
     public static Builder ok() {
