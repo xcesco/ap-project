@@ -1,5 +1,5 @@
 # Errori di sintassi
-
+MAX_GRID;x0:1:1:10000;((x0^2)+(x0^3))
 
 # Errori di numeri in intervalli
 # Errori di valutazione
