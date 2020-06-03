@@ -71,19 +71,9 @@ public class CommandVisitor extends CommandsBaseVisitor<Command> {
   }
 
   @Override
-  public Command visitVariable_values_function(CommandsParser.Variable_values_functionContext ctx) {
-    return super.visitVariable_values_function(ctx);
-  }
-
-  @Override
   public Command visitExpressions(CommandsParser.ExpressionsContext ctx) {
     computeBuilder.setExpressionsList(ctx.expression().stream().map(RuleContext::getText).collect(Collectors.toList()));
     return null;
-  }
-
-  @Override
-  public Command visitExpression(CommandsParser.ExpressionContext ctx) {
-    return super.visitExpression(ctx);
   }
 
   @Override

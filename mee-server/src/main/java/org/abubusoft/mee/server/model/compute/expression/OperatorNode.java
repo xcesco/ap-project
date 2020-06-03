@@ -2,7 +2,7 @@ package org.abubusoft.mee.server.model.compute.expression;
 
 import org.abubusoft.mee.server.model.compute.MultiVariableValue;
 
-import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 
 public class OperatorNode implements ExpressionNode {
   private final ExpressionNode operandLeft;
@@ -29,9 +29,9 @@ public class OperatorNode implements ExpressionNode {
     DIVISION((a, b) -> a / b),
     POWER(Math::pow);
 
-    private final BiFunction<Double, Double, Double> function;
+    private final BinaryOperator<Double> function;
 
-    Type(BiFunction<Double, Double, Double> function) {
+    Type(BinaryOperator<Double> function) {
       this.function = function;
     }
 

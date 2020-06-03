@@ -41,34 +41,35 @@ public class VariablesDefinition {
 
   public Stream<MultiVariableValue> buildValuesAsStream(ValueType valueType) {
     final List<String> variableNames = getVariableNameList();
+    final List<List<Double>> values = variableValuesRanges.stream()
+            .map(VariableValuesRange::buildValuesList)
+            .collect(Collectors.toList());
+
     if (valueType == ValueType.GRID) {
-      List<List<Double>> values = variableValuesRanges.stream()
-              .map(VariableValuesRange::getValues)
-              .collect(Collectors.toList());
       return Lists.cartesianProduct(values)
               .stream()
               .map(value -> MultiVariableValue.Builder.create()
                       .addAll(variableNames, value).build());
     } else {
-      int firstCount = variableValuesRanges.get(0).getSize();
-      String firstName = variableValuesRanges.get(0).getName();
+      checkVariableRangeSize(values);
+      final int rangeSize = values.get(0).size();
+      final int variableCount = variableValuesRanges.size();
 
-      // check variable interval size
-      checkVariableRangeSize(firstCount, firstName);
-
-      Stream<List<Double>> stream = IntStream.range(0, firstCount)
-              .mapToObj(index -> variableValuesRanges.stream()
-                      .map(item -> item.getValue(index))
+      Stream<List<Double>> stream = IntStream.range(0, rangeSize)
+              .mapToObj(valueIndex -> IntStream.range(0, variableCount)
+                      .mapToObj(variableIndex -> values.get(variableIndex).get(valueIndex))
                       .collect(Collectors.toList()));
 
       return stream.map(value -> MultiVariableValue.Builder.create().addAll(variableNames, value).build());
     }
   }
 
-  private void checkVariableRangeSize(int firstCount, String firstName) {
-    variableValuesRanges.forEach(variable -> {
-      int currentCount = variable.getSize();
-      String currentName = variable.getName();
+  private void checkVariableRangeSize(List<List<Double>> values) {
+    final int firstCount = values.get(0).size();
+    final String firstName = variableValuesRanges.get(0).getName();
+    IntStream.range(0, variableValuesRanges.size()).forEach(index -> {
+      int currentCount = values.get(index).size();
+      String currentName = variableValuesRanges.get(index).getName();
       AppAssert.assertTrue(firstCount == currentCount, InvalidVariableDefinitionException.class,
               "Variables '%s' and '%s' have different values range size (%s, %s)",
               firstName, currentName, firstCount, currentCount);

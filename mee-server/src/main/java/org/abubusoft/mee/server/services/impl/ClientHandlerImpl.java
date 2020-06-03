@@ -51,26 +51,14 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
   @Override
   public void start() {
     notifyConnectedEvent();
-    try (BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
 
-      Command command = null;
-      CommandResponse response;
-      while (command == null || CommandType.BYE != command.getType()) {
-        String request = br.readLine();
-        try {
-          notifyReceivedCommandEvent(request);
-          command = clientRequestParser.parse(request);
-          response = execute(command);
-
-          if (command.getType() != CommandType.BYE) {
-            sendResponse(bw, response);
-          }
-        } catch (AppRuntimeException e) {
-          CommandResponse errorResponse = CommandResponse.error(e);
-          sendResponse(bw, errorResponse);
-        }
-      }
+      Command command;
+      do {
+        String request = reader.readLine();
+        command = handleRequest(writer, request);
+      } while (CommandType.BYE != command.getType());
     } catch (IOException e) {
       logger.error(e.getMessage());
     } finally {
@@ -82,6 +70,23 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
 
       notifyDisconnetedEvent();
     }
+  }
+
+  private Command handleRequest(BufferedWriter writer, String request) throws IOException {
+    Command command = null;
+    try {
+      notifyReceivedCommandEvent(request);
+      command = clientRequestParser.parse(request);
+      CommandResponse response = execute(command);
+
+      if (command.getType() != CommandType.BYE) {
+        sendResponse(writer, response);
+      }
+    } catch (AppRuntimeException e) {
+      CommandResponse errorResponse = CommandResponse.error(e);
+      sendResponse(writer, errorResponse);
+    }
+    return command;
   }
 
   private CommandResponse execute(Command command) {

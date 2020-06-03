@@ -7,6 +7,9 @@ import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.antlr.v4.runtime.*;
 
 public abstract class ParserRuleContextBuilder {
+  private ParserRuleContextBuilder() {
+  }
+
   public interface RuleChooser {
     ParserRuleContext choose(CommandsParser parser);
   }
@@ -35,7 +38,6 @@ public abstract class ParserRuleContextBuilder {
       }
     });
 
-    ParserRuleContext context = chooser.choose(parser);
-    return context;
+    return chooser.choose(parser);
   }
 }

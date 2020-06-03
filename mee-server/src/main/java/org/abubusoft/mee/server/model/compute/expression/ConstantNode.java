@@ -9,10 +9,6 @@ public class ConstantNode implements ExpressionNode {
     this.value = value;
   }
 
-  public double getValue() {
-    return value;
-  }
-
   @Override
   public double evaluate(MultiVariableValue multiVariableValue) {
     return value;

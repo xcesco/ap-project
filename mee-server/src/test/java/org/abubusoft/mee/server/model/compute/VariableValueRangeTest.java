@@ -22,9 +22,9 @@ public class VariableValueRangeTest {
 
     VariableValuesRange result = parser.parseVariableDefinition("x0", input);
 
-    assertEquals(list.size(), result.getValues().size());
+    assertEquals(list.size(), result.buildValuesList().size());
     assertEquals("x0", result.getName());
-    assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.getValues()));
+    assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.buildValuesList()));
   }
 
   @Test
@@ -35,7 +35,7 @@ public class VariableValueRangeTest {
     VariableValuesRange result = parser.parseVariableDefinition("x0", input);
 
     assertEquals("x0", result.getName());
-    assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.getValues()));
+    assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.buildValuesList()));
   }
 
   @Test
@@ -47,7 +47,7 @@ public class VariableValueRangeTest {
     VariableValuesRange result = parser.parseVariableDefinition("x0", input);
 
     assertEquals("x0", result.getName());
-    assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.getValues()));
+    assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.buildValuesList()));
   }
 
   @Test
@@ -59,7 +59,7 @@ public class VariableValueRangeTest {
     VariableValuesRange result = parser.parseVariableDefinition("x1", input);
 
     assertEquals("x1", result.getName());
-    assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.getValues()));
+    assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.buildValuesList()));
   }
 
   @Test
@@ -74,9 +74,12 @@ public class VariableValueRangeTest {
   private VariableValuesRange checkRange(String input, double low, double high, int size) {
     VariableValuesRange result = parser.parseVariableDefinition("x1", input);
     assertEquals("x1", result.getName());
-    assertEquals(low, result.getLowValue());
-    assertEquals(high, result.getHighValue());
-    assertEquals(size, result.getSize());
+
+    List<Double> values = result.buildValuesList();
+
+    assertEquals(low, values.get(0));
+    assertEquals(high, values.get(values.size() - 1));
+    assertEquals(size, values.size());
 
     return result;
   }

@@ -9,37 +9,25 @@ import java.util.stream.IntStream;
 
 public class VariableValuesRange {
   private final String name;
-  private final List<Double> values;
+  private final double lowValue;
+  private final double stepValue;
+  private final double highValue;
 
   public VariableValuesRange(String name, double lowValue, double stepValue, double highValue) {
     this.name = name;
-    this.values = IntStream.iterate(0, index -> lowValue + stepValue * index <= highValue, index -> index + 1)
+    this.lowValue = lowValue;
+    this.stepValue = stepValue;
+    this.highValue = highValue;
+  }
+
+  public List<Double> buildValuesList() {
+    return IntStream.iterate(0, index -> lowValue + stepValue * index <= highValue, index -> index + 1)
             .mapToDouble(index -> lowValue + stepValue * index).boxed()
             .collect(Collectors.toList());
   }
 
-  public List<Double> getValues() {
-    return values;
-  }
-
   public String getName() {
     return name;
-  }
-
-  public Double getValue(int index) {
-    return values.get(index);
-  }
-
-  public Double getLowValue() {
-    return values.get(0);
-  }
-
-  public Double getHighValue() {
-    return values.get(values.size() - 1);
-  }
-
-  public int getSize() {
-    return values.size();
   }
 
   public static class Builder {

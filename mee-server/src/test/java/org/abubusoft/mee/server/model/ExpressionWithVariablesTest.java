@@ -3,13 +3,10 @@ package org.abubusoft.mee.server.model;
 import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
-import org.abubusoft.mee.server.model.ComputeCommand;
 import org.abubusoft.mee.server.model.compute.Expression;
 import org.abubusoft.mee.server.model.compute.MultiVariableValue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -35,7 +35,7 @@ class VariablesDefinitionTest {
             .add(VariableValuesRange.Builder.create()
                     .setName("x0").setInterval(i, i2, i3).build());
 
-    return variablesDefinition.getVariableValuesRange("x0").getValues().size();
+    return variablesDefinition.getVariableValuesRange("x0").buildValuesList().size();
   }
 
   @Test

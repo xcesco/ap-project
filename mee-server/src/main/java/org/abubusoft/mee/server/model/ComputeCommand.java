@@ -82,9 +82,9 @@ public class ComputeCommand extends Command {
         break;
     }
     if (logger.isDebugEnabled()) {
-      StringJoiner joiner = new StringJoiner(",");
+      StringJoiner joiner = new StringJoiner(",","[", "]");
       expressionsList.forEach(joiner::add);
-      logger.debug(String.format("%s_%s of '%s' (on %s values) = %s", getComputationType(), getValueType(), joiner.toString(), values.size(), CommandResponseUtils.formatValue(currentResult)));
+      logger.debug(String.format("%s_%s of %s (on %s values) = %s", getComputationType(), getValueType(), joiner.toString(), values.size(), CommandResponseUtils.formatValue(currentResult)));
     }
     responseBuilder.setValue(currentResult);
 
@@ -97,12 +97,12 @@ public class ComputeCommand extends Command {
 
     Expression expression = buildExpression(values.get(0), expressionString);
     if (trace) {
-      logger.trace(String.format("Begin '%s' evaluation with partial result = %s", expression, CommandResponseUtils.formatValue(result)));
+      logger.trace("Begin '{}' evaluation", expression);
     }
     for (MultiVariableValue value : values) {
       actualValue = expression.evaluate(value);
       if (trace) {
-        logger.trace(String.format("'%s' with %s = %s", expression, value, CommandResponseUtils.formatValue(actualValue)));
+        logger.trace("'{}' with {} = {}", expression, value, CommandResponseUtils.formatValue(actualValue));
       }
       result = mergeResults(result, actualValue);
     }
@@ -110,7 +110,7 @@ public class ComputeCommand extends Command {
     result = finalizeResult(result, values.size());
 
     if (trace) {
-      logger.trace(String.format("End '%s' evaluation with partial result = %s", expression, CommandResponseUtils.formatValue(result)));
+      logger.trace("End '{}' evaluation with temporary result = {}", expression, CommandResponseUtils.formatValue(result));
     }
     return result;
   }

@@ -20,13 +20,13 @@ public class ClientRequestParserTest {
   @Test
   public void testBye() {
     Command command = parser.parse("BYE");
-    assertEquals(command.getType(), CommandType.BYE);
+    assertEquals(CommandType.BYE, command.getType());
   }
 
   @Test
   public void testStatMaxTime() {
     Command command = parser.parse("STAT_MAX_TIME");
-    assertEquals(command.getType(), CommandType.STAT);
+    assertEquals(CommandType.STAT, command.getType());
   }
 
   @Test
@@ -39,26 +39,26 @@ public class ClientRequestParserTest {
   @Test
   public void testMaxGrid() {
     Command command = parser.parse("MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
-    assertEquals(command.getType(), CommandType.COMPUTE);
+    assertEquals(CommandType.COMPUTE, command.getType());
   }
 
   @Test
   public void testAvgGrid() {
     Command command = parser.parse("AVG_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
-    assertEquals(command.getType(), CommandType.COMPUTE);
+    assertEquals(CommandType.COMPUTE, command.getType());
   }
 
   @Test
   public void testMinGrid() {
     Command command = parser.parse("MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
-    assertEquals(command.getType(), CommandType.COMPUTE);
+    assertEquals(CommandType.COMPUTE, command.getType());
   }
 
   @Test
   public void testCountList() {
     {
       Command command = parser.parse("COUNT_LIST;x0:.0:0.001:100;x1");
-      assertEquals(command.getType(), CommandType.COMPUTE);
+      assertEquals(CommandType.COMPUTE, command.getType());
       CommandResponse response = command.execute();
       assertEquals("OK;0.000;100001.000000", CommandResponseUtils.format(response));
     }
@@ -81,11 +81,11 @@ public class ClientRequestParserTest {
     String input = "MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));y1";
 
     ComputeCommand command = (ComputeCommand) parser.parse(input);
-    assertEquals(command.getType(), CommandType.COMPUTE);
-    assertEquals(command.getComputationType(), ComputationType.MIN);
-    assertEquals(command.getValueType(), ValueType.GRID);
-    assertEquals(command.getExpressionsList().get(0), "((x0+(2.0^x1))/(1-x0))");
-    assertEquals(command.getExpressionsList().get(1), "y1");
+    assertEquals(CommandType.COMPUTE, command.getType());
+    assertEquals(ComputationType.MIN, command.getComputationType());
+    assertEquals(ValueType.GRID, command.getValueType());
+    assertEquals("((x0+(2.0^x1))/(1-x0))", command.getExpressionsList().get(0));
+    assertEquals("y1", command.getExpressionsList().get(1));
   }
 
 }

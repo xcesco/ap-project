@@ -4,6 +4,9 @@ import org.abubusoft.mee.server.model.CommandResponse;
 import org.abubusoft.mee.server.model.ResponseType;
 
 public abstract class CommandResponseUtils {
+  private CommandResponseUtils() {
+  }
+
   public static String format(CommandResponse response) {
     StringBuilder builder = new StringBuilder();
 

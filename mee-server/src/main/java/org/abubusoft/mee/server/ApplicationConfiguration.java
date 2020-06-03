@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.task.AsyncTaskExecutor;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.net.Socket;
@@ -45,7 +44,7 @@ public class ApplicationConfiguration {
   public AsyncTaskExecutor computeExecutor() {
     Runtime runtime = Runtime.getRuntime();
     int numberOfProcessors = runtime.availableProcessors();
-    logger.info(String.format("%s max size is %d (available processors to this JVM)", COMPUTE_EXECUTOR, numberOfProcessors));
+    logger.info("{} max size is {} (available processors to this JVM)", COMPUTE_EXECUTOR, numberOfProcessors);
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
     executor.setCorePoolSize(numberOfProcessors);
     executor.setMaxPoolSize(numberOfProcessors);

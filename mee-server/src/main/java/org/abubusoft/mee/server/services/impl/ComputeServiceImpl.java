@@ -8,11 +8,9 @@ import org.abubusoft.mee.server.services.ComputeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.task.AsyncTaskExecutor;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 
 @Service
 public class ComputeServiceImpl implements ComputeService {

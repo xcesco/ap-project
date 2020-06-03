@@ -36,18 +36,22 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
         logger.info("Server starts listening on TCP port {}", port);
 
         while (true) {
-          try {
-            ClientHandler clientHandler = clientHandlerProvider.getObject(serverSocket.accept(), this);
-            executor.execute(clientHandler::start);
-          } catch (Exception e) {
-            logger.error(e.getMessage());
-          }
+          acceptConnections(serverSocket);
         }
 
       } catch (IOException | SecurityException | IllegalArgumentException e) {
         logger.error("Could not open server on TCP port {}. Reason: {}", port, e.getMessage());
       }
     }).start();
+  }
+
+  private void acceptConnections(ServerSocket serverSocket) {
+    try {
+      ClientHandler clientHandler = clientHandlerProvider.getObject(serverSocket.accept(), this);
+      executor.execute(clientHandler::start);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+    }
   }
 
   @Override
@@ -60,7 +64,7 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
 
   @Override
   public void messageReceived(ClientHandler clientHandler, String message) {
-    logger.debug("Received message '{}'", message);
+    logger.debug("Received request '{}'", message);
   }
 
   @Override

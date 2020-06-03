@@ -49,10 +49,10 @@ public class Application implements CommandLineRunner {
 
     if (args.length == 1 && isInteger(args[0])) {
       port = Integer.parseInt(args[0]);
-      logger.info(String.format("Listening port %s is specified via command line args", port));
+      logger.info("Listening port {} is specified via command line args", port);
     } else {
       port = serverPort;
-      logger.info(String.format("Listening port %s is specified via application config", port));
+      logger.info("Listening port {} is specified via application config", port);
     }
 
     meeServer.start(port, connectionsInQueue);
