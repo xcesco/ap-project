@@ -32,7 +32,7 @@ public class ApplicationConfiguration {
   public Executor connectionExecutor() {
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
     executor.setCorePoolSize(2);
-    // no queue, threads grow up and they will be released
+    // no queue, threads grow up and then they will be released
     executor.setQueueCapacity(0);
     // no max limit for used thread
     executor.setThreadNamePrefix(CONNECTION_THREAD_PREFIX);
