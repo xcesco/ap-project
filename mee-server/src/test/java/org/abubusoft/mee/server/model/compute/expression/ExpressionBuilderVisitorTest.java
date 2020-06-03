@@ -4,11 +4,12 @@ import org.abubusoft.mee.server.exceptions.AppRuntimeException;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.compute.Expression;
 import org.abubusoft.mee.server.model.compute.MultiVariableValue;
-import org.abubusoft.mee.server.support.CommandResponseUtils;
 import org.abubusoft.mee.server.support.ExpressionBuilderVisitor;
 import org.abubusoft.mee.server.support.ParserRuleContextBuilder;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExpressionBuilderVisitorTest {
   @Test
@@ -25,8 +26,7 @@ public class ExpressionBuilderVisitorTest {
       Expression expression = new Expression(expressionString, expressionNode);
 
       double value = expression.evaluate(multiVariableValue);
-      System.out.println(String.format("'%s' with %s = %s", expressionString, multiVariableValue, CommandResponseUtils.formatValue(value)));
-
+      assertEquals(2.0, value);
     } catch (AppRuntimeException e) {
       throw e;
     } catch (Exception e) {

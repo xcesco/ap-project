@@ -62,7 +62,7 @@ public class ExpressionBuilderVisitor extends CommandsBaseVisitor<ExpressionNode
   public ExpressionNode visitVariable(CommandsParser.VariableContext ctx) {
     String name = ctx.getText();
 
-    Double value = multiVariableValue.get(name);
+    Double value = multiVariableValue.getVariableValue(name);
     if (value == null) {
       AppAssert.fail(UndefinedVariableException.class, "Undefined variable '%s' is used in expression '%s'", name, expression);
     }

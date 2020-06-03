@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 public class ComputeCommand extends Command {
   private static final Logger logger = LoggerFactory
@@ -80,6 +81,11 @@ public class ComputeCommand extends Command {
         AppAssert.fail(AppRuntimeException.class, "Unsupported computation type '%s'", getComputationType());
         break;
     }
+    if (logger.isDebugEnabled()) {
+      StringJoiner joiner = new StringJoiner(",");
+      expressionsList.forEach(joiner::add);
+      logger.debug(String.format("%s_%s of '%s' (on %s values) = %s", getComputationType(), getValueType(), joiner.toString(), values.size(), CommandResponseUtils.formatValue(currentResult)));
+    }
     responseBuilder.setValue(currentResult);
 
     return responseBuilder.build();
@@ -88,7 +94,11 @@ public class ComputeCommand extends Command {
   private double evaluateExpression(List<MultiVariableValue> values, double result, String expressionString) {
     double actualValue;
     boolean trace = logger.isTraceEnabled();
+
     Expression expression = buildExpression(values.get(0), expressionString);
+    if (trace) {
+      logger.trace(String.format("Begin '%s' evaluation with partial result = %s", expression, CommandResponseUtils.formatValue(result)));
+    }
     for (MultiVariableValue value : values) {
       actualValue = expression.evaluate(value);
       if (trace) {
@@ -98,8 +108,9 @@ public class ComputeCommand extends Command {
     }
 
     result = finalizeResult(result, values.size());
-    if (logger.isDebugEnabled()) {
-      logger.debug(String.format("%s_%s of '%s' (on %s values) = %s", getComputationType(), getValueType(), expressionString, values.size(), CommandResponseUtils.formatValue(result)));
+
+    if (trace) {
+      logger.trace(String.format("End '%s' evaluation with partial result = %s", expression, CommandResponseUtils.formatValue(result)));
     }
     return result;
   }
@@ -148,7 +159,7 @@ public class ComputeCommand extends Command {
   }
 
   public VariableValuesRange getVariableDefinition(String variableName) {
-    return variablesDefinition.get(variableName);
+    return variablesDefinition.getVariableValuesRange(variableName);
   }
 
   @Override

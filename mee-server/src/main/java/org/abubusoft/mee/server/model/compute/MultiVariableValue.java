@@ -17,7 +17,7 @@ public class MultiVariableValue {
     this.values = values;
   }
 
-  public Double get(String name) {
+  public Double getVariableValue(String name) {
     return values.get(name);
   }
 

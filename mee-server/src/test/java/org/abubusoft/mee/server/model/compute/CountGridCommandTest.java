@@ -23,6 +23,7 @@ public class CountGridCommandTest extends BaseCommandTest {
     verify("x0:0:.1:1;x0;x0", 11.0);
     //Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> );
     verify("x0:1:1:10,y0:1:1:10;x0", 100.0);
+    verify("x0:0:1:10,y0:1:1:10;x0", 110.0);
     verify("x0:1:1:10,y0:1:1:10,y2:1:1:10;x0", 1_000.0);
   }
 }

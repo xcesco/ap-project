@@ -25,6 +25,7 @@ public class CommandResponseTest {
     checkErrorCommand("COUNT_GRID;x0:0:1:-1;a1", "(InvalidVariableDefinitionException) Inconsistent variable definition 'x0'");
     checkErrorCommand("COUNT_GRID;x0:NaN:1:-1;a1", "(MalformedCommandException) Unespected char at pos 14");
     checkErrorCommand("COUNT_GRID;x0:Infinite:1:-1;a1", "(MalformedCommandException) Unespected char at pos 14");
+    checkErrorCommand("COUNT_LIST;x0:0:1:10,x1:0:1:10,x2:0:1:11;(x0*2);(x0+2)", "(InvalidVariableDefinitionException) Variables 'x0' and 'x2' have different values range size (11, 12)");
   }
 
   @Test
@@ -37,6 +38,7 @@ public class CommandResponseTest {
     checkCommand("COUNT_GRID;x0:100:10:200;a1", "11.000000");
     checkCommand("COUNT_GRID;x0:110:10:200;a1", "10.000000");
   }
+
 
   @Test
   public void testValidMultipleIntervalDefinition() {

@@ -26,7 +26,7 @@ public class VariableValuesRange {
     return name;
   }
 
-  public Double get(int index) {
+  public Double getValue(int index) {
     return values.get(index);
   }
 
@@ -35,7 +35,7 @@ public class VariableValuesRange {
   }
 
   public Double getHighValue() {
-    return values.get(values.size()-1);
+    return values.get(values.size() - 1);
   }
 
   public int getSize() {

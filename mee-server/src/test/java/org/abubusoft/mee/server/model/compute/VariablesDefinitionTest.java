@@ -35,7 +35,7 @@ class VariablesDefinitionTest {
             .add(VariableValuesRange.Builder.create()
                     .setName("x0").setInterval(i, i2, i3).build());
 
-    return variablesDefinition.get("x0").getValues().size();
+    return variablesDefinition.getVariableValuesRange("x0").getValues().size();
   }
 
   @Test
@@ -51,10 +51,10 @@ class VariablesDefinitionTest {
     List<MultiVariableValue> values = variablesDefinition.buildValues(ValueType.GRID);
 
     assertEquals(values.size(), 100);
-    assertEquals(values.get(0).get("x0"), 1);
-    assertEquals(values.get(0).get("x1"), 11);
-    assertEquals(values.get(99).get("x0"), 10);
-    assertEquals(values.get(99).get("x1"), 20);
+    assertEquals(values.get(0).getVariableValue("x0"), 1);
+    assertEquals(values.get(0).getVariableValue("x1"), 11);
+    assertEquals(values.get(99).getVariableValue("x0"), 10);
+    assertEquals(values.get(99).getVariableValue("x1"), 20);
   }
 
   @Test
@@ -70,10 +70,10 @@ class VariablesDefinitionTest {
     List<MultiVariableValue> values = variablesDefinition.buildValues(ValueType.LIST);
 
     assertEquals(values.size(), 10);
-    assertEquals(values.get(0).get("x0"), 1);
-    assertEquals(values.get(0).get("x1"), 11);
-    assertEquals(values.get(9).get("x0"), 10);
-    assertEquals(values.get(9).get("x1"), 20);
+    assertEquals(values.get(0).getVariableValue("x0"), 1);
+    assertEquals(values.get(0).getVariableValue("x1"), 11);
+    assertEquals(values.get(9).getVariableValue("x0"), 10);
+    assertEquals(values.get(9).getVariableValue("x1"), 20);
   }
 
   @Test
@@ -87,7 +87,7 @@ class VariablesDefinitionTest {
             );
     {
       List<MultiVariableValue> values = variablesDefinition.buildValues(ValueType.GRID);
-      assertEquals(values.get(0).get("x1"), 1);
+      assertEquals(values.get(0).getVariableValue("x1"), 1);
     }
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> {
       variablesDefinition.buildValues(ValueType.LIST);

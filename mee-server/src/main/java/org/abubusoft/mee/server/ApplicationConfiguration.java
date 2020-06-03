@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.task.AsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.net.Socket;
@@ -32,6 +33,7 @@ public class ApplicationConfiguration {
   public Executor connectionExecutor() {
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
     executor.setCorePoolSize(2);
+    // no queue, threads grow up and they will be released
     executor.setQueueCapacity(0);
     // no max limit for used thread
     executor.setThreadNamePrefix(CONNECTION_THREAD_PREFIX);

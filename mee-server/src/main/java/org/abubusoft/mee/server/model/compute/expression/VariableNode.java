@@ -11,6 +11,6 @@ public class VariableNode implements ExpressionNode {
 
   @Override
   public double evaluate(MultiVariableValue multiVariableValue) {
-    return multiVariableValue.get(name);
+    return multiVariableValue.getVariableValue(name);
   }
 }

@@ -58,7 +58,7 @@ public class VariablesDefinition {
 
       Stream<List<Double>> stream = IntStream.range(0, firstCount)
               .mapToObj(index -> variableValuesRanges.stream()
-                      .map(item -> item.get(index))
+                      .map(item -> item.getValue(index))
                       .collect(Collectors.toList()));
 
       return stream.map(value -> MultiVariableValue.Builder.create().addAll(variableNames, value).build());
@@ -70,12 +70,12 @@ public class VariablesDefinition {
       int currentCount = variable.getSize();
       String currentName = variable.getName();
       AppAssert.assertTrue(firstCount == currentCount, InvalidVariableDefinitionException.class,
-              "Variables '%s' and '%s' have different size (%s, %s)",
+              "Variables '%s' and '%s' have different values range size (%s, %s)",
               firstName, currentName, firstCount, currentCount);
     });
   }
 
-  public VariableValuesRange get(String variableName) {
+  public VariableValuesRange getVariableValuesRange(String variableName) {
     return this.variableValuesRanges.stream().filter(item -> item.getName().equals(variableName)).findFirst().orElse(null);
   }
 }
