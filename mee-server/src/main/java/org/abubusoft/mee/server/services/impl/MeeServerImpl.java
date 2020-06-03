@@ -36,7 +36,7 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
         logger.info("Server starts listening on TCP port {}", port);
 
         while (true) {
-          acceptConnections(serverSocket);
+          acceptConnection(serverSocket);
         }
 
       } catch (IOException | SecurityException | IllegalArgumentException e) {
@@ -45,7 +45,7 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
     }).start();
   }
 
-  private void acceptConnections(ServerSocket serverSocket) {
+  private void acceptConnection(ServerSocket serverSocket) {
     try {
       ClientHandler clientHandler = clientHandlerProvider.getObject(serverSocket.accept(), this);
       executor.execute(clientHandler::start);

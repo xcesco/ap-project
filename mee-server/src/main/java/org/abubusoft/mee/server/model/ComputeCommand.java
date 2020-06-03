@@ -115,26 +115,26 @@ public class ComputeCommand extends Command {
     return result;
   }
 
-  private double finalizeResult(double result, int size) {
+  private double finalizeResult(double temporaryResult, int valuesCount) {
     switch (getComputationType()) {
       case AVG:
-        return result / size;
+        return temporaryResult / valuesCount;
       case MIN:
       case MAX:
       case COUNT:
       default:
-        return result;
+        return temporaryResult;
     }
   }
 
-  private double mergeResults(double result, double actualResult) {
+  private double mergeResults(double temporaryResult, double actualResult) {
     switch (getComputationType()) {
       case MIN:
-        return Math.min(result, actualResult);
+        return Math.min(temporaryResult, actualResult);
       case AVG:
-        return result + actualResult;
+        return temporaryResult + actualResult;
       case MAX:
-        return Math.max(result, actualResult);
+        return Math.max(temporaryResult, actualResult);
       case COUNT:
       default:
         return 0;

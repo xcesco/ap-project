@@ -54,11 +54,10 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
          BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
 
-      Command command;
+      CommandType commandType;
       do {
-        String request = reader.readLine();
-        command = handleRequest(writer, request);
-      } while (CommandType.BYE != command.getType());
+        commandType = handleRequest(writer, reader.readLine());
+      } while (CommandType.BYE != commandType);
     } catch (IOException e) {
       logger.error(e.getMessage());
     } finally {
@@ -72,21 +71,22 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
     }
   }
 
-  private Command handleRequest(BufferedWriter writer, String request) throws IOException {
-    Command command = null;
+  private CommandType handleRequest(BufferedWriter writer, String request) throws IOException {
     try {
       notifyReceivedCommandEvent(request);
-      command = clientRequestParser.parse(request);
+      Command command = clientRequestParser.parse(request);
       CommandResponse response = execute(command);
 
       if (command.getType() != CommandType.BYE) {
         sendResponse(writer, response);
       }
+
+      return command.getType();
     } catch (AppRuntimeException e) {
       CommandResponse errorResponse = CommandResponse.error(e);
       sendResponse(writer, errorResponse);
     }
-    return command;
+    return null;
   }
 
   private CommandResponse execute(Command command) {
