@@ -51,7 +51,8 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
   @Override
   public void start() {
     notifyConnectedEvent();
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    try (socket;
+         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
          BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
 
       CommandType commandType;
@@ -61,12 +62,6 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
     } catch (IOException e) {
       logger.error(e.getMessage());
     } finally {
-      try {
-        socket.close();
-      } catch (IOException e) {
-        logger.error(e.getMessage());
-      }
-
       notifyDisconnetedEvent();
     }
   }

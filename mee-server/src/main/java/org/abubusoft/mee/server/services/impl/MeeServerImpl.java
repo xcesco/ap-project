@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,6 +23,9 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
   private final Executor executor;
   private final ObjectProvider<ClientHandler> clientHandlerProvider;
 
+  @Value("${mee-server.connections-in-queue}")
+  private int connectionsInQueue;
+
   @Autowired
   public MeeServerImpl(@Qualifier(ApplicationConfiguration.CONNECTION_EXECUTOR) Executor executor,
                        ObjectProvider<ClientHandler> clientHandlerProvider) {
@@ -30,7 +34,7 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
   }
 
   @Override
-  public void start(int port, int connectionsInQueue) {
+  public void start(int port) {
     new Thread(() -> {
       try (ServerSocket serverSocket = new ServerSocket(port, connectionsInQueue)) {
         logger.info("Server starts listening on TCP port {}", port);
@@ -59,12 +63,12 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
     if (error) {
       logger.error(request);
     }
-    logger.debug("Sent response '{}'", request);
+    logger.debug("Sent response: {}", request);
   }
 
   @Override
   public void messageReceived(ClientHandler clientHandler, String message) {
-    logger.debug("Received request '{}'", message);
+    logger.debug("Received request: {}", message);
   }
 
   @Override

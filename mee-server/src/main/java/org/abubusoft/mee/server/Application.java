@@ -4,7 +4,6 @@ import org.abubusoft.mee.server.services.MeeServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,12 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = {"org.abubusoft.mee.server"})
 public class Application implements CommandLineRunner {
   private static Logger logger = LoggerFactory.getLogger(Application.class);
-
-  @Value("${mee-server.port}")
-  int serverPort;
-
-  @Value("${mee-server.connections-in-queue}")
-  int connectionsInQueue;
 
   private MeeServer meeServer;
 
@@ -50,12 +43,13 @@ public class Application implements CommandLineRunner {
     if (args.length == 1 && isInteger(args[0])) {
       port = Integer.parseInt(args[0]);
       logger.info("Listening port {} is specified via command line args", port);
+
+      meeServer.start(port);
     } else {
-      port = serverPort;
-      logger.info("Listening port {} is specified via application config", port);
+      logger.error("No valid listening port is specified via command line args");
     }
 
-    meeServer.start(port, connectionsInQueue);
+
   }
 
 }
