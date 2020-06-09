@@ -2,7 +2,11 @@ package org.abubusoft.mee.server.model.compute;
 
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 import org.abubusoft.mee.server.exceptions.MalformedCommandException;
-import org.abubusoft.mee.server.services.impl.ClientRequestParserImpl;
+import org.abubusoft.mee.server.grammar.CommandsParser;
+import org.abubusoft.mee.server.model.ComputeCommand;
+import org.abubusoft.mee.server.support.CommandVisitor;
+import org.abubusoft.mee.server.support.ParserRuleContextBuilder;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,14 +17,20 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VariableValueRangeTest {
-  ClientRequestParserImpl parser = new ClientRequestParserImpl();
+  public VariableValuesRange parseVariableDefinition(String variableName, String request) {
+    ParserRuleContext parser = ParserRuleContextBuilder.build(request, CommandsParser::variable_values);
+    CommandVisitor visitor = new CommandVisitor();
+    visitor.visit(parser);
+    ComputeCommand command = visitor.getComputeBuilder().build();
+    return command.getVariableDefinition(variableName);
+  }
 
   @Test
   public void testVariableRange1_10() throws MalformedCommandException {
     String input = "x0:1:1:10";
     List<Double> list = Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0);
 
-    VariableValuesRange result = parser.parseVariableDefinition("x0", input);
+    VariableValuesRange result = parseVariableDefinition("x0", input);
 
     assertEquals(list.size(), result.buildValuesList().size());
     assertEquals("x0", result.getName());
@@ -32,7 +42,7 @@ public class VariableValueRangeTest {
     String input = "x0:0:0.1:1";
     List<Double> list = Arrays.asList(0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0);
 
-    VariableValuesRange result = parser.parseVariableDefinition("x0", input);
+    VariableValuesRange result = parseVariableDefinition("x0", input);
 
     assertEquals("x0", result.getName());
     assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.buildValuesList()));
@@ -44,7 +54,7 @@ public class VariableValueRangeTest {
     List<Double> list = Arrays.asList(-1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1,
             0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0);
 
-    VariableValuesRange result = parser.parseVariableDefinition("x0", input);
+    VariableValuesRange result = parseVariableDefinition("x0", input);
 
     assertEquals("x0", result.getName());
     assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.buildValuesList()));
@@ -56,7 +66,7 @@ public class VariableValueRangeTest {
     List<Double> list = Arrays.asList(-10.0, -9.0, -8.0, -7.0, -6.0, -5.0, -4.0, -3.0, -2.0, -1.0,
             0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0);
 
-    VariableValuesRange result = parser.parseVariableDefinition("x1", input);
+    VariableValuesRange result = parseVariableDefinition("x1", input);
 
     assertEquals("x1", result.getName());
     assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.buildValuesList()));
@@ -72,7 +82,7 @@ public class VariableValueRangeTest {
   }
 
   private VariableValuesRange checkRange(String input, double low, double high, int size) {
-    VariableValuesRange result = parser.parseVariableDefinition("x1", input);
+    VariableValuesRange result = parseVariableDefinition("x1", input);
     assertEquals("x1", result.getName());
 
     List<Double> values = result.buildValuesList();
@@ -88,7 +98,7 @@ public class VariableValueRangeTest {
   public void testExample() throws MalformedCommandException {
     String input = "x0:1:0.001:100";
 
-    VariableValuesRange result = parser.parseVariableDefinition("x0", input);
+    VariableValuesRange result = parseVariableDefinition("x0", input);
 
     assertEquals("x0", result.getName());
     //assertEquals(fixPrecisionOfListOfDouble(list), fixPrecisionOfListOfDouble(result.getValues()));
@@ -101,10 +111,10 @@ public class VariableValueRangeTest {
   @Test
   public void testInvalidDefinitions() {
     // range and step are incosistent
-    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0:1:0.1:-1"));
-    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0:-1:-0.1:1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parseVariableDefinition("x0", "x0:1:0.1:-1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parseVariableDefinition("x0", "x0:-1:-0.1:1"));
     // step is 0
-    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parser.parseVariableDefinition("x0", "x0:-1:0:1"));
+    Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parseVariableDefinition("x0", "x0:-1:0:1"));
   }
 
   private List<String> fixPrecisionOfListOfDouble(List<Double> list) {

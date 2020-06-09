@@ -49,7 +49,6 @@ public class Application implements CommandLineRunner {
       logger.error("No valid listening port is specified via command line args");
     }
 
-
   }
 
 }

@@ -58,7 +58,7 @@ public class ComputeCommand extends Command {
 
   @Override
   public CommandResponse execute() {
-    List<MultiVariableValue> values = buildVariableValues();
+    List<MultiVariableValue> values = buildMultiVariableValues();
     CommandResponse.Builder responseBuilder = CommandResponse.Builder.ok();
 
     double currentResult = getInitialValue();
@@ -154,7 +154,7 @@ public class ComputeCommand extends Command {
     }
   }
 
-  private List<MultiVariableValue> buildVariableValues() {
+  private List<MultiVariableValue> buildMultiVariableValues() {
     return variablesDefinition.buildValues(valueType);
   }
 

@@ -72,7 +72,7 @@ public class ClientHandlerImpl implements ClientHandler, CommandVisitor {
       Command command = clientRequestParser.parse(request);
       CommandResponse response = execute(command);
 
-      if (command.getType() != CommandType.BYE) {
+      if (CommandType.BYE != command.getType()) {
         sendResponse(writer, response);
       }
 

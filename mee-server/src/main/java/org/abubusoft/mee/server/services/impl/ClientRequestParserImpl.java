@@ -6,8 +6,6 @@ import org.abubusoft.mee.server.exceptions.MalformedCommandException;
 import org.abubusoft.mee.server.grammar.CommandsBaseListener;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.abubusoft.mee.server.model.Command;
-import org.abubusoft.mee.server.model.ComputeCommand;
-import org.abubusoft.mee.server.model.compute.VariableValuesRange;
 import org.abubusoft.mee.server.services.ClientRequestParser;
 import org.abubusoft.mee.server.support.CommandVisitor;
 import org.abubusoft.mee.server.support.ParserRuleContextBuilder;
@@ -26,17 +24,9 @@ public class ClientRequestParserImpl implements ClientRequestParser {
     }
 
     ParseTreeWalker.DEFAULT.walk(new CommandsBaseListener(), ParserRuleContextBuilder.build(request, CommandsParser::parse));
-    CommandVisitor visitor = new CommandVisitor();
     ParserRuleContext parser = ParserRuleContextBuilder.build(request, CommandsParser::command);
-    return visitor.visit(parser);
-  }
-
-  public VariableValuesRange parseVariableDefinition(String variableName, String request) {
-    ParserRuleContext parser = ParserRuleContextBuilder.build(request, CommandsParser::variable_values);
     CommandVisitor visitor = new CommandVisitor();
-    visitor.visit(parser);
-    ComputeCommand command = visitor.getComputeBuilder().build();
-    return command.getVariableDefinition(variableName);
+    return visitor.visit(parser);
   }
 
 }
