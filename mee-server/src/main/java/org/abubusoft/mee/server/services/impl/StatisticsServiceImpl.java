@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import static org.abubusoft.mee.server.support.CommandResponseUtils.formatDuration;
@@ -17,9 +18,9 @@ import static org.abubusoft.mee.server.support.CommandResponseUtils.formatValue;
 @Component
 public class StatisticsServiceImpl implements StatisticsService {
   private static final Logger logger = LoggerFactory.getLogger(StatisticsServiceImpl.class);
-  private final ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
-  private final Lock r = rwl.readLock();
-  private final Lock w = rwl.writeLock();
+  private final ReadWriteLock rwl = new ReentrantReadWriteLock();
+  private final Lock readLock = rwl.readLock();
+  private final Lock writeLock = rwl.writeLock();
   /**
    * Max command execution time in milliseconds.
    */
@@ -38,7 +39,7 @@ public class StatisticsServiceImpl implements StatisticsService {
   @Override
   public CommandResponse execute(StatCommand command) {
     CommandResponse.Builder builder = CommandResponse.Builder.ok();
-    r.lock();
+    readLock.lock();
     try {
       switch (command.getSubType()) {
         case REQS:
@@ -55,7 +56,7 @@ public class StatisticsServiceImpl implements StatisticsService {
           break;
       }
     } finally {
-      r.unlock();
+      readLock.unlock();
     }
 
     return builder.build();
@@ -66,7 +67,7 @@ public class StatisticsServiceImpl implements StatisticsService {
    */
   @Override
   public void recordCommandExecutionTime(long executionTime) {
-    w.lock();
+    writeLock.lock();
     try {
       maxExecutionTime = Math.max(maxExecutionTime, executionTime);
       minExecuteTime = Math.min(minExecuteTime, executionTime);
@@ -80,7 +81,7 @@ public class StatisticsServiceImpl implements StatisticsService {
               commandCounter);
       logger.debug("Last commmand executed in {} s", formatDuration(executionTime));
     } finally {
-      w.unlock();
+      writeLock.unlock();
     }
   }
 }
