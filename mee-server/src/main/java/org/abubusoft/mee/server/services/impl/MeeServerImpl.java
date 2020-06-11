@@ -35,7 +35,7 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
 
   @Override
   public void start(int port) {
-    new Thread(() -> {
+    new Thread(null, () -> {
       try (ServerSocket serverSocket = new ServerSocket(port, connectionsInQueue)) {
         logger.info("Server starts listening on TCP port {}", port);
 
@@ -46,7 +46,7 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
       } catch (IOException | SecurityException | IllegalArgumentException e) {
         logger.error("Could not open server on TCP port {}. Reason: {}", port, e.getMessage());
       }
-    }).start();
+    }, "Server").start();
   }
 
   private void acceptConnection(ServerSocket serverSocket) {

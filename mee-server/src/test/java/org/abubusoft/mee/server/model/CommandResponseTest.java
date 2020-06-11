@@ -30,6 +30,9 @@ public class CommandResponseTest {
 
   @Test
   public void testValidIntervalDefinition() {
+    checkCommand("MAX_GRID;x0:0:1:1,y0:1:.1:2;x0;y0", "2.000000");
+    checkCommand("MAX_GRID;x0:0:1:1,y0:1:.1:2,z0:2:.1:3;x0;y0;z0", "3.000000");
+    checkCommand("MAX_GRID;x0:0:1:1,y0:1:.1:2,z0:2:.1:3;x0;y0;(z0+x0)", "4.000000");
     checkCommand("COUNT_GRID;x0:0:1:1;a1", "2.000000");
     checkCommand("COUNT_GRID;x0:0.0:1:1.;a1", "2.000000");
     checkCommand("COUNT_GRID;x0:0e-1:1:1.E-1;a1", "1.000000");

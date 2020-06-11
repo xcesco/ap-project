@@ -8,23 +8,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import static com.google.common.primitives.Ints.tryParse;
+
 @SpringBootApplication(scanBasePackages = {"org.abubusoft.mee.server"})
 public class Application implements CommandLineRunner {
   private static Logger logger = LoggerFactory.getLogger(Application.class);
 
   private MeeServer meeServer;
-
-  public static boolean isInteger(String string) {
-    if (string == null) {
-      return false;
-    }
-    try {
-      Integer.parseInt(string);
-    } catch (NumberFormatException nfe) {
-      return false;
-    }
-    return true;
-  }
 
   public static void main(String[] args) {
     SpringApplication app = new SpringApplication(Application.class);
@@ -38,17 +28,18 @@ public class Application implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    int port;
+    if (args.length == 1) {
+      Integer port = tryParse(args[0]);
 
-    if (args.length == 1 && isInteger(args[0])) {
-      port = Integer.parseInt(args[0]);
-      logger.info("Listening port {} is specified via command line args", port);
-
-      meeServer.start(port);
+      if (port != null && port > 0) {
+        logger.info("Listening port {} is specified via command line args", port);
+        meeServer.start(port);
+      } else {
+        logger.error("No valid listening port is specified via command line args");
+      }
     } else {
-      logger.error("No valid listening port is specified via command line args");
+      logger.error("Too many line args");
     }
-
   }
 
 }
