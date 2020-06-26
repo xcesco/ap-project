@@ -7,8 +7,6 @@
 
 _di Francesco Benincasa_
 
-This is the Advanced Programming project.
-
 
 ## References
 ANTLR
