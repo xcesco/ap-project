@@ -111,6 +111,5 @@ class VariablesDefinitionTest {
       assertEquals(1, values.get(0).getVariableValue("x1"));
     }
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> variablesDefinition.buildValues(ValueType.LIST));
-
   }
 }
