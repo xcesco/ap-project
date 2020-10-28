@@ -34,49 +34,49 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ClientRequestParserTest {
+ class ClientRequestParserTest {
 
   ClientRequestParser parser = new ClientRequestParserImpl();
 
   @Test
-  public void testBye() {
+  void testBye() {
     Command command = parser.parse("BYE");
     assertEquals(CommandType.BYE, command.getType());
   }
 
   @Test
-  public void testStatMaxTime() {
+  void testStatMaxTime() {
     Command command = parser.parse("STAT_MAX_TIME");
     assertEquals(CommandType.STAT, command.getType());
   }
 
   @Test
-  public void testWrongCommand() {
+  void testWrongCommand() {
     Assertions.assertThrows(MalformedCommandException.class, () -> {
       parser.parse("QUIT");
     });
   }
 
   @Test
-  public void testMaxGrid() {
+  void testMaxGrid() {
     Command command = parser.parse("MAX_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
     assertEquals(CommandType.COMPUTE, command.getType());
   }
 
   @Test
-  public void testAvgGrid() {
+  void testAvgGrid() {
     Command command = parser.parse("AVG_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
     assertEquals(CommandType.COMPUTE, command.getType());
   }
 
   @Test
-  public void testMinGrid() {
+  void testMinGrid() {
     Command command = parser.parse("MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));(x1*x0)");
     assertEquals(CommandType.COMPUTE, command.getType());
   }
 
   @Test
-  public void testCountList() {
+  void testCountList() {
     {
       Command command = parser.parse("COUNT_LIST;x0:.0:0.001:100;x1");
       assertEquals(CommandType.COMPUTE, command.getType());
@@ -86,7 +86,7 @@ public class ClientRequestParserTest {
   }
 
   @Test
-  public void testWrongCommandsSet1() {
+  void testWrongCommandsSet1() {
     Stream.of(
             "bye",
             "COUNT_LIST;x0:1:0.001:100;",
@@ -98,7 +98,7 @@ public class ClientRequestParserTest {
   }
 
   @Test
-  public void testCommand() {
+  void testCommand() {
     String input = "MIN_GRID;x0:-1:0.1:1,x1:-10:1:20;((x0+(2.0^x1))/(1-x0));y1";
 
     ComputeCommand command = (ComputeCommand) parser.parse(input);
