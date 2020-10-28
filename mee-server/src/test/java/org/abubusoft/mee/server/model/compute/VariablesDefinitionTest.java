@@ -108,7 +108,7 @@ class VariablesDefinitionTest {
             );
     {
       List<MultiVariableValue> values = variablesDefinition.buildValues(ValueType.GRID);
-      assertEquals(values.get(0).getVariableValue("x1"), 1);
+      assertEquals(1,values.get(0).getVariableValue("x1"));
     }
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> variablesDefinition.buildValues(ValueType.LIST));
 
