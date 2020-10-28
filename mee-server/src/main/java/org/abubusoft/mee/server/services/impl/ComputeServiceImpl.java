@@ -47,8 +47,11 @@ public class ComputeServiceImpl implements ComputeService {
   public CommandResponse execute(ComputeCommand command) {
     try {
       return executor.submit(command::execute).get();
-    } catch (InterruptedException | ExecutionException e) {
-      return CommandResponse.error(e.getCause());
+    } catch (InterruptedException e1) {
+      Thread.currentThread().interrupt();
+      return CommandResponse.error(e1.getCause());
+    } catch (ExecutionException e2) {
+      return CommandResponse.error(e2.getCause());
     }
   }
 
