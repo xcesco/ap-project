@@ -37,8 +37,8 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class VariableValueRangeTest {
-  public VariableValuesRange parseVariableDefinition(String variableName, String request) {
+class VariableValueRangeTest {
+  VariableValuesRange parseVariableDefinition(String variableName, String request) {
     ParserRuleContext parser = ParserRuleContextBuilder.build(request, CommandsParser::variable_values);
     CommandVisitor visitor = new CommandVisitor();
     visitor.visit(parser);
@@ -47,7 +47,7 @@ public class VariableValueRangeTest {
   }
 
   @Test
-  public void testVariableRange1_10() throws MalformedCommandException {
+  void testVariableRange1_10() throws MalformedCommandException {
     String input = "x0:1:1:10";
     List<Double> list = Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0);
 
@@ -59,7 +59,7 @@ public class VariableValueRangeTest {
   }
 
   @Test
-  public void testVariableRange0_1() throws MalformedCommandException {
+  void testVariableRange0_1() throws MalformedCommandException {
     String input = "x0:0:0.1:1";
     List<Double> list = Arrays.asList(0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0);
 
@@ -70,7 +70,7 @@ public class VariableValueRangeTest {
   }
 
   @Test
-  public void testVariableRange2() throws MalformedCommandException {
+  void testVariableRange2() throws MalformedCommandException {
     String input = "x0:-1:0.1:1";
     List<Double> list = Arrays.asList(-1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1,
             0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0);
@@ -82,7 +82,7 @@ public class VariableValueRangeTest {
   }
 
   @Test
-  public void testVariableRange3() throws MalformedCommandException {
+  void testVariableRange3() throws MalformedCommandException {
     String input = "x1:-10:1:20";
     List<Double> list = Arrays.asList(-10.0, -9.0, -8.0, -7.0, -6.0, -5.0, -4.0, -3.0, -2.0, -1.0,
             0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0);
@@ -94,7 +94,7 @@ public class VariableValueRangeTest {
   }
 
   @Test
-  public void testVariableRange4() throws MalformedCommandException {
+  void testVariableRange4() throws MalformedCommandException {
     checkRange("x1:0:2:9", 0, 8, 5);
     checkRange("x1:0:2:10", 0, 10, 6);
     checkRange("x1:0:1:10", 0, 10, 11);
@@ -116,7 +116,7 @@ public class VariableValueRangeTest {
   }
 
   @Test
-  public void testExample() throws MalformedCommandException {
+  void testExample() throws MalformedCommandException {
     String input = "x0:1:0.001:100";
 
     VariableValuesRange result = parseVariableDefinition("x0", input);
@@ -130,7 +130,7 @@ public class VariableValueRangeTest {
    * 2.3.2.1 Parsing of VariabileValuesFunction - Error check
    */
   @Test
-  public void testInvalidDefinitions() {
+  void testInvalidDefinitions() {
     // range and step are incosistent
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parseVariableDefinition("x0", "x0:1:0.1:-1"));
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> parseVariableDefinition("x0", "x0:-1:-0.1:1"));

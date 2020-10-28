@@ -32,9 +32,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionBuilderVisitorTest {
+class ExpressionBuilderVisitorTest {
   @Test
-  public void testBuild() {
+  void testBuild() {
     String expressionString = "(x0+1)";
     try {
       ParserRuleContext parser = ParserRuleContextBuilder.build(expressionString, CommandsParser::evaluate);

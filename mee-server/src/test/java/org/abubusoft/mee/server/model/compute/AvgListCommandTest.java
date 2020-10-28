@@ -26,14 +26,14 @@ import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class AvgListCommandTest extends BaseCommandTest {
+class AvgListCommandTest extends BaseCommandTest {
 
-  public AvgListCommandTest() {
+  AvgListCommandTest() {
     super(ComputationType.AVG, ValueType.LIST);
   }
 
   @Test
-  public void testCommand() {
+  void testCommand() {
     //Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> verify("x0:1:1:10,x1:1:1:11;x0+(x1-1);x0^2", 10.0));
     // verify("x0:1:1:10;(x0+0)", 5.5);
     verify("x0:1:1:10,a1:1:1:10;(x0+a1)", 11.0);

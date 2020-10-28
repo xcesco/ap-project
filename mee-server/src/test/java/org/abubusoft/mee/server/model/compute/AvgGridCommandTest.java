@@ -26,14 +26,14 @@ import org.abubusoft.mee.server.exceptions.UndefinedVariableException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class AvgGridCommandTest extends BaseCommandTest {
+class AvgGridCommandTest extends BaseCommandTest {
 
-  public AvgGridCommandTest() {
+  AvgGridCommandTest() {
     super(ComputationType.AVG, ValueType.GRID);
   }
 
   @Test
-  public void tesValidCommand() {
+  void tesValidCommand() {
     verify("x0:1:1:10;x0;(x0+2)", 5.5);
     verify("x0:1:1:10,y0:1:1:10;(x0+y0)", 11.0);
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> verify("x0:0:0:10;x0", 5.5));

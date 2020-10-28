@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class VariablesDefinitionTest {
 
   @Test
-  public void testWrongDefinitions() {
+  void testWrongDefinitions() {
     // step > 0
     Assertions.assertThrows(InvalidVariableDefinitionException.class, () -> {
       builVariableDefinitions(1, 0, 3);
