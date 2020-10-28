@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionNoVariablesTest {
+class ExpressionNoVariablesTest {
 
   @Test
-  public void testNumbersEvaluation() throws MalformedCommandException {
+  void testNumbersEvaluation() throws MalformedCommandException {
     evaluateExpression("1", 1.0);
     evaluateExpression("(0-2)", -2.0);
     evaluateExpression("100.0", 100.0);
@@ -46,14 +46,14 @@ public class ExpressionNoVariablesTest {
   }
 
   @Test
-  public void testNumbersSumSubEvaluation() throws MalformedCommandException {
+  void testNumbersSumSubEvaluation() throws MalformedCommandException {
     evaluateExpression("(1+1)", 2.0);
     evaluateExpression("(1-1)", .0);
     evaluateExpression("((1-1)+2)", 2.0);
   }
 
   @Test
-  public void testNumbersMulDivEvaluation() throws MalformedCommandException {
+  void testNumbersMulDivEvaluation() throws MalformedCommandException {
     evaluateExpression("(1*1)", 1.0);
     evaluateExpression("((0-0)-(1*1))", -1.0);
     evaluateExpression("(2/1)", 2.0);
@@ -63,7 +63,7 @@ public class ExpressionNoVariablesTest {
   }
 
   @Test
-  public void testNumbers4OpsEvaluation() throws MalformedCommandException {
+  void testNumbers4OpsEvaluation() throws MalformedCommandException {
     evaluateExpression("(1+(2*2))", 5.0);
     evaluateExpression("((1+2)*2)", 6.0);
     evaluateExpression("(0-((1+2)*2))", -6.0);
@@ -71,25 +71,25 @@ public class ExpressionNoVariablesTest {
   }
 
   @Test
-  public void testNumbersPowEvaluation() throws MalformedCommandException {
+  void testNumbersPowEvaluation() throws MalformedCommandException {
     evaluateExpression("(2^1)", 2.0);
     evaluateExpression("(2^(2^2))", 16.0);
     evaluateExpression("((2^2)*2)", 8.0);
   }
 
   @Test
-  public void testMixEvaluation() throws MalformedCommandException {
+  void testMixEvaluation() throws MalformedCommandException {
     evaluateExpression("((1+1)^2)", 4.0);
     evaluateExpression("(((1+1)^2)-1)", 3.0);
   }
 
   @Test
-  public void testMalformedExpression() {
+  void testMalformedExpression() {
     Assertions.assertThrows(MalformedCommandException.class, () -> evaluateExpression("(1+", 4.0));
     Assertions.assertThrows(MalformedCommandException.class, () -> evaluateExpression("(1/0", 4.0));
   }
 
-  private void evaluateExpression(String input, double aspectedValue) {
+  void evaluateExpression(String input, double aspectedValue) {
     MultiVariableValue noValues = MultiVariableValue.Builder.create().build();
     Expression expression = ComputeCommand.buildExpression(noValues, input);
     double evaluationResult = expression.evaluate(noValues);
