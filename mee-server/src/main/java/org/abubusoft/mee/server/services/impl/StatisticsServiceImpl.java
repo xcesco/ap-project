@@ -95,12 +95,14 @@ public class StatisticsServiceImpl implements StatisticsService {
       commandCounter++;
       // AvgNew=AvgOld+(ValueNew-AvgOld)/SizeNew
       averageExecuteTime = averageExecuteTime + (executionTime - averageExecuteTime) / commandCounter;
-      logger.debug("Updated stats: average = {} s, min = {} s, max = {} s, counter = {}",
-              formatValue(averageExecuteTime / 1_000.0),
-              formatValue(minExecuteTime / 1_000.0),
-              formatValue(maxExecutionTime / 1_000.0),
-              commandCounter);
-      logger.debug("Last commmand executed in {} s", formatDuration(executionTime));
+      if (logger.isDebugEnabled()) {
+        logger.debug("Updated stats: average = {} s, min = {} s, max = {} s, counter = {}",
+                formatValue(averageExecuteTime / 1_000.0),
+                formatValue(minExecuteTime / 1_000.0),
+                formatValue(maxExecutionTime / 1_000.0),
+                commandCounter);
+        logger.debug("Last commmand executed in {} s", formatDuration(executionTime));
+      }
     } finally {
       writeLock.unlock();
     }

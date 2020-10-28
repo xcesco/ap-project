@@ -24,7 +24,7 @@ package org.abubusoft.mee.server.model;
 public abstract class Command implements CommandVisitable {
   private final CommandType type;
 
-  public Command(CommandType type) {
+  protected Command(CommandType type) {
     this.type = type;
   }
 

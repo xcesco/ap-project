@@ -58,7 +58,9 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
   public void start(int port) {
     new Thread(null, () -> {
       try (ServerSocket serverSocket = new ServerSocket(port, connectionsInQueue)) {
-        logger.info("Server starts listening on TCP port {}", port);
+        if (logger.isInfoEnabled()) {
+          logger.info("Server starts listening on TCP port {}", port);
+        }
 
         while (true) {
           acceptConnection(serverSocket);
@@ -84,21 +86,30 @@ public class MeeServerImpl implements MeeServer, ClientHandler.Listener {
     if (error) {
       logger.error(request);
     }
-    logger.debug("Sent response: {}", request);
+
+    if (logger.isInfoEnabled()) {
+      logger.debug("Sent response: {}", request);
+    }
   }
 
   @Override
   public void messageReceived(ClientHandler clientHandler, String message) {
-    logger.debug("Received request: {}", message);
+    if (logger.isDebugEnabled()) {
+      logger.debug("Received request: {}", message);
+    }
   }
 
   @Override
   public synchronized void connected(ClientHandler clientHandler) {
-    logger.info("New connection from {} ({} opened).", clientHandler.getAddress().getCanonicalHostName(), clientConnectionCounter.incrementAndGet());
+    if (logger.isInfoEnabled()) {
+      logger.info("New connection from {} ({} opened).", clientHandler.getAddress().getCanonicalHostName(), clientConnectionCounter.incrementAndGet());
+    }
   }
 
   @Override
   public synchronized void disconnected(ClientHandler clientHandler) {
-    logger.info("Closed connection from {} ({} still opened).", clientHandler.getAddress().getCanonicalHostName(), clientConnectionCounter.decrementAndGet());
+    if (logger.isInfoEnabled()) {
+      logger.info("Closed connection from {} ({} still opened).", clientHandler.getAddress().getCanonicalHostName(), clientConnectionCounter.decrementAndGet());
+    }
   }
 }

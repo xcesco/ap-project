@@ -21,12 +21,8 @@
 
 package org.abubusoft.mee.server.exceptions;
 
-public abstract class AppAssert {
-  private AppAssert() {
-
-  }
-
-  public static void assertTrue(boolean condition, Class<? extends AppRuntimeException> exceptionClazz, String message, Object... params) {
+public interface AppAssert {
+  static void assertTrue(boolean condition, Class<? extends AppRuntimeException> exceptionClazz, String message, Object... params) {
     if (!condition) {
       AppRuntimeException exception;
       try {
@@ -38,7 +34,7 @@ public abstract class AppAssert {
     }
   }
 
-  public static void fail(Class<? extends AppRuntimeException> exceptionClazz, String message, Object... params) {
+  static void fail(Class<? extends AppRuntimeException> exceptionClazz, String message, Object... params) {
     assertTrue(false, exceptionClazz, message, params);
   }
 }

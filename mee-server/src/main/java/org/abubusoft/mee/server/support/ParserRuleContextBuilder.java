@@ -27,15 +27,13 @@ import org.abubusoft.mee.server.grammar.CommandsLexer;
 import org.abubusoft.mee.server.grammar.CommandsParser;
 import org.antlr.v4.runtime.*;
 
-public abstract class ParserRuleContextBuilder {
-  private ParserRuleContextBuilder() {
-  }
+public interface ParserRuleContextBuilder {
 
-  public interface RuleChooser {
+  interface RuleChooser {
     ParserRuleContext choose(CommandsParser parser);
   }
 
-  public static ParserRuleContext build(final String input, final RuleChooser chooser) {
+  static ParserRuleContext build(final String input, final RuleChooser chooser) {
     CommandsLexer lexer = new CommandsLexer(CharStreams.fromString(input));
     lexer.removeErrorListeners();
     lexer.addErrorListener(new BaseErrorListener() {
