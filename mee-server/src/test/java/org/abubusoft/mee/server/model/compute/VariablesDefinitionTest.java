@@ -46,7 +46,6 @@ class VariablesDefinitionTest {
       builVariableDefinitions(3, 1, 1);
     });
 
-
     assertEquals(1, builVariableDefinitions(1, 4, 3));
   }
 
