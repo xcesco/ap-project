@@ -33,7 +33,8 @@ import static com.google.common.primitives.Ints.tryParse;
 
 @SpringBootApplication(scanBasePackages = {"org.abubusoft.mee.server"})
 public class Application implements CommandLineRunner {
-  private static Logger logger = LoggerFactory.getLogger(Application.class);
+  private static final Logger logger = LoggerFactory.getLogger(Application.class);
+  public static final int DEFAULT_PORT = 80;
 
   private MeeServer meeServer;
 
@@ -58,6 +59,9 @@ public class Application implements CommandLineRunner {
       } else {
         logger.error("No valid listening port is specified via command line args");
       }
+    } else if (args.length == 0) {
+      logger.info("Listening port {} by default settings", DEFAULT_PORT);
+      meeServer.start(DEFAULT_PORT);
     } else {
       logger.error("Too many line args");
     }
