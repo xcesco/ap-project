@@ -24,9 +24,12 @@ package org.abubusoft.mee.server.model.compute;
 import org.abubusoft.mee.server.exceptions.AppAssert;
 import org.abubusoft.mee.server.exceptions.InvalidVariableDefinitionException;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static java.math.MathContext.DECIMAL32;
 
 public class VariableValuesRange {
   private final String name;
@@ -42,8 +45,12 @@ public class VariableValuesRange {
   }
 
   public List<Double> buildValuesList() {
-    return IntStream.iterate(0, index -> lowValue + stepValue * index <= highValue, index -> index + 1)
-            .mapToDouble(index -> lowValue + stepValue * index).boxed()
+    final BigDecimal step = new BigDecimal(stepValue, DECIMAL32);
+    final BigDecimal min = new BigDecimal(lowValue, DECIMAL32);
+    final BigDecimal max = new BigDecimal(highValue, DECIMAL32);
+
+    return Stream.iterate(min, currentValue -> currentValue.compareTo(max) <= 0, currentValue -> currentValue.add(step))
+            .mapToDouble(BigDecimal::doubleValue).boxed()
             .collect(Collectors.toList());
   }
 
