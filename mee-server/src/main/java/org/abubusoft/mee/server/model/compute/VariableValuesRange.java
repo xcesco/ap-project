@@ -46,10 +46,10 @@ public class VariableValuesRange {
 
   public List<Double> buildValuesList() {
     final BigDecimal step = new BigDecimal(stepValue, DECIMAL32);
-    final BigDecimal min = new BigDecimal(lowValue, DECIMAL32);
-    final BigDecimal max = new BigDecimal(highValue, DECIMAL32);
+    final BigDecimal start = new BigDecimal(lowValue, DECIMAL32);
+    final BigDecimal end = new BigDecimal(highValue, DECIMAL32);
 
-    return Stream.iterate(min, currentValue -> currentValue.compareTo(max) <= 0, currentValue -> currentValue.add(step))
+    return Stream.iterate(start, value -> value.compareTo(end) <= 0, value -> value.add(step))
             .mapToDouble(BigDecimal::doubleValue).boxed()
             .collect(Collectors.toList());
   }
