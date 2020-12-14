@@ -39,6 +39,7 @@ class CommandResponseTest {
     checkErrorCommand("   ", "(MalformedCommandException) No command specified");
     checkErrorCommand("b\t^H", "(MalformedCommandException) Unespected char at pos 1");
     checkErrorCommand("MAX_GRID ; x0:-1:2:0 ; (2-1)", "(MalformedCommandException) Unespected char at pos 8");
+    checkErrorCommand("AVG_LIST;x0:0:1:2,x1:0:1:2;(x0+x1)...ciao", "(MalformedCommandException) Unespected char at pos 34");
   }
 
   @Test
@@ -82,7 +83,6 @@ class CommandResponseTest {
     checkCommand("MAX_GRID;x0:1:2:2;(x0^1)", "1.000000");
     checkCommand("MAX_GRID;x0:0:2:1;x0", "0.000000");
     checkCommand("MAX_GRID;x0:-1:0.1:1;x0", "1.000000");
-    checkErrorCommand("AVG_LIST;x0:0:1:2,x1:0:1:2;(x0+x1)...ciao", "(MalformedCommandException) Unespected char at pos 34");
 
     checkCommand("MAX_GRID;x0:99999:1:100000;(x0^x0)", "Infinity");
     checkCommand("MIN_GRID;x0:99999:1:100000;((0-1)*(x0^x0))", "-Infinity");
